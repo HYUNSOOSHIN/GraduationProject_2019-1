@@ -379,4 +379,16 @@ public class MainActivity extends AppCompatActivity {
 //        main_detail_whole_state.setText(wholeState);
 //    }
 
+
+
+
+
+
+
+
+
+
+
+
+
 }
