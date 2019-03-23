@@ -1,6 +1,7 @@
 package com.example.graduationproject_2019_1.Activity;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,11 +18,21 @@ import com.example.graduationproject_2019_1.Manager.JSONManager;
 import com.example.graduationproject_2019_1.Manager.URLParameterManager;
 import com.example.graduationproject_2019_1.R;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
+
+
+
     List<LinearLayout> backgroundList = new ArrayList<>();
 
     LinearLayout main_whole_background;
@@ -116,6 +127,23 @@ public class MainActivity extends AppCompatActivity {
     private int wholeGrade;
     private boolean isSpinnerClickeRId = false;
 
+    /*
+     * Start
+     * 날씨 정보 받아오기: http://www.weather.go.kr/weather/observation/aws_table_popup.jsp
+     */
+    private String htmlPageUrl = "http://www.weather.go.kr/weather/observation/aws_table_popup.jsp";
+    //private TextView textviewHtmlDocument;
+    //private String htmlContentInStringFormat="";
+
+    //int cnt = 0;
+    TextView weather;
+
+    /*
+     * End
+     * 날씨 정보 받아오기: http://www.weather.go.kr/weather/observation/aws_table_popup.jsp
+     */
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +154,20 @@ public class MainActivity extends AppCompatActivity {
         addBackgroundList();
 
         setData("성북구");
+        weather = (TextView) findViewById(R.id.weather);
+        //"table tr[tabindex=3] td"
+        //"table tr[tabindex=3] td:eq(1)"
+        //new WeatherAsynTask(weather).execute("http://cleanair.seoul.go.kr/air_city.htm?method=measure&citySection=CITY", "tr[class=ft_b ft_point8] td"); // 잘 작동함
+        //new WeatherAsynTask(weather).execute("http://www.weather.go.kr/weather/observation/aws_table_popup.jsp", ".textb");
+        //new WeatherAsynTask(weather).execute("http://www.weather.go.kr/weather/observation/aws_table_popup.jsp", "tbody tr");
+        //new WeatherAsynTask(weather).execute("http://www.weather.go.kr/weather/observation/aws_table_popup.jsp", "tr[class=text] td:eq(1)");
+        //new WeatherAsynTask(weather).execute("http://www.weather.go.kr/weather/observation/aws_table_popup.jsp", ".text");
+
+        //new WeatherAsynTask(weather).execute("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1129057500", "body");
+        new WeatherAsynTask(weather).execute("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1129057500", "data[seq=0] hour");
+        //new WeatherAsynTask(weather).execute();
+        //new WeatherAsynTask(weather).execute("http://www.kma.go.kr","d1[class=region_weather_e]");
+        //new WeatherAsynTask(weather).execute("http://www.kma.go.kr","d1[class=region_weather_e]");
     }
 /*
     public String getCityInfoString() {
@@ -380,4 +422,41 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
+}
+
+
+class WeatherAsynTask extends AsyncTask<String, Void, String>{
+    TextView textView;
+    public WeatherAsynTask(TextView textView){
+        this.textView = textView;
+    }
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+    }
+    @Override
+    protected String doInBackground(String... params) {
+        String URL = params[0];
+        String E1 = params[1];
+        String result = "";
+        try {
+            Document document = Jsoup.connect(URL).get();
+            Elements elements = document.select(E1);
+            for(Element element : elements){
+                result = result+element.text()+"\n";
+            }
+            System.out.println(result);
+            Log.d("test1111", result);
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(String s){
+        super.onPostExecute(s);
+        textView.setText(s);
+    }
 }
