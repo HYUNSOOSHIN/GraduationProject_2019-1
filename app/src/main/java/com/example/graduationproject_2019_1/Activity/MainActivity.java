@@ -19,6 +19,7 @@ import com.example.graduationproject_2019_1.Manager.AsyncManager;
 import com.example.graduationproject_2019_1.Manager.CityLocationManager;
 import com.example.graduationproject_2019_1.Manager.JSONManager;
 import com.example.graduationproject_2019_1.Manager.URLParameterManager;
+import com.example.graduationproject_2019_1.Manager.WeatherAsynTask;
 import com.example.graduationproject_2019_1.R;
 
 import org.jsoup.Jsoup;
@@ -130,23 +131,7 @@ public class MainActivity extends AppCompatActivity {
     private int wholeGrade;
     private boolean isSpinnerClickeRId = false;
 
-    /*
-     * Start
-     * 날씨 정보 받아오기: http://www.weather.go.kr/weather/observation/aws_table_popup.jsp
-     */
-    private String htmlPageUrl = "http://www.weather.go.kr/weather/observation/aws_table_popup.jsp";
-    //private TextView textviewHtmlDocument;
-    //private String htmlContentInStringFormat="";
-
-    //int cnt = 0;
-    TextView weather;
-
-    /*
-     * End
-     * 날씨 정보 받아오기: http://www.weather.go.kr/weather/observation/aws_table_popup.jsp
-     */
-
-
+    TextView weather; // This usage is test for weather data.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,19 +152,9 @@ public class MainActivity extends AppCompatActivity {
 
         setData("성북구");
         weather = (TextView) findViewById(R.id.weather);
-        //"table tr[tabindex=3] td"
-        //"table tr[tabindex=3] td:eq(1)"
-        //new WeatherAsynTask(weather).execute("http://cleanair.seoul.go.kr/air_city.htm?method=measure&citySection=CITY", "tr[class=ft_b ft_point8] td"); // 잘 작동함
-        //new WeatherAsynTask(weather).execute("http://www.weather.go.kr/weather/observation/aws_table_popup.jsp", ".textb");
-        //new WeatherAsynTask(weather).execute("http://www.weather.go.kr/weather/observation/aws_table_popup.jsp", "tbody tr");
-        //new WeatherAsynTask(weather).execute("http://www.weather.go.kr/weather/observation/aws_table_popup.jsp", "tr[class=text] td:eq(1)");
-        //new WeatherAsynTask(weather).execute("http://www.weather.go.kr/weather/observation/aws_table_popup.jsp", ".text");
 
-        //new WeatherAsynTask(weather).execute("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1129057500", "body");
-        new WeatherAsynTask(weather).execute("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1129057500", "data[seq=0] hour");
-        //new WeatherAsynTask(weather).execute();
-        //new WeatherAsynTask(weather).execute("http://www.kma.go.kr","d1[class=region_weather_e]");
-        //new WeatherAsynTask(weather).execute("http://www.kma.go.kr","d1[class=region_weather_e]");
+        //new WeatherAsynTask(weather).execute("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1129057500", "data[seq=0] hour"); // --> perfectly doing well
+        new WeatherAsynTask().execute(); // --> perfectly doing well
     }
 /*
     public String getCityInfoString() {
@@ -437,7 +412,14 @@ public class MainActivity extends AppCompatActivity {
 }
 
 
-class WeatherAsynTask extends AsyncTask<String, Void, String>{
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// This code isn't used in this MainActivity, Because it is now in Manager package.
+/*
+public class WeatherAsynTask extends AsyncTask<String, Void, String> {
+    WeatherData[] W_Data = new WeatherData[25];
+    RegionCode R_Code = new RegionCode();
     TextView textView;
     public WeatherAsynTask(TextView textView){
         this.textView = textView;
@@ -468,7 +450,11 @@ class WeatherAsynTask extends AsyncTask<String, Void, String>{
 
     @Override
     protected void onPostExecute(String s){
-        super.onPostExecute(s);
+    super.onPostExecute(s);
         textView.setText(s);
     }
 }
+*/
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
