@@ -1,6 +1,7 @@
 package com.example.graduationproject_2019_1.Activity;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,13 +20,24 @@ import com.example.graduationproject_2019_1.Manager.AsyncManager;
 import com.example.graduationproject_2019_1.Manager.CityLocationManager;
 import com.example.graduationproject_2019_1.Manager.JSONManager;
 import com.example.graduationproject_2019_1.Manager.URLParameterManager;
+import com.example.graduationproject_2019_1.Manager.WeatherAsynTask;
 import com.example.graduationproject_2019_1.R;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
+
+
+
     List<LinearLayout> backgroundList = new ArrayList<>();
 
     LinearLayout main_whole_background;
@@ -120,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
     private int wholeGrade;
     private boolean isSpinnerClickeRId = false;
 
+    TextView weather; // This usage is test for weather data.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +152,10 @@ public class MainActivity extends AppCompatActivity {
         addBackgroundList();
 
         setData("성북구");
+        weather = (TextView) findViewById(R.id.weather);
+
+        //new WeatherAsynTask(weather).execute("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1129057500", "data[seq=0] hour"); // --> perfectly doing well
+        new WeatherAsynTask().execute(); // --> perfectly doing well
     }
 
 /*
@@ -388,4 +405,53 @@ public class MainActivity extends AppCompatActivity {
 //        main_detail_whole_state.setText(wholeState);
 //    }
 
+
 }
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// This code isn't used in this MainActivity, Because it is now in Manager package.
+/*
+public class WeatherAsynTask extends AsyncTask<String, Void, String> {
+    WeatherData[] W_Data = new WeatherData[25];
+    RegionCode R_Code = new RegionCode();
+    TextView textView;
+    public WeatherAsynTask(TextView textView){
+        this.textView = textView;
+    }
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+    }
+    @Override
+    protected String doInBackground(String... params) {
+        String URL = params[0];
+        String E1 = params[1];
+        String result = "";
+        try {
+            Document document = Jsoup.connect(URL).get();
+            Elements elements = document.select(E1);
+            for(Element element : elements){
+                result = result+element.text()+"\n";
+            }
+            System.out.println(result);
+            Log.d("test1111", result);
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(String s){
+    super.onPostExecute(s);
+        textView.setText(s);
+    }
+}
+*/
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
