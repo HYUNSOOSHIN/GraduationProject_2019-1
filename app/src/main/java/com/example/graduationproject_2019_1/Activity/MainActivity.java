@@ -1,6 +1,7 @@
 package com.example.graduationproject_2019_1.Activity;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +37,9 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
+    //private static final String ALARM_PREF_NAME = "alarmPrefName";
+    //private static final String ALARM_CITY_NAME = "alarmCityName";
+    private static final String ALARM_CITY_NAME_STRING = "alarmCityNameString";
 
 
     List<LinearLayout> backgroundList = new ArrayList<>();
@@ -151,19 +155,20 @@ public class MainActivity extends AppCompatActivity {
         findUIObjects();
         addBackgroundList();
 
-        setData("성북구");
+        setData(getCityInfoString());
+
         weather = (TextView) findViewById(R.id.weather);
 
         //new WeatherAsynTask(weather).execute("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1129057500", "data[seq=0] hour"); // --> perfectly doing well
         new WeatherAsynTask().execute(); // --> perfectly doing well
     }
 
-/*
+
     public String getCityInfoString() {
         SharedPreferences prefs = getSharedPreferences(ALARM_CITY_NAME_STRING, MODE_PRIVATE);
-        return prefs.getString(ALARM_CITY_NAME_STNG, "강남구");
+        return prefs.getString(ALARM_CITY_NAME_STRING, "강남구");
     }
-*/
+
 
     private void setData(String gu) {
         Log.i("test", "setData");

@@ -3,7 +3,26 @@ package com.example.graduationproject_2019_1.Data;
 public class RegionCode {
     public static final int[] RCode = new int[25];
 
+    Region region[] = { //동이름,코드값 객체 배열
+            new Region("삼선동",123456),
+            new Region("성북동", 159123)
+    };
+
+    public int findCode(String dong){ //동이름으로 코드값 찾는 함수
+        int cnt = 0;
+        for(int i=0; i<region.length; i++) {
+            if (region[i].dong == dong) {
+                cnt = i;
+            }
+            else{
+                return 400; //에러코드
+            }
+        }
+        return region[cnt].code;
+    }
+
     public RegionCode(){
+
         RCode[0] = 1168000000;// 강남구
         RCode[1] = 1174000000;// 강동구
         RCode[2] = 1130500000; // 강북구
@@ -58,4 +77,15 @@ public class RegionCode {
     public int junggu = 1114000000; // 중구
     public int jungranggu = 1126000000; // 중랑구
     */
+
+    public class Region{
+        private String dong;
+        private int code;
+
+        public Region(String dong, int code){
+            this.dong=dong;
+            this.code=code;
+        }
+    }
 }
+
