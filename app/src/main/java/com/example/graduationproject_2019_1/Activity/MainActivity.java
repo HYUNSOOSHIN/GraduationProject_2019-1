@@ -1,11 +1,11 @@
 package com.example.graduationproject_2019_1.Activity;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.graduationproject_2019_1.Adapter.RecyclerAdapter;
+import com.example.graduationproject_2019_1.Data.RecycleObject;
 import com.example.graduationproject_2019_1.Data.Url;
 import com.example.graduationproject_2019_1.Manager.AirGradeManager;
 import com.example.graduationproject_2019_1.Manager.AirGradeWrapper;
@@ -24,16 +26,9 @@ import com.example.graduationproject_2019_1.Manager.URLParameterManager;
 import com.example.graduationproject_2019_1.Manager.WeatherAsynTask;
 import com.example.graduationproject_2019_1.R;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     //private static final String ALARM_CITY_NAME = "alarmCityName";
     private static final String ALARM_CITY_NAME_STRING = "alarmCityNameString";
 
+    private RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
 
     List<LinearLayout> backgroundList = new ArrayList<>();
 
@@ -147,10 +144,33 @@ public class MainActivity extends AppCompatActivity {
         nextView_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ActionActivity.class);
-                startActivity(intent);
+                Intent actionIntent = new Intent(MainActivity.this, ActionActivity.class);
+                startActivity(actionIntent);
             }
         });
+        ImageButton searchView_btn = findViewById(R.id.searchView_btn);
+        searchView_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent searchIntent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(searchIntent);
+            }
+        });
+
+        recyclerView = findViewById(R.id.main_recycleView);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        ArrayList<RecycleObject> foodInfoArrayList = new ArrayList<>();
+        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "마스크","마스크는 K94를 권장합니다."));
+        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "공기청정기","외출 후 공기청정기를 가동해주세요."));
+        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "창문","절때 열지 마세요."));
+        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "야외활동","야외활동을 최대한 자제하며 외출 후 반드시 샤워를 하세요."));
+
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(foodInfoArrayList);
+
+        recyclerView.setAdapter(recyclerAdapter);
 
         findUIObjects();
         addBackgroundList();
