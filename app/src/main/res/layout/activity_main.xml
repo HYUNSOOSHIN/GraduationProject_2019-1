@@ -27,6 +27,7 @@
                     android:background="@drawable/ic_location_on_black_24dp"
                     tools:ignore="MissingConstraints" />
 
+
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_gravity="center"
@@ -55,6 +56,31 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--
+                    <Button
+                        android:id="@+id/gps_btn"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ic_android_black_24dp"
+                        tools:ignore="MissingConstraints" />
+                        -->
+                    <TextView
+                        android:id="@+id/tv_logitude"
+                        android:text="defort setting1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_latitude"
+                        android:text="defort setting2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_location"
+                        android:text="defort setting3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
                 </LinearLayout>
             </android.support.constraint.ConstraintLayout>
 
@@ -491,6 +517,8 @@
 
             </LinearLayout>
 -->
+            <!-- This is purpose of testing Location -->
+
         </LinearLayout>
     </ScrollView>
 
