@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +38,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -140,15 +142,19 @@ public class MainActivity extends AppCompatActivity {
 
     private int wholeGrade;
     private boolean isSpinnerClickeRId = false;
-    TextView weather; // This usage is test for weather data.
 
     private Button btnShowLocation;
     private TextView txtLat;
     private TextView txtLon;
     private TextView txtLocation;
-    double latitude ;
-    double longitude;
-    String string_location;
+    private TextView txtWeather;
+    public double latitude ;
+    public double longitude;
+    public String string_location;
+    public String[] array_location;
+    public String[] result_weather;
+    public String GU;
+    public String DONG;
     private final int PERMISSIONS_ACCESS_FINE_LOCATION = 1000;
     private final int PERMISSIONS_ACCESS_COARSE_LOCATION = 1001;
     private boolean isAccessFineLocation = false;
@@ -163,68 +169,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
-         * This place is Jihwan zone to implement getting location <Start>
-         */
-        //btnShowLocation = (Button) findViewById(R.id.gps_btn);
-        txtLat = (TextView) findViewById(R.id.tv_latitude);
-        txtLon = (TextView) findViewById(R.id.tv_logitude);
-        txtLocation = (TextView) findViewById(R.id.tv_location);
-        Geocoder mGeoCoder = new Geocoder(MainActivity.this);
-        /*
-        btnShowLocation.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                // 권한 요청을 해야 함
-                if (!isPermission) {
-                    callPermission();
-                    return;
-                }
-        });
-        callPermission();
-        */
-        callPermission();
-        // 권한 요청을 해야 함
-        if (!isPermission) {
-            callPermission();
-            return;
-        }
 
-        gps = new GpsInfo(MainActivity.this);
-        // GPS 사용유무 가져오기
-        if (gps.isGetLocation()) {
-
-            latitude = gps.getLatitude();
-            longitude = gps.getLongitude();
-
-            txtLat.setText(String.valueOf(latitude));
-            txtLon.setText(String.valueOf(longitude));
-
-            try{
-                List<Address>  mResultList = mGeoCoder.getFromLocation(gps.getLatitude(), gps.getLongitude(), 1);
-                Log.d("TAG", "onComplete: " + mResultList.get(0).getAddressLine(0));
-                string_location = mResultList.get(0).getAddressLine(0);
-                txtLocation.setText(string_location);
-            }catch (IOException e){
-                e.printStackTrace();
-                Log.d("TAG", "onComplete: 주소변환 실패");
-            }
-
-
-            Toast.makeText(
-                    getApplicationContext(),
-                    "당신의 위치 - \n위도: " + latitude + "\n경도: " + longitude,
-                    Toast.LENGTH_LONG).show();
-        } else {
-            // GPS 를 사용할수 없으므로
-            gps.showSettingsAlert();
-        }
-
-
-
-
-        /*
-         * This place is Jihwan zone to implement getting location <End>
-         */
 
         ImageButton nextView_btn = findViewById(R.id.nextView_btn);
         nextView_btn.setOnClickListener(new View.OnClickListener() {
@@ -258,72 +203,39 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(recyclerAdapter);
 
+        GPS_function();
+        try {
+            result_weather = (String[]) new WeatherAsynTask(GU, DONG).execute().get(); // --> perfectly doing well
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        txtWeather = (TextView) findViewById(R.id.tv_weather);
+
+        txtWeather.setText(result_weather[0] + "\n" +
+                result_weather[1] + " "  + result_weather[2] + " "  + result_weather[3] + " "  + result_weather[4] + " "  + result_weather[5] + " "  + result_weather[6] + "\n" +
+                result_weather[7] + " "  + result_weather[8] + " " + result_weather[9] + " " + result_weather[10] + " " + result_weather[11] + " " + result_weather[12] + "\n" +
+                result_weather[13] + " " + result_weather[14] + " " + result_weather[15] + " " + result_weather[16] + " " + result_weather[17] + " " + result_weather[18]);
+
         findUIObjects();
         addBackgroundList();
 
-        setData(getCityInfoString());
-
-        weather = (TextView) findViewById(R.id.weather);
+        //setData(getCityInfoString());
+        setData(array_location[2]); // 구 넣어줌
 
         //new WeatherAsynTask(weather).execute("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1129057500", "data[seq=0] hour"); // --> perfectly doing well
-        new WeatherAsynTask().execute(); // --> perfectly doing well
+        //new WeatherAsynTask().execute(); // --> perfectly doing well
+        //new WeatherAsynTask(GU, DONG).execute();
+
+
+
     }
-
-
-    // This is previlege request logic
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
-        if (requestCode == PERMISSIONS_ACCESS_FINE_LOCATION
-                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-            isAccessFineLocation = true;
-
-        } else if (requestCode == PERMISSIONS_ACCESS_COARSE_LOCATION
-                && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-
-            isAccessCoarseLocation = true;
-        }
-
-        if (isAccessFineLocation && isAccessCoarseLocation) {
-            isPermission = true;
-        }
-    }
-
-    // 전화번호 권한 요청
-    private void callPermission() {
-        // Check the SDK version and whether the permission is already granted or not.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            requestPermissions(
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_ACCESS_FINE_LOCATION);
-
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED){
-
-            requestPermissions(
-                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                    PERMISSIONS_ACCESS_COARSE_LOCATION);
-        } else {
-            isPermission = true;
-        }
-    }
-
-
-
-
-    public String getCityInfoString() {
-        SharedPreferences prefs = getSharedPreferences(ALARM_CITY_NAME_STRING, MODE_PRIVATE);
-        return prefs.getString(ALARM_CITY_NAME_STRING, "강남구");
-    }
-
 
     private void setData(String gu) {
-        Log.i("test", "setData");
+
+        //Log.i("test", "setData");
 
         AsyncManager manager = AsyncManager.getInstance();
         String nm = CityLocationManager.getNMbyCityName(gu);
@@ -562,53 +474,95 @@ public class MainActivity extends AppCompatActivity {
 //        main_detail_whole_state.setText(wholeState);
 //    }
 
-
-}
-
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// This code isn't used in this MainActivity, Because it is now in Manager package.
-/*
-public class WeatherAsynTask extends AsyncTask<String, Void, String> {
-    WeatherData[] W_Data = new WeatherData[25];
-    RegionCode R_Code = new RegionCode();
-    TextView textView;
-    public WeatherAsynTask(TextView textView){
-        this.textView = textView;
-    }
+    // This is previlege request logic
     @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-    }
-    @Override
-    protected String doInBackground(String... params) {
-        String URL = params[0];
-        String E1 = params[1];
-        String result = "";
-        try {
-            Document document = Jsoup.connect(URL).get();
-            Elements elements = document.select(E1);
-            for(Element element : elements){
-                result = result+element.text()+"\n";
-            }
-            System.out.println(result);
-            Log.d("test1111", result);
-            return result;
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+        if (requestCode == PERMISSIONS_ACCESS_FINE_LOCATION
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+            isAccessFineLocation = true;
+
+        } else if (requestCode == PERMISSIONS_ACCESS_COARSE_LOCATION
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+
+            isAccessCoarseLocation = true;
         }
-        return null;
+
+        if (isAccessFineLocation && isAccessCoarseLocation) {
+            isPermission = true;
+        }
     }
 
-    @Override
-    protected void onPostExecute(String s){
-    super.onPostExecute(s);
-        textView.setText(s);
+    // 전화번호 권한 요청
+    private void callPermission() {
+        // Check the SDK version and whether the permission is already granted or not.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissions(
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_ACCESS_FINE_LOCATION);
+
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED){
+
+            requestPermissions(
+                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                    PERMISSIONS_ACCESS_COARSE_LOCATION);
+        } else {
+            isPermission = true;
+        }
     }
+
+    public void GPS_function(){
+
+        txtLat = (TextView) findViewById(R.id.tv_latitude);
+        txtLon = (TextView) findViewById(R.id.tv_logitude);
+        txtLocation = (TextView) findViewById(R.id.tv_location);
+        Geocoder mGeoCoder = new Geocoder(MainActivity.this);
+
+        callPermission();
+        // 권한 요청을 해야 함
+        if (!isPermission) {
+            callPermission();
+            return;
+        }
+        gps = new GpsInfo(MainActivity.this);
+        // GPS 사용유무 가져오기
+        if (gps.isGetLocation()) {
+
+            latitude = gps.getLatitude();
+            longitude = gps.getLongitude();
+
+            txtLat.setText(String.valueOf(latitude));
+            txtLon.setText(String.valueOf(longitude));
+
+            try{
+                List<Address>  mResultList = mGeoCoder.getFromLocation(gps.getLatitude(), gps.getLongitude(), 1);
+                Log.d("TAG", "onComplete: " + mResultList.get(0).getAddressLine(0));
+                string_location = mResultList.get(0).getAddressLine(0);
+                txtLocation.setText(string_location);
+                array_location = string_location.split(" ");
+                GU = array_location[2];
+                DONG = array_location[3];
+                // array_location[2]: 구, array_location[3]: 동 만 살리면 된다.
+            }catch (IOException e){
+                e.printStackTrace();
+                Log.d("TAG", "onComplete: 주소변환 실패");
+            }
+
+            // This is for test, you can delete it.
+            Toast.makeText(
+                    getApplicationContext(),
+                    "당신의 위치 - \n위도: " + latitude + "\n경도: " + longitude,
+                    Toast.LENGTH_LONG).show();
+        } else {
+            // GPS 를 사용할수 없으므로
+            gps.showSettingsAlert();
+        }
+    }
+
 }
-*/
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
