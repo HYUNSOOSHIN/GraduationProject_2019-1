@@ -2,9 +2,11 @@ package com.example.graduationproject_2019_1.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.drm.DrmStore;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -15,14 +17,22 @@ import android.widget.Toast;
 import com.example.graduationproject_2019_1.Adapter.RecyclerAdapter;
 import com.example.graduationproject_2019_1.Data.RecycleObject;
 import com.example.graduationproject_2019_1.R;
+import com.example.graduationproject_2019_1.Request.GetListRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class ActionActivity extends Activity {
 
     private RecyclerView recyclerView;
+    private RecyclerView recyclerView2;
     RecyclerView.LayoutManager layoutManager;
+    RecyclerView.LayoutManager layoutManager2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +72,33 @@ public class ActionActivity extends Activity {
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(foodInfoArrayList);
 
         recyclerView.setAdapter(recyclerAdapter);
+
+        //아래
+        recyclerView2 = findViewById(R.id.action_recycleView2);
+        recyclerView2.setHasFixedSize(true);
+        layoutManager2 = new LinearLayoutManager(this);
+        recyclerView2.setLayoutManager(layoutManager2);
+
+        ArrayList<RecycleObject> foodInfoArrayList2 = new ArrayList<>();
+        try {
+            String result = new GetListRequest(ActionActivity.this).execute().get();
+            JSONArray jsonArray = new JSONArray (result);
+            for(int i=0; i<jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                foodInfoArrayList2.add(new RecycleObject(R.drawable.tmp, "카테고리",jsonObject.getString("comment")));
+            }
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RecyclerAdapter recyclerAdapter2 = new RecyclerAdapter(foodInfoArrayList2);
+
+        recyclerView2.setAdapter(recyclerAdapter2);
     }
 
     public void leftbtn(View v) {

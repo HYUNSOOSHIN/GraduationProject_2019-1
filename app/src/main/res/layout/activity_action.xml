@@ -65,6 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </android.support.v7.widget.RecyclerView>
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -223,16 +224,11 @@
             </LinearLayout>
 
             <!-- 리사이클러뷰 위치-->
-            <TextView
-                android:layout_width="350dp"
-                android:layout_height="450dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="리사이클러뷰 자리"
-                android:textColor="#000000"
-                android:textSize="30dp"
-                android:background="@drawable/radius_border"
-                android:layout_marginTop="10dp"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/action_recycleView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
     </ScrollView>

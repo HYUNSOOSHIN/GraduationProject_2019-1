@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageButton nextView_btn = findViewById(R.id.nextView_btn);
+        Button nextView_btn = findViewById(R.id.nextView_btn);
         nextView_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -288,15 +288,15 @@ public class MainActivity extends AppCompatActivity {
 
         // 일산화탄소
 //        main_co_name = (TextView) findViewById(R.id.main_co_name);
-        main_co_face = (ImageView) findViewById(R.id.main_co_image);
+//        main_co_face = (ImageView) findViewById(R.id.main_co_image);
 //        main_co_quality = (TextView) findViewById(R.id.main_co_quality);
-        main_co_detail = (TextView) findViewById(R.id.main_co_text);
+//        main_co_detail = (TextView) findViewById(R.id.main_co_text);
 
         // 아황산가스
 //        main_so2_name = (TextView) findViewById(R.id.main_so2_name);
-        main_so2_face = (ImageView) findViewById(R.id.main_so2_image);
+//        main_so2_face = (ImageView) findViewById(R.id.main_so2_image);
 //        main_so2_quality = (TextView) findViewById(R.id.main_so2_quality);
-        main_so2_detail = (TextView) findViewById(R.id.main_so2_text);
+//        main_so2_detail = (TextView) findViewById(R.id.main_so2_text);
     }
 
 //    private void findMoreDetails() {
@@ -393,19 +393,19 @@ public class MainActivity extends AppCompatActivity {
 //        main_no2_quality.setText(no2_wrapper.getQuality());
         main_no2_detail.setText(no2_detail + " ppm");
 
-        // 일산화탄소
-        String co_detail = detailData.get("CO");
-        AirGradeWrapper co_wrapper = AirGradeManager.get("CO", co_detail);
-        main_co_face.setBackgroundResource(co_wrapper.getFaceId());
+//        // 일산화탄소
+//        String co_detail = detailData.get("CO");
+//        AirGradeWrapper co_wrapper = AirGradeManager.get("CO", co_detail);
+//        main_co_face.setBackgroundResource(co_wrapper.getFaceId());
 //        main_co_quality.setText(co_wrapper.getQuality());
-        main_co_detail.setText(co_detail + " ppm");
-
-        // 아황산가스
-        String so2_detail = detailData.get("SO2");
-        AirGradeWrapper so2_wrapper = AirGradeManager.get("SO2", so2_detail);
-        main_so2_face.setBackgroundResource(so2_wrapper.getFaceId());
+//        main_co_detail.setText(co_detail + " ppm");
+//
+//        // 아황산가스
+//        String so2_detail = detailData.get("SO2");
+//        AirGradeWrapper so2_wrapper = AirGradeManager.get("SO2", so2_detail);
+//        main_so2_face.setBackgroundResource(so2_wrapper.getFaceId());
 //        main_so2_quality.setText(so2_wrapper.getQuality());
-        main_so2_detail.setText(so2_detail + " ppm");
+//        main_so2_detail.setText(so2_detail + " ppm");
     }
 
 //    private void setMoreDetailData(Map<String, String> detailData) {
