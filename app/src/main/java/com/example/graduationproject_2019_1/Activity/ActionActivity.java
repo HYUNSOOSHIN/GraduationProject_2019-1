@@ -86,6 +86,7 @@ public class ActionActivity extends Activity {
             for(int i=0; i<jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 foodInfoArrayList2.add(new RecycleObject(R.drawable.tmp, "카테고리",jsonObject.getString("comment")));
+                Log.i("test",jsonObject.getString("comment"));
             }
 
         } catch (InterruptedException e) {

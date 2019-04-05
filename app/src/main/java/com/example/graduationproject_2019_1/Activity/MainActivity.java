@@ -3,11 +3,15 @@ package com.example.graduationproject_2019_1.Activity;
 import android.content.SharedPreferences;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -30,7 +34,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private String TAG = "MainActivity";
+    private Boolean isMenuShow = false;
+    private Boolean isExitFlag = false;
+    private ViewGroup mainLayout;   //사이드 나왔을때 클릭방지할 영역
+    private ViewGroup viewLayout;   //전체 감싸는 영역
+    private ViewGroup sideLayout;   //사이드바만 감싸는 영역
 
     //private static final String ALARM_PREF_NAME = "alarmPrefName";
     //private static final String ALARM_CITY_NAME = "alarmCityName";
@@ -38,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
+
 
     List<LinearLayout> backgroundList = new ArrayList<>();
 
@@ -57,40 +69,20 @@ public class MainActivity extends AppCompatActivity {
 
     // main_detail
     // 미세먼지
-    TextView main_pm10_name;
-    ImageView main_pm10_face;
-    TextView main_pm10_quality;
-    TextView main_pm10_detail;
+//    TextView main_pm10_name;
+//    ImageView main_pm10_face;
+//    TextView main_pm10_quality;
+    TextView main_pm10_status;
+    TextView main_pm10_value;
+    TextView main_pm10_status2;
+    TextView main_pm10_value2;
 
     // 초미세먼지
-    TextView main_pm25_name;
-    ImageView main_pm25_face;
-    TextView main_pm25_quality;
-    TextView main_pm25_detail;
-
-    // 오존
-    TextView main_o3_name;
-    ImageView main_o3_face;
-    TextView main_o3_quality;
-    TextView main_o3_detail;
-
-    // 이산화질소
-    TextView main_no2_name;
-    ImageView main_no2_face;
-    TextView main_no2_quality;
-    TextView main_no2_detail;
-
-    // 일산화탄소
-    TextView main_co_name;
-    ImageView main_co_face;
-    TextView main_co_quality;
-    TextView main_co_detail;
-
-    // 아황산가스
-    TextView main_so2_name;
-    ImageView main_so2_face;
-    TextView main_so2_quality;
-    TextView main_so2_detail;
+//    TextView main_pm25_name;
+//    ImageView main_pm25_face;
+//    TextView main_pm25_quality;
+    TextView main_pm25_status;
+    TextView main_pm25_value;
 
     // 세부 사항
     TextView main_detail_update_time;
@@ -140,6 +132,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        init(); //사이드바 init
+        addSideView();  //사이드바 add
+
         Button nextView_btn = findViewById(R.id.nextView_btn);
         nextView_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,10 +158,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         ArrayList<RecycleObject> foodInfoArrayList = new ArrayList<>();
-        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "마스크","마스크는 K94를 권장합니다."));
-        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "공기청정기","외출 후 공기청정기를 가동해주세요."));
-        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "창문","절때 열지 마세요."));
-        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "야외활동","야외활동을 최대한 자제하며 외출 후 반드시 샤워를 하세요."));
+        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "마스크", "마스크는 K94를 권장합니다."));
+        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "공기청정기", "외출 후 공기청정기를 가동해주세요."));
+        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "창문", "절때 열지 마세요."));
+        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "야외활동", "야외활동을 최대한 자제하며 외출 후 반드시 샤워를 하세요."));
 
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(foodInfoArrayList);
 
@@ -177,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
         setData(getCityInfoString());
 
-        weather = (TextView) findViewById(R.id.weather);
+//        weather = (TextView) findViewById(R.id.weather);
 
         //new WeatherAsynTask(weather).execute("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1129057500", "data[seq=0] hour"); // --> perfectly doing well
         new WeatherAsynTask().execute(); // --> perfectly doing well
@@ -218,7 +213,6 @@ public class MainActivity extends AppCompatActivity {
         findDetails();
         //findMoreDetails();
         //findOthers();
-
         //setOnClickListeners();
     }
 
@@ -264,39 +258,19 @@ public class MainActivity extends AppCompatActivity {
     private void findDetails() {
         // 미세먼지
 //        main_pm10_name = (TextView) findViewById(R.id.main_pm10_name);
-        main_pm10_face = (ImageView) findViewById(R.id.main_pm10_image);
+//        main_pm10_face = (ImageView) findViewById(R.id.main_pm10_image);
 //        main_pm10_quality = (TextView) findViewById(R.id.main_pm10_quality);
-        main_pm10_detail = (TextView) findViewById(R.id.main_pm10_text);
+        main_pm10_status = (TextView) findViewById(R.id.main_pm10_status);
+        main_pm10_value = (TextView) findViewById(R.id.main_pm10_value);
+        main_pm10_status2 = (TextView) findViewById(R.id.main_pm10_status2);
+        main_pm10_value2 = (TextView) findViewById(R.id.main_pm10_value2);
 
         // 초미세먼지
 //        main_pm25_name = (TextView) findViewById(R.id.main_pm25_name);
-        main_pm25_face = (ImageView) findViewById(R.id.main_pm25_image);
+//        main_pm25_face = (ImageView) findViewById(R.id.main_pm25_image);
 //        main_pm25_quality = (TextView) findViewById(R.id.main_pm25_quality);
-        main_pm25_detail = (TextView) findViewById(R.id.main_pm25_text);
-
-        // 오존
-//        main_o3_name = (TextView) findViewById(R.id.main_o3_name);
-        main_o3_face = (ImageView) findViewById(R.id.main_o3_image);
-//        main_o3_quality = (TextView) findViewById(R.id.main_o3_quality);
-        main_o3_detail = (TextView) findViewById(R.id.main_o3_text);
-
-        // 이산화질소
-//        main_no2_name = (TextView) findViewById(R.id.main_no2_name);
-        main_no2_face = (ImageView) findViewById(R.id.main_no2_image);
-//        main_no2_quality = (TextView) findViewById(R.id.main_no2_quality);
-        main_no2_detail = (TextView) findViewById(R.id.main_no2_text);
-
-        // 일산화탄소
-//        main_co_name = (TextView) findViewById(R.id.main_co_name);
-//        main_co_face = (ImageView) findViewById(R.id.main_co_image);
-//        main_co_quality = (TextView) findViewById(R.id.main_co_quality);
-//        main_co_detail = (TextView) findViewById(R.id.main_co_text);
-
-        // 아황산가스
-//        main_so2_name = (TextView) findViewById(R.id.main_so2_name);
-//        main_so2_face = (ImageView) findViewById(R.id.main_so2_image);
-//        main_so2_quality = (TextView) findViewById(R.id.main_so2_quality);
-//        main_so2_detail = (TextView) findViewById(R.id.main_so2_text);
+        main_pm25_status = (TextView) findViewById(R.id.main_pm25_status);
+        main_pm25_value = (TextView) findViewById(R.id.main_pm25_value);
     }
 
 //    private void findMoreDetails() {
@@ -368,44 +342,21 @@ public class MainActivity extends AppCompatActivity {
         // 미세먼지
         String pm10_detail = detailData.get("PM10");
         AirGradeWrapper pm10_wrapper = AirGradeManager.get("PM10", pm10_detail);
-        main_pm10_face.setBackgroundResource(pm10_wrapper.getFaceId());
+//        main_pm10_face.setBackgroundResource(pm10_wrapper.getFaceId());
 //        main_pm10_quality.setText(pm10_wrapper.getQuality());
-        main_pm10_detail.setText(pm10_detail + " ㎍/㎥");
+        main_pm10_status.setText(pm10_wrapper.getQuality());
+        main_pm10_value.setText(pm10_detail + " ㎍/㎥");
+        main_pm10_status2.setText(pm10_wrapper.getQuality());
+        main_pm10_value2.setText(pm10_detail);
 
         // 초미세먼지
         String pm25_detail = detailData.get("PM25");
         AirGradeWrapper pm25_wrapper = AirGradeManager.get("PM25", pm25_detail);
-        main_pm25_face.setBackgroundResource(pm25_wrapper.getFaceId());
+//        main_pm25_face.setBackgroundResource(pm25_wrapper.getFaceId());
 //        main_pm25_quality.setText(pm25_wrapper.getQuality());
-        main_pm25_detail.setText(pm25_detail + " ㎍/㎥");
+        main_pm25_status.setText(pm25_wrapper.getQuality());
+        main_pm25_value.setText(pm25_detail + " ㎍/㎥");
 
-        // 오존
-        String o3_detail = detailData.get("O3");
-        AirGradeWrapper o3_wrapper = AirGradeManager.get("O3", o3_detail);
-        main_o3_face.setBackgroundResource(o3_wrapper.getFaceId());
-//        main_o3_quality.setText(o3_wrapper.getQuality());
-        main_o3_detail.setText(o3_detail + " ppm");
-
-        // 이산화질소
-        String no2_detail = detailData.get("NO2");
-        AirGradeWrapper no2_wrapper = AirGradeManager.get("NO2", no2_detail);
-        main_no2_face.setBackgroundResource(no2_wrapper.getFaceId());
-//        main_no2_quality.setText(no2_wrapper.getQuality());
-        main_no2_detail.setText(no2_detail + " ppm");
-
-//        // 일산화탄소
-//        String co_detail = detailData.get("CO");
-//        AirGradeWrapper co_wrapper = AirGradeManager.get("CO", co_detail);
-//        main_co_face.setBackgroundResource(co_wrapper.getFaceId());
-//        main_co_quality.setText(co_wrapper.getQuality());
-//        main_co_detail.setText(co_detail + " ppm");
-//
-//        // 아황산가스
-//        String so2_detail = detailData.get("SO2");
-//        AirGradeWrapper so2_wrapper = AirGradeManager.get("SO2", so2_detail);
-//        main_so2_face.setBackgroundResource(so2_wrapper.getFaceId());
-//        main_so2_quality.setText(so2_wrapper.getQuality());
-//        main_so2_detail.setText(so2_detail + " ppm");
     }
 
 //    private void setMoreDetailData(Map<String, String> detailData) {
@@ -430,6 +381,83 @@ public class MainActivity extends AppCompatActivity {
 //        main_detail_whole_state.setText(wholeState);
 //    }
 
+    private void init() {
+
+        findViewById(R.id.sidebar_btn).setOnClickListener(this);
+
+        mainLayout = findViewById(R.id.id_main);
+        viewLayout = findViewById(R.id.fl_silde);
+        sideLayout = findViewById(R.id.view_sildebar);
+
+    }
+
+    //사이드바 추가
+    private void addSideView() {
+
+        SideBarView sidebar = new SideBarView(this);
+        sideLayout.addView(sidebar);
+
+        viewLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        sidebar.setEventListener(new SideBarView.EventListener() {
+
+            @Override
+            public void btnCancel() {
+                Log.e(TAG, "btnCancel");
+                closeMenu();
+            }
+
+            @Override
+            public void btnLevel1() {
+                Log.e(TAG, "btnLevel1");
+
+                closeMenu();
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+
+            case R.id.sidebar_btn:
+
+                showMenu();
+                break;
+        }
+    }
+
+    public void closeMenu() {
+
+        isMenuShow = false;
+        Animation slide = AnimationUtils.loadAnimation(this, R.anim.sidebar_hidden);
+        sideLayout.startAnimation(slide);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                viewLayout.setVisibility(View.GONE);
+                viewLayout.setEnabled(false);
+                mainLayout.setEnabled(true);
+            }
+        }, 450);
+    }
+
+    public void showMenu() {
+
+        isMenuShow = true;
+        Animation slide = AnimationUtils.loadAnimation(this, R.anim.sidebar_show);
+        sideLayout.startAnimation(slide);
+        viewLayout.setVisibility(View.VISIBLE);
+        viewLayout.setEnabled(true);
+        mainLayout.setEnabled(false);
+        Log.e(TAG, "메뉴버튼 클릭");
+    }
 
 }
 
