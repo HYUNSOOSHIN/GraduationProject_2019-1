@@ -15,10 +15,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/main_face"
+                android:layout_width="match_parent"
+                android:layout_height="462dp"
+                android:scaleType="fitCenter"
+                android:background="@drawable/temp" />
+
             <RelativeLayout
                 android:id="@+id/rl_001"
                 android:layout_width="match_parent"
-                android:layout_height="60dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="9dp">
 
                 <ImageButton
                     android:id="@+id/sidebar_btn"
@@ -30,10 +38,10 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_centerVertical="true"
-                    android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
@@ -42,6 +50,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="서울특별시 송파구 석촌동"
+                        android:textColor="#000000"
                         android:textSize="14sp" />
 
                     <TextView
@@ -50,6 +59,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="월요일 AM 11:00"
+                        android:textColor="#000000"
                         android:textSize="11sp" />
                 </LinearLayout>
 
@@ -63,29 +73,18 @@
                     android:background="@drawable/ic_location_on_black_24dp" />
             </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/face"
+            <View
+                android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="292dp"
-                android:layout_below="@id/rl_001"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/main_face"
-                    android:layout_width="112dp"
-                    android:layout_height="112dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginBottom="50dp"
-                    android:gravity="center"
-                    android:src="@drawable/tmp" />
-            </LinearLayout>
+                android:layout_below="@id/rl_001" />
 
             <LinearLayout
                 android:id="@+id/mise"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/face"
-                android:layout_marginBottom="50dp"
+                android:layout_height="85dp"
+                android:layout_below="@id/view"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -105,6 +104,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="미세먼지 "
+                            android:textColor="#000000"
                             android:textSize="18sp" />
 
                         <TextView
@@ -113,6 +113,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="매우 좋음"
+                            android:textColor="#159123"
                             android:textSize="18sp" />
                     </LinearLayout>
 
@@ -122,6 +123,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="182 ㎍/㎥"
+                        android:textColor="#159123"
                         android:textSize="34sp" />
                 </LinearLayout>
 
@@ -142,6 +144,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="초미세먼지 "
+                            android:textColor="#000000"
                             android:textSize="18sp" />
 
                         <TextView
@@ -150,6 +153,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="매우 좋음"
+                            android:textColor="#159123"
                             android:textSize="18sp" />
                     </LinearLayout>
 
@@ -159,6 +163,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="132 ㎍/㎥"
+                        android:textColor="#159123"
                         android:textSize="34sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -185,6 +190,7 @@
                         android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/today"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="오늘 날짜"
@@ -209,10 +215,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="85dp"
+                    android:layout_marginLeft="22dp"
                     android:layout_marginTop="7dp"
                     android:gravity="center"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="22dp">
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -328,42 +334,51 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/day1"
+                        android:onClick="whatday"
                         android:layout_width="120dp"
                         android:layout_height="26dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="월요일"
+                        android:textColor="#3a3a3a"
                         android:textSize="20dp" />
 
                     <TextView
+                        android:id="@+id/day2"
+                        android:onClick="whatday"
                         android:layout_width="120dp"
                         android:layout_height="26dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="화요일"
+                        android:textColor="#818181"
                         android:textSize="20dp" />
 
                     <TextView
+                        android:id="@+id/day3"
+                        android:onClick="whatday"
                         android:layout_width="120dp"
                         android:layout_height="26dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="수요일"
+                        android:textColor="#818181"
                         android:textSize="20dp" />
                 </LinearLayout>
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginLeft="23dp"
                     android:scrollbars="none">
 
-                    <TextView
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/main_recycleView2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="날씨그리는곳 리사이클러뷰로 만들면 좋을듯"
-                        android:textColor="#ff0000"
-                        android:textSize="20sp" />
+                        android:layout_height="match_parent"/>
+
                 </HorizontalScrollView>
             </LinearLayout>
 
@@ -373,16 +388,16 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/week_weather"
                 android:layout_marginHorizontal="22dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="46dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
                     android:text="미세먼지 수치에 따른 건강관리 및 행동요령"
-                    android:textSize="18sp"
                     android:textColor="#292929"
-                    android:layout_marginTop="13dp"/>
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -401,6 +416,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="매우 좋음"
+                        android:textColor="#159123"
                         android:textSize="15sp" />
 
                     <TextView
@@ -468,6 +484,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
                     android:text="어떻게 일상 속 미세먼지를 줄일 수 있을까요? 많은 사람들이 실천하고 있습니다. 함께 실천해 보세요."
+                    android:textColor="#5c5c5c"
                     android:textSize="11sp" />
 
                 <Button

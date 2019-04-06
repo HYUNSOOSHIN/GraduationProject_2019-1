@@ -22,7 +22,6 @@ public class AirGradeManager {
     public static final String GRADE_02_SHORT = "좋음";
     public static final String GRADE_03_SHORT = "양호";
     public static final String GRADE_04_SHORT = "보통";
-
     public static final String GRADE_05_SHORT = "나쁨";
     public static final String GRADE_06_SHORT = "상당히 나쁨";
     public static final String GRADE_07_SHORT = "매우 나쁨";
@@ -78,7 +77,7 @@ public class AirGradeManager {
         return result;
     }
 
-    public static int getBackgroundColorIdWithGrade(int grade, boolean isThick) {
+    public static int getTextColorIdWithGrade(int grade, boolean isThick) {
         int id;
         if (isThick) {
             switch (grade) {

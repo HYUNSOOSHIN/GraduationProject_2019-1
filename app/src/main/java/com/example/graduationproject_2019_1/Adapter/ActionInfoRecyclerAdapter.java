@@ -9,19 +9,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.graduationproject_2019_1.Data.RecycleObject;
+import com.example.graduationproject_2019_1.Data.ActionRecycleObject;
 import com.example.graduationproject_2019_1.R;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
+public class ActionInfoRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class ActionViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView title;
         TextView comment;
 
-        MyViewHolder(View view){
+        ActionViewHolder(View view){
             super(view);
             image = view.findViewById(R.id.re_image);
             title = view.findViewById(R.id.re_title);
@@ -29,29 +29,29 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    private ArrayList<RecycleObject> foodInfoArrayList;
-    public RecyclerAdapter(ArrayList<RecycleObject> foodInfoArrayList){
-        this.foodInfoArrayList = foodInfoArrayList;
+    private ArrayList<ActionRecycleObject> adtionInfoArrayList;
+    public ActionInfoRecyclerAdapter(ArrayList<ActionRecycleObject> adtionInfoArrayList){
+        this.adtionInfoArrayList = adtionInfoArrayList;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_template, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.actioninfo_template, parent, false);
 
-        return new MyViewHolder(v);
+        return new ActionViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
-        final MyViewHolder myViewHolder = (MyViewHolder) holder;
+        final ActionViewHolder actionViewHolder = (ActionViewHolder) holder;
 
-        myViewHolder.image.setImageResource(foodInfoArrayList.get(position).image);
-        myViewHolder.title.setText(foodInfoArrayList.get(position).title);
-        myViewHolder.comment.setText(foodInfoArrayList.get(position).comment);
+        actionViewHolder.image.setImageResource(adtionInfoArrayList.get(position).image);
+        actionViewHolder.title.setText(adtionInfoArrayList.get(position).title);
+        actionViewHolder.comment.setText(adtionInfoArrayList.get(position).comment);
 
-        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        actionViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
@@ -62,6 +62,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return foodInfoArrayList.size();
+        return adtionInfoArrayList.size();
     }
 }
