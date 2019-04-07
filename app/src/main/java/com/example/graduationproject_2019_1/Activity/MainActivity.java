@@ -1,7 +1,12 @@
 package com.example.graduationproject_2019_1.Activity;
 
-import android.content.SharedPreferences;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,11 +23,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.graduationproject_2019_1.Adapter.ActionInfoRecyclerAdapter;
 import com.example.graduationproject_2019_1.Adapter.WeatherInfoRecyclerAdapter;
+import com.example.graduationproject_2019_1.Data.GpsInfo;
 import com.example.graduationproject_2019_1.Data.ActionRecycleObject;
 import com.example.graduationproject_2019_1.Data.Url;
+import com.example.graduationproject_2019_1.Data.WeatherData;
 import com.example.graduationproject_2019_1.Data.WeatherRecycleObject;
 import com.example.graduationproject_2019_1.Manager.AirGradeManager;
 import com.example.graduationproject_2019_1.Manager.AirGradeWrapper;
@@ -33,9 +41,11 @@ import com.example.graduationproject_2019_1.Manager.URLParameterManager;
 import com.example.graduationproject_2019_1.Manager.WeatherAsynTask;
 import com.example.graduationproject_2019_1.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -92,20 +102,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int wholeGrade;
     private boolean isSpinnerClickeRId = false;
 
-    TextView weather; // This usage is test for weather data.
+    private TextView txtLat;
+    private TextView txtLon;
+    private TextView txtLocation;
+    private TextView txtWeather;
+
+    private TextView main_weather;
+    private TextView main_temp;
+    private TextView main_rain;
+    private TextView main_reh;
+
+    public double latitude ;
+    public double longitude;
+    public String string_location;
+    public String[] array_location;
+    public String[] result_weather;
+    public ArrayList<WeatherData> W_D;
+    public int first_day;
+    public int second_day;
+    public int third_day;
+    public String GU;
+    public String DONG;
+    private final int PERMISSIONS_ACCESS_FINE_LOCATION = 1000;
+    private final int PERMISSIONS_ACCESS_COARSE_LOCATION = 1001;
+    private boolean isAccessFineLocation = false;
+    private boolean isAccessCoarseLocation = false;
+    private boolean isPermission = false;
+
+    // GPSTracker class
+    private GpsInfo gps;
+    public Intent intent_location;
+    public String get_location_gu_intent = null;
+    public String get_location_dong_intent = null;
+    public boolean send_or_not = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        init(); //사이드바 init
-        addSideView();  //사이드바 add
-        findUIObjects(); //뷰 Id 매칭
-        setData(getCityInfoString()); // 데이터 매핑
-        action_list(); //건강관리 및 행동요령 리스트 출력
-        weather_list(0); //주간날씨정보 리스트 출력
-
+        intent_location = new Intent(this.getIntent());
+        first_day = 1; second_day = 1; third_day = 1;
 
         Button nextView_btn = findViewById(R.id.nextView_btn);
         nextView_btn.setOnClickListener(new View.OnClickListener() {
@@ -124,10 +160,80 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-//        weather = (TextView) findViewById(R.id.weather);
-//        new WeatherAsynTask(weather).execute("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1129057500", "data[seq=0] hour"); // --> perfectly doing well
-        new WeatherAsynTask().execute(); // --> perfectly doing well
+
+        main_weather = (TextView) findViewById(R.id.main_weather);
+        main_temp = (TextView) findViewById(R.id.main_temp);
+        main_rain = (TextView) findViewById(R.id.main_rain);
+        main_reh = (TextView) findViewById(R.id.main_reh);
+        get_location_gu_intent = intent_location.getStringExtra("searching_location_gu");
+        get_location_dong_intent = intent_location.getStringExtra("searching_location_dong");
+        send_or_not = intent_location.getBooleanExtra("send_or_not", false);
+        if(send_or_not == false){
+            GPS_function();
+        }
+        else{
+            GU = get_location_gu_intent;
+            DONG = get_location_dong_intent;
+        }
+
+        try {
+            result_weather = (String[]) new WeatherAsynTask(GU, DONG).execute().get(); // --> perfectly doing well
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        txtWeather = (TextView) findViewById(R.id.tv_weather);
+        //W_D = new ArrayList<>(); // 날씨정보 3일치 매핑해야 됨
+
+        int cnt = 0;
+        String print = "";
+        for(int i=1; i<result_weather.length; i++){
+            print += result_weather[i] + " ";
+            if((i % 6) == 0){
+                print += "\n";
+            }
+        }
+/*
+        txtWeather.setText(result_weather[0] + "\n" +
+                result_weather[1] + " "  + result_weather[2] + " "  + result_weather[3] + " "  + result_weather[4] + " "  + result_weather[5] + " "  + result_weather[6] + "\n" +
+                result_weather[7] + " "  + result_weather[8] + " " + result_weather[9] + " " + result_weather[10] + " " + result_weather[11] + " " + result_weather[12] + "\n" +
+                result_weather[13] + " " + result_weather[14] + " " + result_weather[15] + " " + result_weather[16] + " " + result_weather[17] + " " + result_weather[18] + "\n"
+        );
+*/
+        txtWeather.setText(result_weather[0] + "\n" + print);
+        //setData(getCityInfoString());
+        main_weather.setText(result_weather[4]); // 날씨 맑음?
+        main_temp.setText(result_weather[3]); // 온도
+        main_rain.setText(result_weather[5]); // 강수확률
+        main_reh.setText(result_weather[6]); // 풍속
+
+
+        for(int i=1; i<result_weather.length-5; i+=6){
+            if(result_weather[i+1].equals("1")){
+                second_day = i;
+                break;
+            }
+        }
+        for(int i=second_day; i<result_weather.length-5; i+=6){
+            if(result_weather[i+1].equals("2")){
+                third_day = i;
+                break;
+            }
+        }
+
+        weather_list(result_weather, 0);
+        init(); //사이드바 init
+        addSideView();  //사이드바 add
+        findUIObjects(); //뷰 Id 매칭
+        //setData(getCityInfoString()); // 데이터 매핑
+        action_list(); //건강관리 및 행동요령 리스트 출력
+
+        setData(GU); // 구 넣어줌
+
     }
+
 
     //텍스트뷰 월/화/수 리스너
     public void whatday(View view){
@@ -137,21 +243,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 day1.setTextColor(Color.parseColor("#3a3a3a"));
                 day2.setTextColor(Color.parseColor("#818181"));
                 day3.setTextColor(Color.parseColor("#818181"));
-                weather_list(0); //오늘 조건으로 리스트 출력
+                weather_list(result_weather, 0); //오늘 조건으로 리스트 출력
                 Log.i("test","오늘");
                 break;
             case R.id.day2:
                 day1.setTextColor(Color.parseColor("#818181"));
                 day2.setTextColor(Color.parseColor("#3a3a3a"));
                 day3.setTextColor(Color.parseColor("#818181"));
-//                weather_list(1);
+                weather_list(result_weather, 1);
                 Log.i("test","내일");
                 break;
             case R.id.day3:
                 day1.setTextColor(Color.parseColor("#818181"));
                 day2.setTextColor(Color.parseColor("#818181"));
                 day3.setTextColor(Color.parseColor("#3a3a3a"));
-//                weather_list(2);
+                weather_list(result_weather, 2);
                 Log.i("test","모레");
                 break;
             default:
@@ -160,13 +266,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    public String getCityInfoString() {
-        SharedPreferences prefs = getSharedPreferences(ALARM_CITY_NAME_STRING, MODE_PRIVATE);
-        return prefs.getString(ALARM_CITY_NAME_STRING, "강남구");
-    }
 
+    
 
     private void setData(String gu) {
+        //Log.i("test", "setData");
         AsyncManager manager = AsyncManager.getInstance();
         String nm = CityLocationManager.getNMbyCityName(gu);
         String a = manager.make(Url.REAL_TIME_CITY_AIR, URLParameterManager.getRequestString(nm, gu));
@@ -188,8 +292,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String shortMessage = AirGradeManager.getGradeShortMessageWithGrade(wholeGrade);
         int faceId = AirGradeManager.getGradeImageIdWithGrade(wholeGrade);
 
-//        location.setText(titleData.get("MSRRGN_NM") + " " + titleData.get("MSRSTE_NM"));
-        location.setText(titleData.get("MSRSTE_NM"));
+        location.setText(titleData.get("MSRRGN_NM") + " " + titleData.get("MSRSTE_NM"));
+        //location.setText(titleData.get("MSRSTE_NM"));
         time.setText(date);
         today.setText(date);
 
@@ -226,6 +330,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findDetails();
         findOthers();
     }
+
 
     private void findTitles() {
         location = (TextView) findViewById(R.id.main_location);
@@ -272,7 +377,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //주간 날씨 정보
-    private void weather_list(int condition){
+    private void weather_list(String[] result_weather, int day){
         recyclerView2 = findViewById(R.id.main_recycleView2);
         recyclerView2.setHasFixedSize(true);
         layoutManager2 = new LinearLayoutManager(this);
@@ -280,20 +385,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView2.setLayoutManager(layoutManager2);
 
         ArrayList<WeatherRecycleObject> weatherInfoArrayList = new ArrayList<>();
-        if(condition==0){ //오늘
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
+
+        // i = 1 + 6 = 7부터 시작, 만약 day가 0에서 처음으로 1로 바뀌는, 1이 처음으로 2로 바뀌는 시점에 따라 falg 조절
+        // i = result_weather.length - 6에서 끝남
+        /*
+        1 2 3 4 5 6
+        7 8 9 10 11 12
+        13 14 15 16 17 18
+        19 20 21 22 23 24
+        25 26 27 28 29 30
+        31 32 33 34 35 36
+        37 38 39 40 41 42
+        43 44 45 46 47 48
+
+        49
+         */
+        boolean flag = false;
+        int index = 0;
+
+        if(day == 0){
+            for(int i=1; i<second_day; i+=6){
+                weatherInfoArrayList.add(new WeatherRecycleObject(result_weather[i], R.drawable.tmp, result_weather[i+1], R.drawable.tmp,
+                        result_weather[i+2], R.drawable.tmp, result_weather[i+3], R.drawable.tmp, result_weather[i+4], R.drawable.tmp, result_weather[i+5]));
+            }
         }
+        else if(day == 1){
+            for(int i=second_day; i<third_day; i+=6){
+                weatherInfoArrayList.add(new WeatherRecycleObject(result_weather[i], R.drawable.tmp, result_weather[i+1], R.drawable.tmp,
+                        result_weather[i+2], R.drawable.tmp, result_weather[i+3], R.drawable.tmp, result_weather[i+4], R.drawable.tmp, result_weather[i+5]));
+            }
+        }
+        else if(day == 2){
+            for(int i=third_day; i<result_weather.length-5; i+=6){
+                weatherInfoArrayList.add(new WeatherRecycleObject(result_weather[i], R.drawable.tmp, result_weather[i+1], R.drawable.tmp,
+                        result_weather[i+2], R.drawable.tmp, result_weather[i+3], R.drawable.tmp, result_weather[i+4], R.drawable.tmp, result_weather[i+5]));
+            }
+        }
+
+
 
         WeatherInfoRecyclerAdapter weatherInfoRecyclerAdapter = new WeatherInfoRecyclerAdapter(weatherInfoArrayList);
 
@@ -377,6 +506,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }, 450);
     }
 
+
+    
+
+
+
+
     public void showMenu() {
         isMenuShow = true;
         Animation slide = AnimationUtils.loadAnimation(this, R.anim.sidebar_show);
@@ -387,53 +522,99 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     //SideBar - end
 
-}
 
-
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// This code isn't used in this MainActivity, Because it is now in Manager package.
-/*
-public class WeatherAsynTask extends AsyncTask<String, Void, String> {
-    WeatherData[] W_Data = new WeatherData[25];
-    RegionCode R_Code = new RegionCode();
-    TextView textView;
-    public WeatherAsynTask(TextView textView){
-        this.textView = textView;
-    }
+    // This is previlege request logic
     @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-    }
-    @Override
-    protected String doInBackground(String... params) {
-        String URL = params[0];
-        String E1 = params[1];
-        String result = "";
-        try {
-            Document document = Jsoup.connect(URL).get();
-            Elements elements = document.select(E1);
-            for(Element element : elements){
-                result = result+element.text()+"\n";
-            }
-            System.out.println(result);
-            Log.d("test1111", result);
-            return result;
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+        if (requestCode == PERMISSIONS_ACCESS_FINE_LOCATION
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+            isAccessFineLocation = true;
+        } else if (requestCode == PERMISSIONS_ACCESS_COARSE_LOCATION
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+
+            isAccessCoarseLocation = true;
         }
-        return null;
+        if (isAccessFineLocation && isAccessCoarseLocation) {
+            isPermission = true;
+        }
+	}
+
+
+    // 권한 요청
+    private void callPermission() {
+        // Check the SDK version and whether the permission is already granted or not.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissions(
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_ACCESS_FINE_LOCATION);
+
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED){
+
+            requestPermissions(
+                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                    PERMISSIONS_ACCESS_COARSE_LOCATION);
+        } else {
+            isPermission = true;
+        }
     }
 
-    @Override
-    protected void onPostExecute(String s){
-    super.onPostExecute(s);
-        textView.setText(s);
+
+	public void GPS_function(){
+
+        txtLat = (TextView) findViewById(R.id.tv_latitude);
+        txtLon = (TextView) findViewById(R.id.tv_logitude);
+        txtLocation = (TextView) findViewById(R.id.tv_location);
+        Geocoder mGeoCoder = new Geocoder(MainActivity.this);
+
+        callPermission();
+        // 권한 요청을 해야 함
+        if (!isPermission) {
+            callPermission();
+            return;
+        }
+        gps = new GpsInfo(MainActivity.this);
+        // GPS 사용유무 가져오기
+        if (gps.isGetLocation()) {
+
+            latitude = gps.getLatitude();
+            longitude = gps.getLongitude();
+
+            txtLat.setText(String.valueOf(latitude));
+            txtLon.setText(String.valueOf(longitude));
+
+            try{
+                List<Address>  mResultList = mGeoCoder.getFromLocation(gps.getLatitude(), gps.getLongitude(), 1);
+                Log.d("TAG", "onComplete: " + mResultList.get(0).getAddressLine(0));
+                string_location = mResultList.get(0).getAddressLine(0);
+                txtLocation.setText(string_location);
+                array_location = string_location.split(" ");
+                GU = array_location[2];
+                DONG = array_location[3];
+
+                // array_location[2]: 구, array_location[3]: 동 만 살리면 된다.
+            }catch (IOException e){
+                e.printStackTrace();
+                Log.d("TAG", "onComplete: 주소변환 실패");
+            }
+
+            // This is for test, you can delete it.
+            Toast.makeText(
+                    getApplicationContext(),
+                    "당신의 위치 - \n위도: " + latitude + "\n경도: " + longitude,
+                    Toast.LENGTH_LONG).show();
+        } else {
+            // GPS 를 사용할수 없으므로
+            gps.showSettingsAlert();
+        }
     }
+
 }
-*/
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    

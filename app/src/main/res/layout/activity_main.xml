@@ -61,6 +61,8 @@
                         android:text="월요일 AM 11:00"
                         android:textColor="#000000"
                         android:textSize="11sp" />
+
+
                 </LinearLayout>
 
                 <ImageButton
@@ -295,12 +297,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="바람"
+                            android:text="습도"
                             android:textColor="#555555"
                             android:textSize="15sp" />
 
                         <TextView
-                            android:id="@+id/main_wind"
+                            android:id="@+id/main_reh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="4m/s"
@@ -511,6 +513,33 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="112dp"
                     android:text="서울하늘" />
+
+                <!-- This four TextView is for getting data, Tested by Jihwan. -->
+                <TextView
+                    android:id="@+id/tv_logitude"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="defort setting1" />
+
+                <TextView
+                    android:id="@+id/tv_latitude"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="defort setting2" />
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="defort setting3" />
+
+                <TextView
+                    android:id="@+id/tv_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="defort setting4" />
+
+
             </LinearLayout>
 
         </RelativeLayout>

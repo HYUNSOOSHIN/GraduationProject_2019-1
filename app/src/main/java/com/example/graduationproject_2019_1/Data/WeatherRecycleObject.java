@@ -3,21 +3,30 @@ package com.example.graduationproject_2019_1.Data;
 public class WeatherRecycleObject {
 
     public String time;
-    public int miseimage;
-    public String misevalue;
+    public int dayimage;
+    public String dayvalue;
     public int tempimage;
     public String tempvalue;
-    public int rainimage;
-    public String rainvalue;
+    public int wfKorimage;
+    public String wfKorvalue;
+    public int popimage;
+    public String popvalue;
+    public int rehimage;
+    public String rehvalue;
 
 
-    public WeatherRecycleObject(String time, int miseimage, String misevalue, int tempimage, String tempvalue, int rainimage, String rainvalue){
+    public WeatherRecycleObject(String time, int dayimage, String dayvalue, int tempimage, String tempvalue, int wfKorimage,
+                                String wfKorvalue, int popimage, String popvalue, int rehimage, String rehvalue){
         this.time = time;
-        this.miseimage = miseimage;
-        this.misevalue = misevalue;
+        this.dayimage = dayimage;
+        this.dayvalue = dayvalue;
         this.tempimage = tempimage;
         this.tempvalue = tempvalue;
-        this.rainimage = rainimage;
-        this.rainvalue = rainvalue;
+        this.wfKorimage = wfKorimage;
+        this.wfKorvalue = wfKorvalue;
+        this.popimage = popimage;
+        this.popvalue = popvalue;
+        this.rehimage = rehimage;
+        this.rehvalue = rehvalue;
     }
 }
