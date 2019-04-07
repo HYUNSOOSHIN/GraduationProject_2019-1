@@ -170,6 +170,7 @@
             android:text="짧은 코멘트를 남겨주세요."
             android:textSize="25sp"/>
         <EditText
+            android:id="@+id/comment"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:hint="실천합니다!"
@@ -184,15 +185,23 @@
             android:gravity="right"
             android:layout_marginTop="10dp">
             <Button
+                android:id="@+id/cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="취소"
                 android:background="@drawable/radius_border"/>
             <Button
+                android:id="@+id/upload"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="등록"
                 android:background="@drawable/radius_border"/>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ggg"/>
     </LinearLayout>
 </LinearLayout>

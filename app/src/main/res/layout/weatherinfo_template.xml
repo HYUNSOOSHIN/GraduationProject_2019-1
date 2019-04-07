@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="33dp"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="14dp"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/weather_time"
+        android:layout_width="33dp"
+        android:layout_height="9dp"
+        android:textAlignment="center"
+        android:text="시간"
+        android:textColor="#3a3a3a"
+        android:textSize="8sp" />
+
+    <ImageView
+        android:id="@+id/weather_miseimage"
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/border_squar"
+        tools:src="@drawable/tmp" />
+
+    <TextView
+        android:id="@+id/weather_misevalue"
+        android:layout_width="33dp"
+        android:layout_height="9dp"
+        android:textAlignment="center"
+        android:layout_marginTop="7dp"
+        android:text="마스크"
+        android:textSize="8sp" />
+
+    <ImageView
+        android:id="@+id/weather_tempimage"
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/border_squar"
+        tools:src="@drawable/tmp" />
+
+    <TextView
+        android:id="@+id/weather_tempvalue"
+        android:layout_width="33dp"
+        android:layout_height="9dp"
+        android:layout_marginTop="7dp"
+        android:textAlignment="center"
+        android:text="마스크"
+        android:textSize="8sp" />
+
+    <ImageView
+        android:id="@+id/weather_rainimage"
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/border_squar"
+        tools:src="@drawable/tmp" />
+
+    <TextView
+        android:id="@+id/weather_rainvalue"
+        android:layout_width="33dp"
+        android:layout_height="9dp"
+        android:layout_marginTop="7dp"
+        android:textAlignment="center"
+        android:text="마스크"
+        android:textSize="8sp" />
+
+</LinearLayout>
+
