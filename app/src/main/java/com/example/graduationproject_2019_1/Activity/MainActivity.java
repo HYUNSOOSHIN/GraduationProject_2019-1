@@ -163,13 +163,16 @@ public class MainActivity extends AppCompatActivity {
 
     // GPSTracker class
     private GpsInfo gps;
+    public Intent intent_location;
+    public String get_location_gu_intent = null;
+    public String get_location_dong_intent = null;
+    public boolean send_or_not = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
+        intent_location = new Intent(this.getIntent());
 
         ImageButton nextView_btn = findViewById(R.id.nextView_btn);
         nextView_btn.setOnClickListener(new View.OnClickListener() {
@@ -203,7 +206,18 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(recyclerAdapter);
 
-        GPS_function();
+
+        get_location_gu_intent = intent_location.getStringExtra("searching_location_gu");
+        get_location_dong_intent = intent_location.getStringExtra("searching_location_dong");
+        send_or_not = intent_location.getBooleanExtra("send_or_not", false);
+        if(send_or_not == false){
+            GPS_function();
+        }
+        else{
+            GU = get_location_gu_intent;
+            DONG = get_location_dong_intent;
+        }
+
         try {
             result_weather = (String[]) new WeatherAsynTask(GU, DONG).execute().get(); // --> perfectly doing well
         } catch (InterruptedException e) {
@@ -214,16 +228,27 @@ public class MainActivity extends AppCompatActivity {
 
         txtWeather = (TextView) findViewById(R.id.tv_weather);
 
+        String print = "";
+        for(int i=1; i<result_weather.length; i++){
+            print += result_weather[i] + " ";
+            if((i % 6) == 0){
+                print += "\n";
+            }
+        }
+/*
         txtWeather.setText(result_weather[0] + "\n" +
                 result_weather[1] + " "  + result_weather[2] + " "  + result_weather[3] + " "  + result_weather[4] + " "  + result_weather[5] + " "  + result_weather[6] + "\n" +
                 result_weather[7] + " "  + result_weather[8] + " " + result_weather[9] + " " + result_weather[10] + " " + result_weather[11] + " " + result_weather[12] + "\n" +
-                result_weather[13] + " " + result_weather[14] + " " + result_weather[15] + " " + result_weather[16] + " " + result_weather[17] + " " + result_weather[18]);
-
+                result_weather[13] + " " + result_weather[14] + " " + result_weather[15] + " " + result_weather[16] + " " + result_weather[17] + " " + result_weather[18] + "\n"
+        );
+*/
+        txtWeather.setText(result_weather[0] + "\n" + print);
         findUIObjects();
         addBackgroundList();
 
         //setData(getCityInfoString());
-        setData(array_location[2]); // 구 넣어줌
+        setData(GU); // 구 넣어줌
+
 
         //new WeatherAsynTask(weather).execute("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1129057500", "data[seq=0] hour"); // --> perfectly doing well
         //new WeatherAsynTask().execute(); // --> perfectly doing well

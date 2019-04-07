@@ -20,17 +20,14 @@ import java.io.IOException;
 public class WeatherAsynTask extends AsyncTask {
     public String gu;
     public String dong;
-    //String region_code;
-    //String region_index;
     public int region_code;
     public int region_index;
-    String buf;
-    String[] array_str;
 
     Region region[] = new Region[449];
     Document[] document = new Document[449];
-    Elements element[][] = new Elements[449][19];
+    Elements element[][] = new Elements[449][145];
     WeatherData weatherData = new WeatherData();
+
 
     public WeatherAsynTask(String GU, String DONG) {
         this.gu = GU;
@@ -43,9 +40,10 @@ public class WeatherAsynTask extends AsyncTask {
     }
     @Override
     protected String[] doInBackground(Object[] objects) {
+        String[] result = new String[145];
         //array_str = R_Code.find_Code_Index(dong).split(" ");
         //RegionCode R_Code = new RegionCode(region);
-        String[] result = new String[19];
+
         region[0] = new Region("종로구", "", 1111000000);
         region[1] = new Region("종로구", "청운효자동", 1111051500);
         region[2] = new Region("종로구", "사직동", 1111053000);
@@ -510,10 +508,39 @@ public class WeatherAsynTask extends AsyncTask {
 
         int R_I = region_index;
 //        Log.d("test for region_index", String.valueOf(R_I)); // 매칭이 안되서 오류
+
+
         try{
             document[region_index] = Jsoup.connect("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone="+region_code).get();
             //document[Integer.parseInt(region_index)] = Jsoup.connect("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone="+region_code).get();
+
+
+
+            int cnt = 0;
+            int j=0;
+            /*
+            for(int i=1; i<24; i++){
+                element[R_I][i] = document[R_I].select("data[seq="+i+"] "+weatherData.WData[0]); // 오늘
+                element[R_I][i] = document[R_I].select("data[seq="+i+"] "+weatherData.WData[1]);
+                element[R_I][i] = document[R_I].select("data[seq="+i+"] "+weatherData.WData[2]);
+                element[R_I][i] = document[R_I].select("data[seq="+i+"] "+weatherData.WData[3]);
+                element[R_I][i] = document[R_I].select("data[seq="+i+"] "+weatherData.WData[4]);
+                element[R_I][i] = document[R_I].select("data[seq="+i+"] "+weatherData.WData[5]);
+            }
+            */
             element[R_I][0] = document[R_I].select("item category");
+            for(int i=1; i<145; i++){
+                if(document[R_I].select("data[seq="+i+"] "+weatherData.WData[0]).text().equals(null)){
+                    break;
+                }
+                if((i+1)%6 == 0){
+                    j = 0;
+                    cnt++;
+                }
+                element[R_I][i] = document[R_I].select("data[seq="+cnt+"] "+weatherData.WData[j]);
+                j++;
+            }
+/*
             element[R_I][1] = document[R_I].select("data[seq=0] "+weatherData.WData[0]); // 오늘
             element[R_I][2] = document[R_I].select("data[seq=0] "+weatherData.WData[1]);
             element[R_I][3] = document[R_I].select("data[seq=0] "+weatherData.WData[2]);
@@ -532,9 +559,11 @@ public class WeatherAsynTask extends AsyncTask {
             element[R_I][16] = document[R_I].select("data[seq=2] "+weatherData.WData[3]);
             element[R_I][17] = document[R_I].select("data[seq=2] "+weatherData.WData[4]);
             element[R_I][18] = document[R_I].select("data[seq=2] "+weatherData.WData[5]);
-            for(int i=0; i<19; i++){
+*/
+
+            for(int i=0; i<element[R_I].length; i++){
                 result[i] = element[R_I][i].text();
-                Log.d("test_weather", result[i]);
+                //Log.d("test_weather", result[i]);
             }
 
         }catch (IOException e){
