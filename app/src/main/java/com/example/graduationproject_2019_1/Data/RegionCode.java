@@ -347,8 +347,8 @@ public class RegionCode {
         this.region[304] = new Region("영등포구", "영등포본동", 1156051500);
         this.region[305] = new Region("영등포구", "영등포동", 1156053500);
         this.region[306] = new Region("영등포구", "여의동", 1156054000);
-        this.region[307] = new Region("영등포구", "당산제1동", 1156055000);
-        this.region[308] = new Region("영등포구", "당산제2동", 1156056000);
+        this.region[307] = new Region("영등포구", "당산1동", 1156055000);
+        this.region[308] = new Region("영등포구", "당산2동", 1156056000);
         this.region[309] = new Region("영등포구", "도림동", 1156058500);
         this.region[310] = new Region("영등포구", "문래동", 1156060500);
         this.region[311] = new Region("영등포구", "양평제1동", 1156061000);

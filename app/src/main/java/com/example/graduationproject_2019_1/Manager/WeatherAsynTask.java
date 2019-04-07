@@ -351,8 +351,8 @@ public class WeatherAsynTask extends AsyncTask {
         region[304] = new Region("영등포구", "영등포본동", 1156051500);
         region[305] = new Region("영등포구", "영등포동", 1156053500);
         region[306] = new Region("영등포구", "여의동", 1156054000);
-        region[307] = new Region("영등포구", "당산제1동", 1156055000);
-        region[308] = new Region("영등포구", "당산제2동", 1156056000);
+        region[307] = new Region("영등포구", "당산1동", 1156055000);
+        region[308] = new Region("영등포구", "당산2동", 1156056000);
         region[309] = new Region("영등포구", "도림동", 1156058500);
         region[310] = new Region("영등포구", "문래동", 1156060500);
         region[311] = new Region("영등포구", "양평제1동", 1156061000);
@@ -507,7 +507,7 @@ public class WeatherAsynTask extends AsyncTask {
     //    Log.d("region_code", String.valueOf(region_code));
 
         int R_I = region_index;
-//        Log.d("test for region_index", String.valueOf(R_I)); // 매칭이 안되서 오류
+        Log.d("test for region_index", String.valueOf(R_I)); // 매칭이 안되서 오류
 
 
         try{

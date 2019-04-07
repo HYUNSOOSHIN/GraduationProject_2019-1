@@ -18,22 +18,40 @@ public class WeatherInfoRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
 
     public static class WeatherViewHolder extends RecyclerView.ViewHolder {
         TextView time;
-        ImageView mise_image;
-        TextView mise_value;
+
+        ImageView day_image;
+        TextView day_value;
+
         ImageView temp_image;
         TextView temp_value;
-        ImageView rain_image;
-        TextView rain_value;
+
+        ImageView wfKor_image;
+        TextView wfKor_value;
+
+        ImageView pop_image;
+        TextView pop_value;
+
+        ImageView reh_image;
+        TextView reh_value;
 
         WeatherViewHolder(View view){
             super(view);
             time = view.findViewById(R.id.weather_time);
-            mise_image = view.findViewById(R.id.weather_miseimage);
-            mise_value = view.findViewById(R.id.weather_misevalue);
+
+            day_image = view.findViewById(R.id.weather_dayimage);
+            day_value = view.findViewById(R.id.weather_dayvalue);
+
             temp_image = view.findViewById(R.id.weather_tempimage);
             temp_value = view.findViewById(R.id.weather_tempvalue);
-            rain_image = view.findViewById(R.id.weather_rainimage);
-            rain_value = view.findViewById(R.id.weather_rainvalue);
+
+            wfKor_image = view.findViewById(R.id.weather_wfKorimage);
+            wfKor_value = view.findViewById(R.id.weather_wfKorvalue);
+
+            pop_image = view.findViewById(R.id.weather_popimage);
+            pop_value = view.findViewById(R.id.weather_popvalue);
+
+            reh_image = view.findViewById(R.id.weather_rehimage);
+            reh_value = view.findViewById(R.id.weather_rehvalue);
         }
     }
 
@@ -56,12 +74,17 @@ public class WeatherInfoRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
         final WeatherViewHolder weatherViewHolder = (WeatherViewHolder) holder;
 
         weatherViewHolder.time.setText(weatherInfoArrayList.get(position).time);
-        weatherViewHolder.mise_image.setImageResource(weatherInfoArrayList.get(position).miseimage);
-        weatherViewHolder.mise_value.setText(weatherInfoArrayList.get(position).misevalue);
+        weatherViewHolder.day_image.setImageResource(weatherInfoArrayList.get(position).dayimage);
+        weatherViewHolder.day_value.setText(weatherInfoArrayList.get(position).dayvalue);
         weatherViewHolder.temp_image.setImageResource(weatherInfoArrayList.get(position).tempimage);
         weatherViewHolder.temp_value.setText(weatherInfoArrayList.get(position).tempvalue);
-        weatherViewHolder.rain_image.setImageResource(weatherInfoArrayList.get(position).rainimage);
-        weatherViewHolder.rain_value.setText(weatherInfoArrayList.get(position).rainvalue);
+        weatherViewHolder.wfKor_image.setImageResource(weatherInfoArrayList.get(position).wfKorimage);
+        weatherViewHolder.wfKor_value.setText(weatherInfoArrayList.get(position).wfKorvalue);
+
+        weatherViewHolder.pop_image.setImageResource(weatherInfoArrayList.get(position).wfKorimage);
+        weatherViewHolder.pop_value.setText(weatherInfoArrayList.get(position).wfKorvalue);
+        weatherViewHolder.reh_image.setImageResource(weatherInfoArrayList.get(position).wfKorimage);
+        weatherViewHolder.reh_value.setText(weatherInfoArrayList.get(position).wfKorvalue);
 
         weatherViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -30,6 +30,7 @@ import com.example.graduationproject_2019_1.Adapter.WeatherInfoRecyclerAdapter;
 import com.example.graduationproject_2019_1.Data.GpsInfo;
 import com.example.graduationproject_2019_1.Data.ActionRecycleObject;
 import com.example.graduationproject_2019_1.Data.Url;
+import com.example.graduationproject_2019_1.Data.WeatherData;
 import com.example.graduationproject_2019_1.Data.WeatherRecycleObject;
 import com.example.graduationproject_2019_1.Manager.AirGradeManager;
 import com.example.graduationproject_2019_1.Manager.AirGradeWrapper;
@@ -101,16 +102,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int wholeGrade;
     private boolean isSpinnerClickeRId = false;
 
-    private Button btnShowLocation;
     private TextView txtLat;
     private TextView txtLon;
     private TextView txtLocation;
     private TextView txtWeather;
+
+    private TextView main_weather;
+    private TextView main_temp;
+    private TextView main_rain;
+    private TextView main_reh;
+
     public double latitude ;
     public double longitude;
     public String string_location;
     public String[] array_location;
     public String[] result_weather;
+    public ArrayList<WeatherData> W_D;
+    public int first_day;
+    public int second_day;
+    public int third_day;
     public String GU;
     public String DONG;
     private final int PERMISSIONS_ACCESS_FINE_LOCATION = 1000;
@@ -131,14 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         intent_location = new Intent(this.getIntent());
-
-        init(); //사이드바 init
-        addSideView();  //사이드바 add
-        findUIObjects(); //뷰 Id 매칭
-        //setData(getCityInfoString()); // 데이터 매핑
-        action_list(); //건강관리 및 행동요령 리스트 출력
-        weather_list(0); //주간날씨정보 리스트 출력
-
+        first_day = 1; second_day = 1; third_day = 1;
 
         Button nextView_btn = findViewById(R.id.nextView_btn);
         nextView_btn.setOnClickListener(new View.OnClickListener() {
@@ -157,22 +160,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        recyclerView = findViewById(R.id.main_recycleView);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
 
-        ArrayList<RecycleObject> foodInfoArrayList = new ArrayList<>();
-        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "마스크","마스크는 K94를 권장합니다."));
-        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "공기청정기","외출 후 공기청정기를 가동해주세요."));
-        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "창문","절때 열지 마세요."));
-        foodInfoArrayList.add(new RecycleObject(R.drawable.tmp, "야외활동","야외활동을 최대한 자제하며 외출 후 반드시 샤워를 하세요."));
-
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(foodInfoArrayList);
-
-        recyclerView.setAdapter(recyclerAdapter);
-
-
+        main_weather = (TextView) findViewById(R.id.main_weather);
+        main_temp = (TextView) findViewById(R.id.main_temp);
+        main_rain = (TextView) findViewById(R.id.main_rain);
+        main_reh = (TextView) findViewById(R.id.main_reh);
         get_location_gu_intent = intent_location.getStringExtra("searching_location_gu");
         get_location_dong_intent = intent_location.getStringExtra("searching_location_dong");
         send_or_not = intent_location.getBooleanExtra("send_or_not", false);
@@ -193,7 +185,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         txtWeather = (TextView) findViewById(R.id.tv_weather);
+        //W_D = new ArrayList<>(); // 날씨정보 3일치 매핑해야 됨
 
+        int cnt = 0;
         String print = "";
         for(int i=1; i<result_weather.length; i++){
             print += result_weather[i] + " ";
@@ -209,20 +203,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         );
 */
         txtWeather.setText(result_weather[0] + "\n" + print);
-        findUIObjects();
-        //addBackgroundList();
-
         //setData(getCityInfoString());
+        main_weather.setText(result_weather[4]); // 날씨 맑음?
+        main_temp.setText(result_weather[3]); // 온도
+        main_rain.setText(result_weather[5]); // 강수확률
+        main_reh.setText(result_weather[6]); // 풍속
+
+
+        for(int i=1; i<result_weather.length-5; i+=6){
+            if(result_weather[i+1].equals("1")){
+                second_day = i;
+                break;
+            }
+        }
+        for(int i=second_day; i<result_weather.length-5; i+=6){
+            if(result_weather[i+1].equals("2")){
+                third_day = i;
+                break;
+            }
+        }
+
+        weather_list(result_weather, 0);
+        init(); //사이드바 init
+        addSideView();  //사이드바 add
+        findUIObjects(); //뷰 Id 매칭
+        //setData(getCityInfoString()); // 데이터 매핑
+        action_list(); //건강관리 및 행동요령 리스트 출력
+
         setData(GU); // 구 넣어줌
 
-
-        //new WeatherAsynTask(weather).execute("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1129057500", "data[seq=0] hour"); // --> perfectly doing well
-        //new WeatherAsynTask().execute(); // --> perfectly doing well
-        //new WeatherAsynTask(GU, DONG).execute();
-
-//        weather = (TextView) findViewById(R.id.weather);
-//        new WeatherAsynTask(weather).execute("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1129057500", "data[seq=0] hour"); // --> perfectly doing well
- //       new WeatherAsynTask().execute(); // --> perfectly doing well
     }
 
 
@@ -234,21 +243,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 day1.setTextColor(Color.parseColor("#3a3a3a"));
                 day2.setTextColor(Color.parseColor("#818181"));
                 day3.setTextColor(Color.parseColor("#818181"));
-                weather_list(0); //오늘 조건으로 리스트 출력
+                weather_list(result_weather, 0); //오늘 조건으로 리스트 출력
                 Log.i("test","오늘");
                 break;
             case R.id.day2:
                 day1.setTextColor(Color.parseColor("#818181"));
                 day2.setTextColor(Color.parseColor("#3a3a3a"));
                 day3.setTextColor(Color.parseColor("#818181"));
-//                weather_list(1);
+                weather_list(result_weather, 1);
                 Log.i("test","내일");
                 break;
             case R.id.day3:
                 day1.setTextColor(Color.parseColor("#818181"));
                 day2.setTextColor(Color.parseColor("#818181"));
                 day3.setTextColor(Color.parseColor("#3a3a3a"));
-//                weather_list(2);
+                weather_list(result_weather, 2);
                 Log.i("test","모레");
                 break;
             default:
@@ -283,8 +292,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String shortMessage = AirGradeManager.getGradeShortMessageWithGrade(wholeGrade);
         int faceId = AirGradeManager.getGradeImageIdWithGrade(wholeGrade);
 
-//        location.setText(titleData.get("MSRRGN_NM") + " " + titleData.get("MSRSTE_NM"));
-        location.setText(titleData.get("MSRSTE_NM"));
+        location.setText(titleData.get("MSRRGN_NM") + " " + titleData.get("MSRSTE_NM"));
+        //location.setText(titleData.get("MSRSTE_NM"));
         time.setText(date);
         today.setText(date);
 
@@ -321,6 +330,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findDetails();
         findOthers();
     }
+
 
     private void findTitles() {
         location = (TextView) findViewById(R.id.main_location);
@@ -367,7 +377,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //주간 날씨 정보
-    private void weather_list(int condition){
+    private void weather_list(String[] result_weather, int day){
         recyclerView2 = findViewById(R.id.main_recycleView2);
         recyclerView2.setHasFixedSize(true);
         layoutManager2 = new LinearLayoutManager(this);
@@ -375,20 +385,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView2.setLayoutManager(layoutManager2);
 
         ArrayList<WeatherRecycleObject> weatherInfoArrayList = new ArrayList<>();
-        if(condition==0){ //오늘
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
-            weatherInfoArrayList.add(new WeatherRecycleObject("시간", R.drawable.tmp, "미세", R.drawable.tmp, "온도", R.drawable.tmp, "강수"));
+
+        // i = 1 + 6 = 7부터 시작, 만약 day가 0에서 처음으로 1로 바뀌는, 1이 처음으로 2로 바뀌는 시점에 따라 falg 조절
+        // i = result_weather.length - 6에서 끝남
+        /*
+        1 2 3 4 5 6
+        7 8 9 10 11 12
+        13 14 15 16 17 18
+        19 20 21 22 23 24
+        25 26 27 28 29 30
+        31 32 33 34 35 36
+        37 38 39 40 41 42
+        43 44 45 46 47 48
+
+        49
+         */
+        boolean flag = false;
+        int index = 0;
+
+        if(day == 0){
+            for(int i=1; i<second_day; i+=6){
+                weatherInfoArrayList.add(new WeatherRecycleObject(result_weather[i], R.drawable.tmp, result_weather[i+1], R.drawable.tmp,
+                        result_weather[i+2], R.drawable.tmp, result_weather[i+3], R.drawable.tmp, result_weather[i+4], R.drawable.tmp, result_weather[i+5]));
+            }
         }
+        else if(day == 1){
+            for(int i=second_day; i<third_day; i+=6){
+                weatherInfoArrayList.add(new WeatherRecycleObject(result_weather[i], R.drawable.tmp, result_weather[i+1], R.drawable.tmp,
+                        result_weather[i+2], R.drawable.tmp, result_weather[i+3], R.drawable.tmp, result_weather[i+4], R.drawable.tmp, result_weather[i+5]));
+            }
+        }
+        else if(day == 2){
+            for(int i=third_day; i<result_weather.length-5; i+=6){
+                weatherInfoArrayList.add(new WeatherRecycleObject(result_weather[i], R.drawable.tmp, result_weather[i+1], R.drawable.tmp,
+                        result_weather[i+2], R.drawable.tmp, result_weather[i+3], R.drawable.tmp, result_weather[i+4], R.drawable.tmp, result_weather[i+5]));
+            }
+        }
+
+
 
         WeatherInfoRecyclerAdapter weatherInfoRecyclerAdapter = new WeatherInfoRecyclerAdapter(weatherInfoArrayList);
 
@@ -563,6 +597,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 array_location = string_location.split(" ");
                 GU = array_location[2];
                 DONG = array_location[3];
+
                 // array_location[2]: 구, array_location[3]: 동 만 살리면 된다.
             }catch (IOException e){
                 e.printStackTrace();
@@ -581,22 +616,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 }
-
-        
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1절대 지우지 마세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// This code isn't used in this MainActivity, Because it is now in Manager package.
-/*
-public class WeatherAsynTask extends AsyncTask<String, Void, String> {
-    WeatherData[] W_Data = new WeatherData[25];
-    RegionCode R_Code = new RegionCode();
-    TextView textView;
-    public WeatherAsynTask(TextView textView){
-        this.textView = textView;
-
-    }
-
-    
 
     
