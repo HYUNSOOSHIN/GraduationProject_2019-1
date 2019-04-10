@@ -19,8 +19,8 @@
                 android:id="@+id/main_face"
                 android:layout_width="match_parent"
                 android:layout_height="462dp"
-                android:scaleType="fitCenter"
-                android:background="@drawable/temp" />
+                android:background="@drawable/temp"
+                android:scaleType="fitCenter" />
 
             <RelativeLayout
                 android:id="@+id/rl_001"
@@ -239,9 +239,9 @@
                             android:id="@+id/main_weather"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="맑음"
+                            android:text="구름 조금"
                             android:textColor="#555555"
-                            android:textSize="26sp" />
+                            android:textSize="20sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -261,9 +261,9 @@
                             android:id="@+id/main_temp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="21'c"
+                            android:text="21°C"
                             android:textColor="#555555"
-                            android:textSize="26sp" />
+                            android:textSize="20sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -283,9 +283,9 @@
                             android:id="@+id/main_rain"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2%"
+                            android:text="50%"
                             android:textColor="#555555"
-                            android:textSize="26sp" />
+                            android:textSize="20sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -305,9 +305,9 @@
                             android:id="@+id/main_reh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="4m/s"
+                            android:text="50%"
                             android:textColor="#555555"
-                            android:textSize="26sp" />
+                            android:textSize="20sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -337,34 +337,34 @@
 
                     <TextView
                         android:id="@+id/day1"
-                        android:onClick="whatday"
                         android:layout_width="120dp"
                         android:layout_height="26dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="월요일"
+                        android:onClick="whatday"
+                        android:text="오늘"
                         android:textColor="#3a3a3a"
                         android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/day2"
-                        android:onClick="whatday"
                         android:layout_width="120dp"
                         android:layout_height="26dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="화요일"
+                        android:onClick="whatday"
+                        android:text="내일"
                         android:textColor="#818181"
                         android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/day3"
-                        android:onClick="whatday"
                         android:layout_width="120dp"
                         android:layout_height="26dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="수요일"
+                        android:onClick="whatday"
+                        android:text="모레"
                         android:textColor="#818181"
                         android:textSize="20dp" />
                 </LinearLayout>
@@ -372,14 +372,14 @@
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="19dp"
                     android:layout_marginLeft="23dp"
+                    android:layout_marginTop="19dp"
                     android:scrollbars="none">
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/main_recycleView2"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
 
                 </HorizontalScrollView>
             </LinearLayout>
@@ -513,32 +513,6 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="112dp"
                     android:text="서울하늘" />
-
-                <!-- This four TextView is for getting data, Tested by Jihwan. -->
-                <TextView
-                    android:id="@+id/tv_logitude"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="defort setting1" />
-
-                <TextView
-                    android:id="@+id/tv_latitude"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="defort setting2" />
-
-                <TextView
-                    android:id="@+id/tv_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="defort setting3" />
-
-                <TextView
-                    android:id="@+id/tv_weather"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="defort setting4" />
-
 
             </LinearLayout>
 

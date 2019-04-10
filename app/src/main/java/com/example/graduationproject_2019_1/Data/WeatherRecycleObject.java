@@ -3,8 +3,6 @@ package com.example.graduationproject_2019_1.Data;
 public class WeatherRecycleObject {
 
     public String time;
-    public int dayimage;
-    public String dayvalue;
     public int tempimage;
     public String tempvalue;
     public int wfKorimage;
@@ -15,11 +13,8 @@ public class WeatherRecycleObject {
     public String rehvalue;
 
 
-    public WeatherRecycleObject(String time, int dayimage, String dayvalue, int tempimage, String tempvalue, int wfKorimage,
-                                String wfKorvalue, int popimage, String popvalue, int rehimage, String rehvalue){
+    public WeatherRecycleObject(String time, int tempimage, String tempvalue, int wfKorimage, String wfKorvalue, int popimage, String popvalue, int rehimage, String rehvalue){
         this.time = time;
-        this.dayimage = dayimage;
-        this.dayvalue = dayvalue;
         this.tempimage = tempimage;
         this.tempvalue = tempvalue;
         this.wfKorimage = wfKorimage;

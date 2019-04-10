@@ -38,9 +38,6 @@ public class WeatherInfoRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
             super(view);
             time = view.findViewById(R.id.weather_time);
 
-            day_image = view.findViewById(R.id.weather_dayimage);
-            day_value = view.findViewById(R.id.weather_dayvalue);
-
             temp_image = view.findViewById(R.id.weather_tempimage);
             temp_value = view.findViewById(R.id.weather_tempvalue);
 
@@ -74,17 +71,14 @@ public class WeatherInfoRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
         final WeatherViewHolder weatherViewHolder = (WeatherViewHolder) holder;
 
         weatherViewHolder.time.setText(weatherInfoArrayList.get(position).time);
-        weatherViewHolder.day_image.setImageResource(weatherInfoArrayList.get(position).dayimage);
-        weatherViewHolder.day_value.setText(weatherInfoArrayList.get(position).dayvalue);
         weatherViewHolder.temp_image.setImageResource(weatherInfoArrayList.get(position).tempimage);
         weatherViewHolder.temp_value.setText(weatherInfoArrayList.get(position).tempvalue);
         weatherViewHolder.wfKor_image.setImageResource(weatherInfoArrayList.get(position).wfKorimage);
         weatherViewHolder.wfKor_value.setText(weatherInfoArrayList.get(position).wfKorvalue);
-
-        weatherViewHolder.pop_image.setImageResource(weatherInfoArrayList.get(position).wfKorimage);
-        weatherViewHolder.pop_value.setText(weatherInfoArrayList.get(position).wfKorvalue);
-        weatherViewHolder.reh_image.setImageResource(weatherInfoArrayList.get(position).wfKorimage);
-        weatherViewHolder.reh_value.setText(weatherInfoArrayList.get(position).wfKorvalue);
+        weatherViewHolder.pop_image.setImageResource(weatherInfoArrayList.get(position).popimage);
+        weatherViewHolder.pop_value.setText(weatherInfoArrayList.get(position).popvalue);
+        weatherViewHolder.reh_image.setImageResource(weatherInfoArrayList.get(position).rehimage);
+        weatherViewHolder.reh_value.setText(weatherInfoArrayList.get(position).rehvalue);
 
         weatherViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

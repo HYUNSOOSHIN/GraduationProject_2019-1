@@ -1,16 +1,463 @@
 package com.example.graduationproject_2019_1.Data;
 import android.util.Log;
 
-import com.example.graduationproject_2019_1.Data.Region;
-//생성자 없이 했기때문에 계속 400들어감
-//생성자 없이 했기때문에 계속 400들어감
-//생성자 없이 했기때문에 계속 400들어감
-//생성자 없이 했기때문에 계속 400들어감
-//생성자 없이 했기때문에 계속 400들어감
-//생성자 없이 했기때문에 계속 400들어감
-//생성자 없이 했기때문에 계속 400들어감
 public class RegionCode {
-    public Region region[] = new Region[449];
+
+    public RegionCode () {
+
+    }
+
+    public Region region[] = {
+        new Region("종로구", "", 1111000000),
+        new Region("종로구", "청운효자동", 1111051500),
+        new Region("종로구", "사직동", 1111053000),
+        new Region("종로구", "삼청동", 1111054000),
+        new Region("종로구", "부암동", 1111055000),
+        new Region("종로구", "평창동", 1111056000),
+        new Region("종로구", "무악동", 1111057000),
+        new Region("종로구", "교남동", 1111058000),
+        new Region("종로구", "가회동", 1111060000),
+        new Region("종로구", "종로1.2.3.4가동", 1111061500),
+        new Region("종로구", "종로5.6가동", 1111063000),
+        new Region("종로구", "이화동", 1111064000),
+        new Region("종로구", "혜화동", 1111065000),
+        new Region("종로구", "창신제1동", 1111067000),
+        new Region("종로구", "창신제2동", 1111068000),
+        new Region("종로구", "창신제3동", 1111069000),
+        new Region("종로구", "숭인제1동", 1111070000),
+        new Region("종로구", "숭인제2동", 1111071000),
+        new Region("중구", "", 1114000000),
+        new Region("중구", "소공동", 1114052000),
+        new Region("중구", "회현동", 1114054000),
+        new Region("중구", "명동", 1114055000),
+        new Region("중구", "필동", 1114057000),
+        new Region("중구", "장충동", 1114058000),
+        new Region("중구", "광희동", 1114059000),
+        new Region("중구", "을지로동", 1114060500),
+        new Region("중구", "신당동", 1114061500),
+        new Region("중구", "다산동", 1114062500),
+        new Region("중구", "약수동", 1114063500),
+        new Region("중구", "청구동", 1114064500),
+        new Region("중구", "신당제5동", 1114065000),
+        new Region("중구", "동화동", 1114066500),
+        new Region("중구", "황학동", 1114067000),
+        new Region("중구", "중림동", 1114068000),
+        new Region("용산구", "", 1117000000),
+        new Region("용산구", "후암동", 1117051000),
+        new Region("용산구", "용산2가동", 1117052000),
+        new Region("용산구", "남영동", 1117053000),
+        new Region("용산구", "청파동", 1117055500),
+        new Region("용산구", "원효로제1동", 1117056000),
+        new Region("용산구", "원효로제2동", 1117057000),
+        new Region("용산구", "효창동", 1117058000),
+        new Region("용산구", "용문동", 1117059000),
+        new Region("용산구", "한강로동", 1117062500),
+        new Region("용산구", "이촌제1동", 1117063000),
+        new Region("용산구", "이촌제2동", 1117064000),
+        new Region("용산구", "이태원제1동", 1117065000),
+        new Region("용산구", "이태원제2동", 1117066000),
+        new Region("용산구", "한남동", 1117068500),
+        new Region("용산구", "서빙고동", 1117069000),
+        new Region("용산구", "보광동", 1117070000),
+        new Region("성동구", "", 1120000000),
+        new Region("성동구", "왕십리제2동", 1120052000),
+        new Region("성동구", "왕십리도선동", 1120053500),
+        new Region("성동구", "마장동", 1120054000),
+        new Region("성동구", "사근동", 1120055000),
+        new Region("성동구", "행당제1동", 1120056000),
+        new Region("성동구", "행당제2동", 1120057000),
+        new Region("성동구", "응봉동", 1120058000),
+        new Region("성동구", "금호1가동", 1120059000),
+        new Region("성동구", "금호2.3가동", 1120061500),
+        new Region("성동구", "금호4가동", 1120062000),
+        new Region("성동구", "옥수동", 1120064500),
+        new Region("성동구", "성수1가제1동", 1120065000),
+        new Region("성동구", "성수1가제2동", 1120066000),
+        new Region("성동구", "성수2가제1동", 1120067000),
+        new Region("성동구", "성수2가제3동", 1120069000),
+        new Region("성동구", "송정동", 1120072000),
+        new Region("성동구", "용답동", 1120079000),
+        new Region("광진구", "", 1121500000),
+        new Region("광진구", "화양동", 1121571000),
+        new Region("광진구", "군자동", 1121573000),
+        new Region("광진구", "중곡제1동", 1121574000),
+        new Region("광진구", "중곡제2동", 1121575000),
+        new Region("광진구", "중곡제3동", 1121576000),
+        new Region("광진구", "중곡제4동", 1121577000),
+        new Region("광진구", "능동", 1121578000),
+        new Region("광진구", "광장동", 1121581000),
+        new Region("광진구", "자양제1동", 1121582000),
+        new Region("광진구", "자양제2동", 1121583000),
+        new Region("광진구", "자양제3동", 1121584000),
+        new Region("광진구", "자양제4동", 1121584700),
+        new Region("광진구", "구의제1동", 1121585000),
+        new Region("광진구", "구의제2동", 1121586000),
+        new Region("광진구", "구의제3동", 1121587000),
+        new Region("동대문구", "", 1123000000),
+        new Region("동대문구", "용신동", 1123053600),
+        new Region("동대문구", "제기동", 1123054500),
+        new Region("동대문구", "전농제1동", 1123056000),
+        new Region("동대문구", "전농제2동", 1123057000),
+        new Region("동대문구", "답십리제1동", 1123060000),
+        new Region("동대문구", "답십리제2동", 1123061000),
+        new Region("동대문구", "장안제1동", 1123065000),
+        new Region("동대문구", "장안제2동", 1123066000),
+        new Region("동대문구", "청량리동", 1123070500),
+        new Region("동대문구", "회기동", 1123071000),
+        new Region("동대문구", "휘경제1동", 1123072000),
+        new Region("동대문구", "휘경제2동", 1123073000),
+        new Region("동대문구", "이문제1동", 1123074000),
+        new Region("동대문구", "이문제2동", 1123075000),
+        new Region("중랑구", "", 1126000000),
+        new Region("중랑구", "면목제2동", 1126052000),
+        new Region("중랑구", "면목제4동", 1126054000),
+        new Region("중랑구", "면목제5동", 1126055000),
+        new Region("중랑구", "면목본동", 1126056500),
+        new Region("중랑구", "면목제7동", 1126057000),
+        new Region("중랑구", "면목제3.8동", 1126057500),
+        new Region("중랑구", "상봉제1동", 1126058000),
+        new Region("중랑구", "상봉제2동", 1126059000),
+        new Region("중랑구", "중화제1동", 1126060000),
+        new Region("중랑구", "중화제2동", 1126061000),
+        new Region("중랑구", "묵제1동", 1126062000),
+        new Region("중랑구", "묵제2동", 1126063000),
+        new Region("중랑구", "망우본동", 1126065500),
+        new Region("중랑구", "망우제3동", 1126066000),
+        new Region("중랑구", "신내1동", 1126068000),
+        new Region("중랑구", "신내2동", 1126069000),
+        new Region("성북구", "", 1129000000),
+        new Region("성북구", "성북동1가", 1129052500), // 주소 안맞음
+        new Region("성북구", "삼선동2가", 1129055500), // 주소 안맞음
+        new Region("성북구", "동선동", 1129057500),
+        new Region("성북구", "돈암제1동", 1129058000),
+        new Region("성북구", "돈암제2동", 1129059000),
+        new Region("성북구", "안암동", 1129060000),
+        new Region("성북구", "보문동", 1129061000),
+        new Region("성북구", "정릉제1동", 1129062000),
+        new Region("성북구", "정릉제2동", 1129063000),
+        new Region("성북구", "정릉제3동", 1129064000),
+        new Region("성북구", "정릉제4동", 1129065000),
+        new Region("성북구", "길음제1동", 1129066000),
+        new Region("성북구", "길음제2동", 1129068500),
+        new Region("성북구", "종암동", 1129070500),
+        new Region("성북구", "월곡제1동", 1129071500),
+        new Region("성북구", "월곡제2동", 1129072500),
+        new Region("성북구", "장위제1동", 1129076000),
+        new Region("성북구", "장위제2동", 1129077000),
+        new Region("성북구", "장위제3동", 1129078000),
+        new Region("성북구", "석관동", 1129081000),
+        new Region("강북구", "", 1130500000),
+        new Region("강북구", "삼양동", 1130553400),
+        new Region("강북구", "미아동", 1130553500),
+        new Region("강북구", "송중동", 1130554500),
+        new Region("강북구", "송천동", 1130555500),
+        new Region("강북구", "삼각산동", 1130557500),
+        new Region("강북구", "번제1동", 1130559000),
+        new Region("강북구", "번제2동", 1130560000),
+        new Region("강북구", "번제3동", 1130560600),
+        new Region("강북구", "수유제1동", 1130561000),
+        new Region("강북구", "수유제2동", 1130562000),
+        new Region("강북구", "수유제3동", 1130563000),
+        new Region("강북구", "우이동", 1130564500),
+        new Region("강북구", "인수동", 1130566000),
+        new Region("도봉구", "", 1132000000),
+        new Region("도봉구", "창제1동", 1132051100),
+        new Region("도봉구", "창제2동", 1132051200),
+        new Region("도봉구", "창제3동", 1132051300),
+        new Region("도봉구", "창제4동", 1132051400),
+        new Region("도봉구", "창제5동", 1132051500),
+        new Region("도봉구", "도봉제1동", 1132052100),
+        new Region("도봉구", "도봉제2동", 1132052200),
+        new Region("도봉구", "쌍문제1동", 1132066000),
+        new Region("도봉구", "쌍문제2동", 1132067000),
+        new Region("도봉구", "쌍문제3동", 1132068000),
+        new Region("도봉구", "쌍문제4동", 1132068100),
+        new Region("도봉구", "방학제1동", 1132069000),
+        new Region("도봉구", "방학제2동", 1132070000),
+        new Region("도봉구", "방학제3동", 1132071000),
+        new Region("노원구", "", 1135000000),
+        new Region("노원구", "월계1동", 1135056000),
+        new Region("노원구", "월계2동", 1135057000),
+        new Region("노원구", "월계3동", 1135058000),
+        new Region("노원구", "공릉1동", 1135059500),
+        new Region("노원구", "공릉2동", 1135060000),
+        new Region("노원구", "하계1동", 1135061100),
+        new Region("노원구", "하계2동", 1135061200),
+        new Region("노원구", "중계본동", 1135061900),
+        new Region("노원구", "중계1동", 1135062100),
+        new Region("노원구", "중계4동", 1135062400),
+        new Region("노원구", "중계2.3동", 1135062500),
+        new Region("노원구", "상계1동", 1135063000),
+        new Region("노원구", "상계2동", 1135064000),
+        new Region("노원구", "상계3.4동", 1135066500),
+        new Region("노원구", "상계5동", 1135067000),
+        new Region("노원구", "상계6.7동", 1135069500),
+        new Region("노원구", "상계8동", 1135070000),
+        new Region("노원구", "상계9동", 1135071000),
+        new Region("노원구", "상계10동", 1135072000),
+        new Region("은평구", "", 1138000000),
+        new Region("은평구", "녹번동", 1138051000),
+        new Region("은평구", "불광제1동", 1138052000),
+        new Region("은평구", "불광제2동", 1138053000),
+        new Region("은평구", "갈현제1동", 1138055100),
+        new Region("은평구", "갈현제2동", 1138055200),
+        new Region("은평구", "구산동", 1138056000),
+        new Region("은평구", "대조동", 1138057000),
+        new Region("은평구", "응암제1동", 1138058000),
+        new Region("은평구", "응암제2동", 1138059000),
+        new Region("은평구", "응암제3동", 1138060000),
+        new Region("은평구", "역촌동", 1138062500),
+        new Region("은평구", "신사제1동", 1138063100),
+        new Region("은평구", "신사제2동", 1138063200),
+        new Region("은평구", "증산동", 1138064000),
+        new Region("은평구", "수색동", 1138065000),
+        new Region("은평구", "진관동", 1138069000),
+        new Region("서대문구", "", 1141000000),
+        new Region("서대문구", "천연동", 1141052000),
+        new Region("서대문구", "북아현동", 1141055500),
+        new Region("서대문구", "충현동", 1141056500),
+        new Region("서대문구", "신촌동", 1141058500),
+        new Region("서대문구", "연희동", 1141061500),
+        new Region("서대문구", "홍제제1동", 1141062000),
+        new Region("서대문구", "홍제제3동", 1141064000),
+        new Region("서대문구", "홍제제2동", 1141065500),
+        new Region("서대문구", "홍은제1동", 1141066000),
+        new Region("서대문구", "홍은제2동", 1141068500),
+        new Region("서대문구", "남가좌제1동", 1141069000),
+        new Region("서대문구", "남가좌제2동", 1141070000),
+        new Region("서대문구", "북가좌제1동", 1141071000),
+        new Region("서대문구", "북가좌제2동", 1141072000),
+        new Region("마포구", "", 1144000000),
+        new Region("마포구", "아현동", 1144055500),
+        new Region("마포구", "공덕동", 1144056500),
+        new Region("마포구", "도화동", 1144058500),
+        new Region("마포구", "용강동", 1144059000),
+        new Region("마포구", "대흥동", 1144060000),
+        new Region("마포구", "염리동", 1144061000),
+        new Region("마포구", "신수동", 1144063000),
+        new Region("마포구", "서강동", 1144065500),
+        new Region("마포구", "서교동", 1144066000),
+        new Region("마포구", "합정동", 1144068000),
+        new Region("마포구", "망원제1동", 1144069000),
+        new Region("마포구", "망원제2동", 1144070000),
+        new Region("마포구", "연남동", 1144071000),
+        new Region("마포구", "성산제1동", 1144072000),
+        new Region("마포구", "성산제2동", 1144073000),
+        new Region("마포구", "상암동", 1144074000),
+        new Region("양천구", "", 1147000000),
+        new Region("양천구", "목1동", 1147051000),
+        new Region("양천구", "목2동", 1147052000),
+        new Region("양천구", "목3동", 1147053000),
+        new Region("양천구", "목4동", 1147054000),
+        new Region("양천구", "목5동", 1147055000),
+        new Region("양천구", "신월1동", 1147056000),
+        new Region("양천구", "신월2동", 1147057000),
+        new Region("양천구", "신월3동", 1147058000),
+        new Region("양천구", "신월4동", 1147059000),
+        new Region("양천구", "신월5동", 1147060000),
+        new Region("양천구", "신월6동", 1147061000),
+        new Region("양천구", "신월7동", 1147061100),
+        new Region("양천구", "신정1동", 1147062000),
+        new Region("양천구", "신정2동", 1147063000),
+        new Region("양천구", "신정3동", 1147064000),
+        new Region("양천구", "신정4동", 1147065000),
+        new Region("양천구", "신정6동", 1147067000),
+        new Region("양천구", "신정7동", 1147068000),
+        new Region("강서구", "", 1150000000),
+        new Region("강서구", "염창동", 1150051000),
+        new Region("강서구", "등촌제1동", 1150052000),
+        new Region("강서구", "등촌제2동", 1150053000),
+        new Region("강서구", "등촌제3동", 1150053500),
+        new Region("강서구", "화곡제1동", 1150054000),
+        new Region("강서구", "화곡제2동", 1150055000),
+        new Region("강서구", "화곡제3동", 1150056000),
+        new Region("강서구", "화곡제4동", 1150057000),
+        new Region("강서구", "화곡본동", 1150059000),
+        new Region("강서구", "화곡제6동", 1150059100),
+        new Region("강서구", "화곡제8동", 1150059300),
+        new Region("강서구", "가양제1동", 1150060300),
+        new Region("강서구", "가양제2동", 1150060400),
+        new Region("강서구", "가양제3동", 1150060500),
+        new Region("강서구", "발산제1동", 1150061100),
+        new Region("강서구", "우장산동", 1150061500),
+        new Region("강서구", "공항동", 1150062000),
+        new Region("강서구", "방화제1동", 1150063000),
+        new Region("강서구", "방화제2동", 1150064000),
+        new Region("강서구", "방화제3동", 1150064100),
+        new Region("구로구", "", 1153000000),
+        new Region("구로구", "신도림동", 1153051000),
+        new Region("구로구", "구로제1동", 1153052000),
+        new Region("구로구", "구로제2동", 1153053000),
+        new Region("구로구", "구로제3동", 1153054000),
+        new Region("구로구", "구로제4동", 1153055000),
+        new Region("구로구", "구로제5동", 1153056000),
+        new Region("구로구", "가리봉동", 1153059500),
+        new Region("구로구", "고척제1동", 1153072000),
+        new Region("구로구", "고척제2동", 1153073000),
+        new Region("구로구", "개봉제1동", 1153074000),
+        new Region("구로구", "개봉제2동", 1153075000),
+        new Region("구로구", "개봉제3동", 1153076000),
+        new Region("구로구", "오류제1동", 1153077000),
+        new Region("구로구", "오류제2동", 1153078000),
+        new Region("구로구", "수궁동", 1153079000),
+        new Region("금천구", "", 1154500000),
+        new Region("금천구", "가산동", 1154551000),
+        new Region("금천구", "독산제1동", 1154561000),
+        new Region("금천구", "독산제2동", 1154562000),
+        new Region("금천구", "독산제3동", 1154563000),
+        new Region("금천구", "독산제4동", 1154564000),
+        new Region("금천구", "시흥제1동", 1154567000),
+        new Region("금천구", "시흥제2동", 1154568000),
+        new Region("금천구", "시흥제3동", 1154569000),
+        new Region("금천구", "시흥제4동", 1154570000),
+        new Region("금천구", "시흥제5동", 1154571000),
+        new Region("영등포구", "", 1156000000),
+        new Region("영등포구", "영등포본동", 1156051500),
+        new Region("영등포구", "영등포동", 1156053500),
+        new Region("영등포구", "여의동", 1156054000),
+        new Region("영등포구", "당산1동", 1156055000),
+        new Region("영등포구", "당산2동", 1156056000),
+        new Region("영등포구", "도림동", 1156058500),
+        new Region("영등포구", "문래동", 1156060500),
+        new Region("영등포구", "양평제1동", 1156061000),
+        new Region("영등포구", "양평제2동", 1156062000),
+        new Region("영등포구", "신길제1동", 1156063000),
+        new Region("영등포구", "신길제3동", 1156065000),
+        new Region("영등포구", "신길제4동", 1156066000),
+        new Region("영등포구", "신길제5동", 1156067000),
+        new Region("영등포구", "신길제6동", 1156068000),
+        new Region("영등포구", "신길제7동", 1156069000),
+        new Region("영등포구", "대림제1동", 1156070000),
+        new Region("영등포구", "대림제2동", 1156071000),
+        new Region("영등포구", "대림제3동", 1156072000),
+        new Region("동작구", "", 1159000000),
+        new Region("동작구", "노량진제1동", 1159051000),
+        new Region("동작구", "노량진제2동", 1159052000),
+        new Region("동작구", "상도제1동", 1159053000),
+        new Region("동작구", "상도제2동", 1159054000),
+        new Region("동작구", "상도제3동", 1159055000),
+        new Region("동작구", "상도제4동", 1159056000),
+        new Region("동작구", "흑석동", 1159060500),
+        new Region("동작구", "사당제1동", 1159062000),
+        new Region("동작구", "사당제2동", 1159063000),
+        new Region("동작구", "사당제3동", 1159064000),
+        new Region("동작구", "사당제4동", 1159065000),
+        new Region("동작구", "사당제5동", 1159065100),
+        new Region("동작구", "대방동", 1159066000),
+        new Region("동작구", "신대방제1동", 1159067000),
+        new Region("동작구", "신대방제2동", 1159068000),
+        new Region("관악구", "", 1162000000),
+        new Region("관악구", "보라매동", 1162052500),
+        new Region("관악구", "청림동", 1162054500),
+        new Region("관악구", "성현동", 1162056500),
+        new Region("관악구", "행운동", 1162057500),
+        new Region("관악구", "낙성대동", 1162058500),
+        new Region("관악구", "청룡동", 1162059500),
+        new Region("관악구", "은천동", 1162060500),
+        new Region("관악구", "중앙동", 1162061500),
+        new Region("관악구", "인헌동", 1162062500),
+        new Region("관악구", "남현동", 1162063000),
+        new Region("관악구", "서원동", 1162064500),
+        new Region("관악구", "신원동", 1162065500),
+        new Region("관악구", "서림동", 1162066500),
+        new Region("관악구", "신사동", 1162068500),
+        new Region("관악구", "신림동", 1162069500),
+        new Region("관악구", "난향동", 1162071500),
+        new Region("관악구", "조원동", 1162072500),
+        new Region("관악구", "대학동", 1162073500),
+        new Region("관악구", "삼성동", 1162074500),
+        new Region("관악구", "미성동", 1162076500),
+        new Region("관악구", "난곡동", 1162077500),
+        new Region("서초구", "", 1165000000),
+        new Region("서초구", "서초1동", 1165051000),
+        new Region("서초구", "서초2동", 1165052000),
+        new Region("서초구", "서초3동", 1165053000),
+        new Region("서초구", "서초4동", 1165053100),
+        new Region("서초구", "잠원동", 1165054000),
+        new Region("서초구", "반포본동", 1165055000),
+        new Region("서초구", "반포1동", 1165056000),
+        new Region("서초구", "반포2동", 1165057000),
+        new Region("서초구", "반포3동", 1165058000),
+        new Region("서초구", "반포4동", 1165058100),
+        new Region("서초구", "방배본동", 1165059000),
+        new Region("서초구", "방배1동", 1165060000),
+        new Region("서초구", "방배2동", 1165061000),
+        new Region("서초구", "방배3동", 1165062000),
+        new Region("서초구", "방배4동", 1165062100),
+        new Region("서초구", "양재1동", 1165065100),
+        new Region("서초구", "양재2동", 1165065200),
+        new Region("서초구", "내곡동", 1165066000),
+        new Region("강남구", "", 1168000000),
+        new Region("강남구", "신사동", 1168051000),
+        new Region("강남구", "논현1동", 1168052100),
+        new Region("강남구", "논현2동", 1168053100),
+        new Region("강남구", "압구정동", 1168054500),
+        new Region("강남구", "청담동", 1168056500),
+        new Region("강남구", "삼성1동", 1168058000),
+        new Region("강남구", "삼성2동", 1168059000),
+        new Region("강남구", "대치1동", 1168060000),
+        new Region("강남구", "대치2동", 1168061000),
+        new Region("강남구", "대치4동", 1168063000),
+        new Region("강남구", "역삼1동", 1168064000),
+        new Region("강남구", "역삼2동", 1168065000),
+        new Region("강남구", "도곡1동", 1168065500),
+        new Region("강남구", "도곡2동", 1168065600),
+        new Region("강남구", "개포1동", 1168066000),
+        new Region("강남구", "개포2동", 1168067000),
+        new Region("강남구", "개포4동", 1168069000),
+        new Region("강남구", "세곡동", 1168070000),
+        new Region("강남구", "일원본동", 1168072000),
+        new Region("강남구", "일원1동", 1168073000),
+        new Region("강남구", "일원2동", 1168074000),
+        new Region("강남구", "수서동", 1168075000),
+        new Region("송파구", "", 1171000000),
+        new Region("송파구", "풍납1동", 1171051000),
+        new Region("송파구", "풍납2동", 1171052000),
+        new Region("송파구", "거여1동", 1171053100),
+        new Region("송파구", "거여2동", 1171053200),
+        new Region("송파구", "마천1동", 1171054000),
+        new Region("송파구", "마천2동", 1171055000),
+        new Region("송파구", "방이1동", 1171056100),
+        new Region("송파구", "방이2동", 1171056200),
+        new Region("송파구", "오륜동", 1171056600),
+        new Region("송파구", "오금동", 1171057000),
+        new Region("송파구", "송파1동", 1171058000),
+        new Region("송파구", "송파2동", 1171059000),
+        new Region("송파구", "석촌동", 1171060000),
+        new Region("송파구", "삼전동", 1171061000),
+        new Region("송파구", "가락본동", 1171062000),
+        new Region("송파구", "가락1동", 1171063100),
+        new Region("송파구", "가락2동", 1171063200),
+        new Region("송파구", "문정1동", 1171064100),
+        new Region("송파구", "문정2동", 1171064200),
+        new Region("송파구", "장지동", 1171064600),
+        new Region("송파구", "위례동", 1171064700),
+        new Region("송파구", "잠실본동", 1171065000),
+        new Region("송파구", "잠실2동", 1171067000),
+        new Region("송파구", "잠실3동", 1171068000),
+        new Region("송파구", "잠실4동", 1171069000),
+        new Region("송파구", "잠실6동", 1171071000),
+        new Region("송파구", "잠실7동", 1171072000),
+        new Region("강동구", "", 1174000000),
+        new Region("강동구", "강일동", 1174051500),
+        new Region("강동구", "상일동", 1174052000),
+        new Region("강동구", "명일제1동", 1174053000),
+        new Region("강동구", "명일제2동", 1174054000),
+        new Region("강동구", "고덕제1동", 1174055000),
+        new Region("강동구", "고덕제2동", 1174056000),
+        new Region("강동구", "암사제1동", 1174057000),
+        new Region("강동구", "암사제2동", 1174058000),
+        new Region("강동구", "암사제3동", 1174059000),
+        new Region("강동구", "천호제1동", 1174060000),
+        new Region("강동구", "천호제2동", 1174061000),
+        new Region("강동구", "천호제3동", 1174062000),
+        new Region("강동구", "성내제1동", 1174064000),
+        new Region("강동구", "성내제2동", 1174065000),
+        new Region("강동구", "성내제3동", 1174066000),
+        new Region("강동구", "길동", 1174068500),
+        new Region("강동구", "둔촌제1동", 1174069000),
+        new Region("강동구", "둔촌제2동", 1174070000),
+    };
 
     public int find_Code(String dong){ //동이름으로 코드값 찾는 함수
         int cnt = 0;
@@ -23,7 +470,6 @@ public class RegionCode {
                 return 400; //에러코드
             }
         }
-        //return region[cnt].code;
         return region[cnt].getCode();
     }
     public int find_Index(String dong){
@@ -33,518 +479,9 @@ public class RegionCode {
                 cnt = i;
             }
             else{
-                return 400;
+                return 400; //에러코드
             }
         }
         return cnt;
     }
-
-    public RegionCode(Region[] region){
-        this.region[0] = new Region("종로구", "", 1111000000);
-        this.region[1] = new Region("종로구", "청운효자동", 1111051500);
-        this.region[2] = new Region("종로구", "사직동", 1111053000);
-        this.region[3] = new Region("종로구", "삼청동", 1111054000);
-        this.region[4] = new Region("종로구", "부암동", 1111055000);
-        this.region[5] = new Region("종로구", "평창동", 1111056000);
-        this.region[6] = new Region("종로구", "무악동", 1111057000);
-        this.region[7] = new Region("종로구", "교남동", 1111058000);
-        this.region[8] = new Region("종로구", "가회동", 1111060000);
-        this.region[9] = new Region("종로구", "종로1.2.3.4가동", 1111061500);
-        this.region[10] = new Region("종로구", "종로5.6가동", 1111063000);
-        this.region[11] = new Region("종로구", "이화동", 1111064000);
-        this.region[12] = new Region("종로구", "혜화동", 1111065000);
-        this.region[13] = new Region("종로구", "창신제1동", 1111067000);
-        this.region[14] = new Region("종로구", "창신제2동", 1111068000);
-        this.region[15] = new Region("종로구", "창신제3동", 1111069000);
-        this.region[16] = new Region("종로구", "숭인제1동", 1111070000);
-        this.region[17] = new Region("종로구", "숭인제2동", 1111071000);
-        this.region[18] = new Region("중구", "", 1114000000);
-        this.region[19] = new Region("중구", "소공동", 1114052000);
-        this.region[20] = new Region("중구", "회현동", 1114054000);
-        this.region[21] = new Region("중구", "명동", 1114055000);
-        this.region[22] = new Region("중구", "필동", 1114057000);
-        this.region[23] = new Region("중구", "장충동", 1114058000);
-        this.region[24] = new Region("중구", "광희동", 1114059000);
-        this.region[25] = new Region("중구", "을지로동", 1114060500);
-        this.region[26] = new Region("중구", "신당동", 1114061500);
-        this.region[27] = new Region("중구", "다산동", 1114062500);
-        this.region[28] = new Region("중구", "약수동", 1114063500);
-        this.region[29] = new Region("중구", "청구동", 1114064500);
-        this.region[30] = new Region("중구", "신당제5동", 1114065000);
-        this.region[31] = new Region("중구", "동화동", 1114066500);
-        this.region[32] = new Region("중구", "황학동", 1114067000);
-        this.region[33] = new Region("중구", "중림동", 1114068000);
-        this.region[34] = new Region("용산구", "", 1117000000);
-        this.region[35] = new Region("용산구", "후암동", 1117051000);
-        this.region[36] = new Region("용산구", "용산2가동", 1117052000);
-        this.region[37] = new Region("용산구", "남영동", 1117053000);
-        this.region[38] = new Region("용산구", "청파동", 1117055500);
-        this.region[39] = new Region("용산구", "원효로제1동", 1117056000);
-        this.region[40] = new Region("용산구", "원효로제2동", 1117057000);
-        this.region[41] = new Region("용산구", "효창동", 1117058000);
-        this.region[42] = new Region("용산구", "용문동", 1117059000);
-        this.region[43] = new Region("용산구", "한강로동", 1117062500);
-        this.region[44] = new Region("용산구", "이촌제1동", 1117063000);
-        this.region[45] = new Region("용산구", "이촌제2동", 1117064000);
-        this.region[46] = new Region("용산구", "이태원제1동", 1117065000);
-        this.region[47] = new Region("용산구", "이태원제2동", 1117066000);
-        this.region[48] = new Region("용산구", "한남동", 1117068500);
-        this.region[49] = new Region("용산구", "서빙고동", 1117069000);
-        this.region[50] = new Region("용산구", "보광동", 1117070000);
-        this.region[51] = new Region("성동구", "", 1120000000);
-        this.region[52] = new Region("성동구", "왕십리제2동", 1120052000);
-        this.region[53] = new Region("성동구", "왕십리도선동", 1120053500);
-        this.region[54] = new Region("성동구", "마장동", 1120054000);
-        this.region[55] = new Region("성동구", "사근동", 1120055000);
-        this.region[56] = new Region("성동구", "행당제1동", 1120056000);
-        this.region[57] = new Region("성동구", "행당제2동", 1120057000);
-        this.region[58] = new Region("성동구", "응봉동", 1120058000);
-        this.region[59] = new Region("성동구", "금호1가동", 1120059000);
-        this.region[60] = new Region("성동구", "금호2.3가동", 1120061500);
-        this.region[61] = new Region("성동구", "금호4가동", 1120062000);
-        this.region[62] = new Region("성동구", "옥수동", 1120064500);
-        this.region[63] = new Region("성동구", "성수1가제1동", 1120065000);
-        this.region[64] = new Region("성동구", "성수1가제2동", 1120066000);
-        this.region[65] = new Region("성동구", "성수2가제1동", 1120067000);
-        this.region[66] = new Region("성동구", "성수2가제3동", 1120069000);
-        this.region[67] = new Region("성동구", "송정동", 1120072000);
-        this.region[68] = new Region("성동구", "용답동", 1120079000);
-        this.region[69] = new Region("광진구", "", 1121500000);
-        this.region[70] = new Region("광진구", "화양동", 1121571000);
-        this.region[71] = new Region("광진구", "군자동", 1121573000);
-        this.region[72] = new Region("광진구", "중곡제1동", 1121574000);
-        this.region[73] = new Region("광진구", "중곡제2동", 1121575000);
-        this.region[74] = new Region("광진구", "중곡제3동", 1121576000);
-        this.region[75] = new Region("광진구", "중곡제4동", 1121577000);
-        this.region[76] = new Region("광진구", "능동", 1121578000);
-        this.region[77] = new Region("광진구", "광장동", 1121581000);
-        this.region[78] = new Region("광진구", "자양제1동", 1121582000);
-        this.region[79] = new Region("광진구", "자양제2동", 1121583000);
-        this.region[80] = new Region("광진구", "자양제3동", 1121584000);
-        this.region[81] = new Region("광진구", "자양제4동", 1121584700);
-        this.region[82] = new Region("광진구", "구의제1동", 1121585000);
-        this.region[83] = new Region("광진구", "구의제2동", 1121586000);
-        this.region[84] = new Region("광진구", "구의제3동", 1121587000);
-        this.region[85] = new Region("동대문구", "", 1123000000);
-        this.region[86] = new Region("동대문구", "용신동", 1123053600);
-        this.region[87] = new Region("동대문구", "제기동", 1123054500);
-        this.region[88] = new Region("동대문구", "전농제1동", 1123056000);
-        this.region[89] = new Region("동대문구", "전농제2동", 1123057000);
-        this.region[90] = new Region("동대문구", "답십리제1동", 1123060000);
-        this.region[91] = new Region("동대문구", "답십리제2동", 1123061000);
-        this.region[92] = new Region("동대문구", "장안제1동", 1123065000);
-        this.region[93] = new Region("동대문구", "장안제2동", 1123066000);
-        this.region[94] = new Region("동대문구", "청량리동", 1123070500);
-        this.region[95] = new Region("동대문구", "회기동", 1123071000);
-        this.region[96] = new Region("동대문구", "휘경제1동", 1123072000);
-        this.region[97] = new Region("동대문구", "휘경제2동", 1123073000);
-        this.region[98] = new Region("동대문구", "이문제1동", 1123074000);
-        this.region[99] = new Region("동대문구", "이문제2동", 1123075000);
-        this.region[100] = new Region("중랑구", "", 1126000000);
-        this.region[101] = new Region("중랑구", "면목제2동", 1126052000);
-        this.region[102] = new Region("중랑구", "면목제4동", 1126054000);
-        this.region[103] = new Region("중랑구", "면목제5동", 1126055000);
-        this.region[104] = new Region("중랑구", "면목본동", 1126056500);
-        this.region[105] = new Region("중랑구", "면목제7동", 1126057000);
-        this.region[106] = new Region("중랑구", "면목제3.8동", 1126057500);
-        this.region[107] = new Region("중랑구", "상봉제1동", 1126058000);
-        this.region[108] = new Region("중랑구", "상봉제2동", 1126059000);
-        this.region[109] = new Region("중랑구", "중화제1동", 1126060000);
-        this.region[110] = new Region("중랑구", "중화제2동", 1126061000);
-        this.region[111] = new Region("중랑구", "묵제1동", 1126062000);
-        this.region[112] = new Region("중랑구", "묵제2동", 1126063000);
-        this.region[113] = new Region("중랑구", "망우본동", 1126065500);
-        this.region[114] = new Region("중랑구", "망우제3동", 1126066000);
-        this.region[115] = new Region("중랑구", "신내1동", 1126068000);
-        this.region[116] = new Region("중랑구", "신내2동", 1126069000);
-        this.region[117] = new Region("성북구", "", 1129000000);
-        this.region[118] = new Region("성북구", "성북동1가", 1129052500); // 주소 안맞음
-        this.region[119] = new Region("성북구", "삼선동2가", 1129055500); // 주소 안맞음
-        this.region[120] = new Region("성북구", "동선동", 1129057500);
-        this.region[121] = new Region("성북구", "돈암제1동", 1129058000);
-        this.region[122] = new Region("성북구", "돈암제2동", 1129059000);
-        this.region[123] = new Region("성북구", "안암동", 1129060000);
-        this.region[124] = new Region("성북구", "보문동", 1129061000);
-        this.region[125] = new Region("성북구", "정릉제1동", 1129062000);
-        this.region[126] = new Region("성북구", "정릉제2동", 1129063000);
-        this.region[127] = new Region("성북구", "정릉제3동", 1129064000);
-        this.region[128] = new Region("성북구", "정릉제4동", 1129065000);
-        this.region[129] = new Region("성북구", "길음제1동", 1129066000);
-        this.region[130] = new Region("성북구", "길음제2동", 1129068500);
-        this.region[131] = new Region("성북구", "종암동", 1129070500);
-        this.region[132] = new Region("성북구", "월곡제1동", 1129071500);
-        this.region[133] = new Region("성북구", "월곡제2동", 1129072500);
-        this.region[134] = new Region("성북구", "장위제1동", 1129076000);
-        this.region[135] = new Region("성북구", "장위제2동", 1129077000);
-        this.region[136] = new Region("성북구", "장위제3동", 1129078000);
-        this.region[137] = new Region("성북구", "석관동", 1129081000);
-        this.region[138] = new Region("강북구", "", 1130500000);
-        this.region[139] = new Region("강북구", "삼양동", 1130553400);
-        this.region[140] = new Region("강북구", "미아동", 1130553500);
-        this.region[141] = new Region("강북구", "송중동", 1130554500);
-        this.region[142] = new Region("강북구", "송천동", 1130555500);
-        this.region[143] = new Region("강북구", "삼각산동", 1130557500);
-        this.region[144] = new Region("강북구", "번제1동", 1130559000);
-        this.region[145] = new Region("강북구", "번제2동", 1130560000);
-        this.region[146] = new Region("강북구", "번제3동", 1130560600);
-        this.region[147] = new Region("강북구", "수유제1동", 1130561000);
-        this.region[148] = new Region("강북구", "수유제2동", 1130562000);
-        this.region[149] = new Region("강북구", "수유제3동", 1130563000);
-        this.region[150] = new Region("강북구", "우이동", 1130564500);
-        this.region[151] = new Region("강북구", "인수동", 1130566000);
-        this.region[152] = new Region("도봉구", "", 1132000000);
-        this.region[153] = new Region("도봉구", "창제1동", 1132051100);
-        this.region[154] = new Region("도봉구", "창제2동", 1132051200);
-        this.region[155] = new Region("도봉구", "창제3동", 1132051300);
-        this.region[156] = new Region("도봉구", "창제4동", 1132051400);
-        this.region[157] = new Region("도봉구", "창제5동", 1132051500);
-        this.region[158] = new Region("도봉구", "도봉제1동", 1132052100);
-        this.region[159] = new Region("도봉구", "도봉제2동", 1132052200);
-        this.region[160] = new Region("도봉구", "쌍문제1동", 1132066000);
-        this.region[161] = new Region("도봉구", "쌍문제2동", 1132067000);
-        this.region[162] = new Region("도봉구", "쌍문제3동", 1132068000);
-        this.region[163] = new Region("도봉구", "쌍문제4동", 1132068100);
-        this.region[164] = new Region("도봉구", "방학제1동", 1132069000);
-        this.region[165] = new Region("도봉구", "방학제2동", 1132070000);
-        this.region[166] = new Region("도봉구", "방학제3동", 1132071000);
-        this.region[167] = new Region("노원구", "", 1135000000);
-        this.region[168] = new Region("노원구", "월계1동", 1135056000);
-        this.region[169] = new Region("노원구", "월계2동", 1135057000);
-        this.region[170] = new Region("노원구", "월계3동", 1135058000);
-        this.region[171] = new Region("노원구", "공릉1동", 1135059500);
-        this.region[172] = new Region("노원구", "공릉2동", 1135060000);
-        this.region[173] = new Region("노원구", "하계1동", 1135061100);
-        this.region[174] = new Region("노원구", "하계2동", 1135061200);
-        this.region[175] = new Region("노원구", "중계본동", 1135061900);
-        this.region[176] = new Region("노원구", "중계1동", 1135062100);
-        this.region[177] = new Region("노원구", "중계4동", 1135062400);
-        this.region[178] = new Region("노원구", "중계2.3동", 1135062500);
-        this.region[179] = new Region("노원구", "상계1동", 1135063000);
-        this.region[180] = new Region("노원구", "상계2동", 1135064000);
-        this.region[181] = new Region("노원구", "상계3.4동", 1135066500);
-        this.region[182] = new Region("노원구", "상계5동", 1135067000);
-        this.region[183] = new Region("노원구", "상계6.7동", 1135069500);
-        this.region[184] = new Region("노원구", "상계8동", 1135070000);
-        this.region[185] = new Region("노원구", "상계9동", 1135071000);
-        this.region[186] = new Region("노원구", "상계10동", 1135072000);
-        this.region[187] = new Region("은평구", "", 1138000000);
-        this.region[188] = new Region("은평구", "녹번동", 1138051000);
-        this.region[189] = new Region("은평구", "불광제1동", 1138052000);
-        this.region[190] = new Region("은평구", "불광제2동", 1138053000);
-        this.region[191] = new Region("은평구", "갈현제1동", 1138055100);
-        this.region[192] = new Region("은평구", "갈현제2동", 1138055200);
-        this.region[193] = new Region("은평구", "구산동", 1138056000);
-        this.region[194] = new Region("은평구", "대조동", 1138057000);
-        this.region[195] = new Region("은평구", "응암제1동", 1138058000);
-        this.region[196] = new Region("은평구", "응암제2동", 1138059000);
-        this.region[197] = new Region("은평구", "응암제3동", 1138060000);
-        this.region[198] = new Region("은평구", "역촌동", 1138062500);
-        this.region[199] = new Region("은평구", "신사제1동", 1138063100);
-        this.region[200] = new Region("은평구", "신사제2동", 1138063200);
-        this.region[201] = new Region("은평구", "증산동", 1138064000);
-        this.region[202] = new Region("은평구", "수색동", 1138065000);
-        this.region[203] = new Region("은평구", "진관동", 1138069000);
-        this.region[204] = new Region("서대문구", "", 1141000000);
-        this.region[205] = new Region("서대문구", "천연동", 1141052000);
-        this.region[206] = new Region("서대문구", "북아현동", 1141055500);
-        this.region[207] = new Region("서대문구", "충현동", 1141056500);
-        this.region[208] = new Region("서대문구", "신촌동", 1141058500);
-        this.region[209] = new Region("서대문구", "연희동", 1141061500);
-        this.region[210] = new Region("서대문구", "홍제제1동", 1141062000);
-        this.region[211] = new Region("서대문구", "홍제제3동", 1141064000);
-        this.region[212] = new Region("서대문구", "홍제제2동", 1141065500);
-        this.region[213] = new Region("서대문구", "홍은제1동", 1141066000);
-        this.region[214] = new Region("서대문구", "홍은제2동", 1141068500);
-        this.region[215] = new Region("서대문구", "남가좌제1동", 1141069000);
-        this.region[216] = new Region("서대문구", "남가좌제2동", 1141070000);
-        this.region[217] = new Region("서대문구", "북가좌제1동", 1141071000);
-        this.region[218] = new Region("서대문구", "북가좌제2동", 1141072000);
-        this.region[219] = new Region("마포구", "", 1144000000);
-        this.region[220] = new Region("마포구", "아현동", 1144055500);
-        this.region[221] = new Region("마포구", "공덕동", 1144056500);
-        this.region[222] = new Region("마포구", "도화동", 1144058500);
-        this.region[223] = new Region("마포구", "용강동", 1144059000);
-        this.region[224] = new Region("마포구", "대흥동", 1144060000);
-        this.region[225] = new Region("마포구", "염리동", 1144061000);
-        this.region[226] = new Region("마포구", "신수동", 1144063000);
-        this.region[227] = new Region("마포구", "서강동", 1144065500);
-        this.region[228] = new Region("마포구", "서교동", 1144066000);
-        this.region[229] = new Region("마포구", "합정동", 1144068000);
-        this.region[230] = new Region("마포구", "망원제1동", 1144069000);
-        this.region[231] = new Region("마포구", "망원제2동", 1144070000);
-        this.region[232] = new Region("마포구", "연남동", 1144071000);
-        this.region[233] = new Region("마포구", "성산제1동", 1144072000);
-        this.region[234] = new Region("마포구", "성산제2동", 1144073000);
-        this.region[235] = new Region("마포구", "상암동", 1144074000);
-        this.region[236] = new Region("양천구", "", 1147000000);
-        this.region[237] = new Region("양천구", "목1동", 1147051000);
-        this.region[238] = new Region("양천구", "목2동", 1147052000);
-        this.region[239] = new Region("양천구", "목3동", 1147053000);
-        this.region[240] = new Region("양천구", "목4동", 1147054000);
-        this.region[241] = new Region("양천구", "목5동", 1147055000);
-        this.region[242] = new Region("양천구", "신월1동", 1147056000);
-        this.region[243] = new Region("양천구", "신월2동", 1147057000);
-        this.region[244] = new Region("양천구", "신월3동", 1147058000);
-        this.region[245] = new Region("양천구", "신월4동", 1147059000);
-        this.region[246] = new Region("양천구", "신월5동", 1147060000);
-        this.region[247] = new Region("양천구", "신월6동", 1147061000);
-        this.region[248] = new Region("양천구", "신월7동", 1147061100);
-        this.region[249] = new Region("양천구", "신정1동", 1147062000);
-        this.region[250] = new Region("양천구", "신정2동", 1147063000);
-        this.region[251] = new Region("양천구", "신정3동", 1147064000);
-        this.region[252] = new Region("양천구", "신정4동", 1147065000);
-        this.region[253] = new Region("양천구", "신정6동", 1147067000);
-        this.region[254] = new Region("양천구", "신정7동", 1147068000);
-        this.region[255] = new Region("강서구", "", 1150000000);
-        this.region[256] = new Region("강서구", "염창동", 1150051000);
-        this.region[257] = new Region("강서구", "등촌제1동", 1150052000);
-        this.region[258] = new Region("강서구", "등촌제2동", 1150053000);
-        this.region[259] = new Region("강서구", "등촌제3동", 1150053500);
-        this.region[260] = new Region("강서구", "화곡제1동", 1150054000);
-        this.region[261] = new Region("강서구", "화곡제2동", 1150055000);
-        this.region[262] = new Region("강서구", "화곡제3동", 1150056000);
-        this.region[263] = new Region("강서구", "화곡제4동", 1150057000);
-        this.region[264] = new Region("강서구", "화곡본동", 1150059000);
-        this.region[265] = new Region("강서구", "화곡제6동", 1150059100);
-        this.region[266] = new Region("강서구", "화곡제8동", 1150059300);
-        this.region[267] = new Region("강서구", "가양제1동", 1150060300);
-        this.region[268] = new Region("강서구", "가양제2동", 1150060400);
-        this.region[269] = new Region("강서구", "가양제3동", 1150060500);
-        this.region[270] = new Region("강서구", "발산제1동", 1150061100);
-        this.region[271] = new Region("강서구", "우장산동", 1150061500);
-        this.region[272] = new Region("강서구", "공항동", 1150062000);
-        this.region[273] = new Region("강서구", "방화제1동", 1150063000);
-        this.region[274] = new Region("강서구", "방화제2동", 1150064000);
-        this.region[275] = new Region("강서구", "방화제3동", 1150064100);
-        this.region[276] = new Region("구로구", "", 1153000000);
-        this.region[277] = new Region("구로구", "신도림동", 1153051000);
-        this.region[278] = new Region("구로구", "구로제1동", 1153052000);
-        this.region[279] = new Region("구로구", "구로제2동", 1153053000);
-        this.region[280] = new Region("구로구", "구로제3동", 1153054000);
-        this.region[281] = new Region("구로구", "구로제4동", 1153055000);
-        this.region[282] = new Region("구로구", "구로제5동", 1153056000);
-        this.region[283] = new Region("구로구", "가리봉동", 1153059500);
-        this.region[284] = new Region("구로구", "고척제1동", 1153072000);
-        this.region[285] = new Region("구로구", "고척제2동", 1153073000);
-        this.region[286] = new Region("구로구", "개봉제1동", 1153074000);
-        this.region[287] = new Region("구로구", "개봉제2동", 1153075000);
-        this.region[288] = new Region("구로구", "개봉제3동", 1153076000);
-        this.region[289] = new Region("구로구", "오류제1동", 1153077000);
-        this.region[290] = new Region("구로구", "오류제2동", 1153078000);
-        this.region[291] = new Region("구로구", "수궁동", 1153079000);
-        this.region[292] = new Region("금천구", "", 1154500000);
-        this.region[293] = new Region("금천구", "가산동", 1154551000);
-        this.region[294] = new Region("금천구", "독산제1동", 1154561000);
-        this.region[295] = new Region("금천구", "독산제2동", 1154562000);
-        this.region[296] = new Region("금천구", "독산제3동", 1154563000);
-        this.region[297] = new Region("금천구", "독산제4동", 1154564000);
-        this.region[298] = new Region("금천구", "시흥제1동", 1154567000);
-        this.region[299] = new Region("금천구", "시흥제2동", 1154568000);
-        this.region[300] = new Region("금천구", "시흥제3동", 1154569000);
-        this.region[301] = new Region("금천구", "시흥제4동", 1154570000);
-        this.region[302] = new Region("금천구", "시흥제5동", 1154571000);
-        this.region[303] = new Region("영등포구", "", 1156000000);
-        this.region[304] = new Region("영등포구", "영등포본동", 1156051500);
-        this.region[305] = new Region("영등포구", "영등포동", 1156053500);
-        this.region[306] = new Region("영등포구", "여의동", 1156054000);
-        this.region[307] = new Region("영등포구", "당산1동", 1156055000);
-        this.region[308] = new Region("영등포구", "당산2동", 1156056000);
-        this.region[309] = new Region("영등포구", "도림동", 1156058500);
-        this.region[310] = new Region("영등포구", "문래동", 1156060500);
-        this.region[311] = new Region("영등포구", "양평제1동", 1156061000);
-        this.region[312] = new Region("영등포구", "양평제2동", 1156062000);
-        this.region[313] = new Region("영등포구", "신길제1동", 1156063000);
-        this.region[314] = new Region("영등포구", "신길제3동", 1156065000);
-        this.region[315] = new Region("영등포구", "신길제4동", 1156066000);
-        this.region[316] = new Region("영등포구", "신길제5동", 1156067000);
-        this.region[317] = new Region("영등포구", "신길제6동", 1156068000);
-        this.region[318] = new Region("영등포구", "신길제7동", 1156069000);
-        this.region[319] = new Region("영등포구", "대림제1동", 1156070000);
-        this.region[320] = new Region("영등포구", "대림제2동", 1156071000);
-        this.region[321] = new Region("영등포구", "대림제3동", 1156072000);
-        this.region[322] = new Region("동작구", "", 1159000000);
-        this.region[323] = new Region("동작구", "노량진제1동", 1159051000);
-        this.region[324] = new Region("동작구", "노량진제2동", 1159052000);
-        this.region[325] = new Region("동작구", "상도제1동", 1159053000);
-        this.region[326] = new Region("동작구", "상도제2동", 1159054000);
-        this.region[327] = new Region("동작구", "상도제3동", 1159055000);
-        this.region[328] = new Region("동작구", "상도제4동", 1159056000);
-        this.region[329] = new Region("동작구", "흑석동", 1159060500);
-        this.region[330] = new Region("동작구", "사당제1동", 1159062000);
-        this.region[331] = new Region("동작구", "사당제2동", 1159063000);
-        this.region[332] = new Region("동작구", "사당제3동", 1159064000);
-        this.region[333] = new Region("동작구", "사당제4동", 1159065000);
-        this.region[334] = new Region("동작구", "사당제5동", 1159065100);
-        this.region[335] = new Region("동작구", "대방동", 1159066000);
-        this.region[336] = new Region("동작구", "신대방제1동", 1159067000);
-        this.region[337] = new Region("동작구", "신대방제2동", 1159068000);
-        this.region[338] = new Region("관악구", "", 1162000000);
-        this.region[339] = new Region("관악구", "보라매동", 1162052500);
-        this.region[340] = new Region("관악구", "청림동", 1162054500);
-        this.region[341] = new Region("관악구", "성현동", 1162056500);
-        this.region[342] = new Region("관악구", "행운동", 1162057500);
-        this.region[343] = new Region("관악구", "낙성대동", 1162058500);
-        this.region[344] = new Region("관악구", "청룡동", 1162059500);
-        this.region[345] = new Region("관악구", "은천동", 1162060500);
-        this.region[346] = new Region("관악구", "중앙동", 1162061500);
-        this.region[347] = new Region("관악구", "인헌동", 1162062500);
-        this.region[348] = new Region("관악구", "남현동", 1162063000);
-        this.region[349] = new Region("관악구", "서원동", 1162064500);
-        this.region[350] = new Region("관악구", "신원동", 1162065500);
-        this.region[351] = new Region("관악구", "서림동", 1162066500);
-        this.region[352] = new Region("관악구", "신사동", 1162068500);
-        this.region[353] = new Region("관악구", "신림동", 1162069500);
-        this.region[354] = new Region("관악구", "난향동", 1162071500);
-        this.region[355] = new Region("관악구", "조원동", 1162072500);
-        this.region[356] = new Region("관악구", "대학동", 1162073500);
-        this.region[357] = new Region("관악구", "삼성동", 1162074500);
-        this.region[358] = new Region("관악구", "미성동", 1162076500);
-        this.region[359] = new Region("관악구", "난곡동", 1162077500);
-        this.region[360] = new Region("서초구", "", 1165000000);
-        this.region[361] = new Region("서초구", "서초1동", 1165051000);
-        this.region[362] = new Region("서초구", "서초2동", 1165052000);
-        this.region[363] = new Region("서초구", "서초3동", 1165053000);
-        this.region[364] = new Region("서초구", "서초4동", 1165053100);
-        this.region[365] = new Region("서초구", "잠원동", 1165054000);
-        this.region[366] = new Region("서초구", "반포본동", 1165055000);
-        this.region[367] = new Region("서초구", "반포1동", 1165056000);
-        this.region[368] = new Region("서초구", "반포2동", 1165057000);
-        this.region[369] = new Region("서초구", "반포3동", 1165058000);
-        this.region[370] = new Region("서초구", "반포4동", 1165058100);
-        this.region[371] = new Region("서초구", "방배본동", 1165059000);
-        this.region[372] = new Region("서초구", "방배1동", 1165060000);
-        this.region[373] = new Region("서초구", "방배2동", 1165061000);
-        this.region[374] = new Region("서초구", "방배3동", 1165062000);
-        this.region[375] = new Region("서초구", "방배4동", 1165062100);
-        this.region[376] = new Region("서초구", "양재1동", 1165065100);
-        this.region[377] = new Region("서초구", "양재2동", 1165065200);
-        this.region[378] = new Region("서초구", "내곡동", 1165066000);
-        this.region[379] = new Region("강남구", "", 1168000000);
-        this.region[380] = new Region("강남구", "신사동", 1168051000);
-        this.region[381] = new Region("강남구", "논현1동", 1168052100);
-        this.region[382] = new Region("강남구", "논현2동", 1168053100);
-        this.region[383] = new Region("강남구", "압구정동", 1168054500);
-        this.region[384] = new Region("강남구", "청담동", 1168056500);
-        this.region[385] = new Region("강남구", "삼성1동", 1168058000);
-        this.region[386] = new Region("강남구", "삼성2동", 1168059000);
-        this.region[387] = new Region("강남구", "대치1동", 1168060000);
-        this.region[388] = new Region("강남구", "대치2동", 1168061000);
-        this.region[389] = new Region("강남구", "대치4동", 1168063000);
-        this.region[390] = new Region("강남구", "역삼1동", 1168064000);
-        this.region[391] = new Region("강남구", "역삼2동", 1168065000);
-        this.region[392] = new Region("강남구", "도곡1동", 1168065500);
-        this.region[393] = new Region("강남구", "도곡2동", 1168065600);
-        this.region[394] = new Region("강남구", "개포1동", 1168066000);
-        this.region[395] = new Region("강남구", "개포2동", 1168067000);
-        this.region[396] = new Region("강남구", "개포4동", 1168069000);
-        this.region[397] = new Region("강남구", "세곡동", 1168070000);
-        this.region[398] = new Region("강남구", "일원본동", 1168072000);
-        this.region[399] = new Region("강남구", "일원1동", 1168073000);
-        this.region[400] = new Region("강남구", "일원2동", 1168074000);
-        this.region[401] = new Region("강남구", "수서동", 1168075000);
-        this.region[402] = new Region("송파구", "", 1171000000);
-        this.region[403] = new Region("송파구", "풍납1동", 1171051000);
-        this.region[404] = new Region("송파구", "풍납2동", 1171052000);
-        this.region[405] = new Region("송파구", "거여1동", 1171053100);
-        this.region[406] = new Region("송파구", "거여2동", 1171053200);
-        this.region[407] = new Region("송파구", "마천1동", 1171054000);
-        this.region[408] = new Region("송파구", "마천2동", 1171055000);
-        this.region[409] = new Region("송파구", "방이1동", 1171056100);
-        this.region[410] = new Region("송파구", "방이2동", 1171056200);
-        this.region[411] = new Region("송파구", "오륜동", 1171056600);
-        this.region[412] = new Region("송파구", "오금동", 1171057000);
-        this.region[413] = new Region("송파구", "송파1동", 1171058000);
-        this.region[414] = new Region("송파구", "송파2동", 1171059000);
-        this.region[415] = new Region("송파구", "석촌동", 1171060000);
-        this.region[416] = new Region("송파구", "삼전동", 1171061000);
-        this.region[417] = new Region("송파구", "가락본동", 1171062000);
-        this.region[418] = new Region("송파구", "가락1동", 1171063100);
-        this.region[419] = new Region("송파구", "가락2동", 1171063200);
-        this.region[420] = new Region("송파구", "문정1동", 1171064100);
-        this.region[421] = new Region("송파구", "문정2동", 1171064200);
-        this.region[422] = new Region("송파구", "장지동", 1171064600);
-        this.region[423] = new Region("송파구", "위례동", 1171064700);
-        this.region[424] = new Region("송파구", "잠실본동", 1171065000);
-        this.region[425] = new Region("송파구", "잠실2동", 1171067000);
-        this.region[426] = new Region("송파구", "잠실3동", 1171068000);
-        this.region[427] = new Region("송파구", "잠실4동", 1171069000);
-        this.region[428] = new Region("송파구", "잠실6동", 1171071000);
-        this.region[429] = new Region("송파구", "잠실7동", 1171072000);
-        this.region[430] = new Region("강동구", "", 1174000000);
-        this.region[431] = new Region("강동구", "강일동", 1174051500);
-        this.region[432] = new Region("강동구", "상일동", 1174052000);
-        this.region[433] = new Region("강동구", "명일제1동", 1174053000);
-        this.region[434] = new Region("강동구", "명일제2동", 1174054000);
-        this.region[435] = new Region("강동구", "고덕제1동", 1174055000);
-        this.region[436] = new Region("강동구", "고덕제2동", 1174056000);
-        this.region[437] = new Region("강동구", "암사제1동", 1174057000);
-        this.region[438] = new Region("강동구", "암사제2동", 1174058000);
-        this.region[439] = new Region("강동구", "암사제3동", 1174059000);
-        this.region[440] = new Region("강동구", "천호제1동", 1174060000);
-        this.region[441] = new Region("강동구", "천호제2동", 1174061000);
-        this.region[442] = new Region("강동구", "천호제3동", 1174062000);
-        this.region[443] = new Region("강동구", "성내제1동", 1174064000);
-        this.region[444] = new Region("강동구", "성내제2동", 1174065000);
-        this.region[445] = new Region("강동구", "성내제3동", 1174066000);
-        this.region[446] = new Region("강동구", "길동", 1174068500);
-        this.region[447] = new Region("강동구", "둔촌제1동", 1174069000);
-        this.region[448] = new Region("강동구", "둔촌제2동", 1174070000);
-    }
-
 }
-
-/*
-        RCode[0] = 1168000000;// 강남구
-        RCode[1] = 1174000000;// 강동구
-        RCode[2] = 1130500000; // 강북구
-        RCode[3] = 1150000000; // 강서구
-        RCode[4] = 1162000000; // 관악구
-        RCode[5] = 1121500000; //광진구
-        RCode[6] = 1153000000; // 구로구
-        RCode[7] = 1154500000; // 금천구
-        RCode[8] = 1135000000; //노원구
-        RCode[9] = 1132000000; // 도봉구
-        RCode[10] = 1123000000; // 동대문구
-        RCode[11] = 1159000000; // 동작구
-        RCode[12] = 1144000000; // 마포구
-        RCode[13] = 1141000000; // 서대문구
-        RCode[14] = 1165000000; // 서초구
-        RCode[15] = 1120000000; // 성동구
-        RCode[16] = 1129055500; // 성북구
-        RCode[17] = 1171000000; // 송파구
-        RCode[18] = 1147000000; // 양천구
-        RCode[19] = 1156000000; // 영등포구
-        RCode[20] = 1117000000; // 용산구
-        RCode[21] = 1138000000; // 은평구
-        RCode[22] = 1111000000; // 종로구
-        RCode[23] = 1114000000; // 중구
-        RCode[24] = 1126000000; // 중랑구
-        */
-
-    /* // 순서
-    public int gangnamgu = 1168000000; // 강남구
-    public int gangdonggu = 1174000000; // 강동구
-    public int ganbuckgu = 1130500000; // 강북구
-    public int ganseogu = 1150000000; // 강서구
-    public int guanakgu = 1162000000; // 관악구
-    public int guangjingu = 1121500000; //광진구
-    public int gurogu = 1153000000; // 구로구
-    public int gumcheongu = 1154500000; // 금천구
-    public int nowongu = 1135000000; //노원구
-    public int dobonggu = 1132000000; // 도봉구
-    public int dongdaemungu = 1123000000; // 동대문구
-    public int dongjackgu = 1159000000; // 동작구
-    public int mapogu = 1144000000; // 마포구
-    public int seodeamungu = 1141000000; // 서대문구
-    public int seochogu = 1165000000; // 서초구
-    public int seongdonggu = 1120000000; // 성동구
-    public int seongbuckgu = 1129055500; // 성북구
-    public int seongpagu = 1171000000; // 송파구
-    public int yangcheongu = 1147000000; // 양천구
-    public int yeongdongpogu = 1156000000; // 영등포구
-    public int yongsangu = 1117000000; // 용산구
-    public int enpeonggu = 1138000000; // 은평구
-    public int jongrogu = 1111000000; // 종로구
-    public int junggu = 1114000000; // 중구
-    public int jungranggu = 1126000000; // 중랑구
-    */

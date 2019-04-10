@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activity.SearchActivity">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right">
+        android:gravity="right"
+        android:orientation="horizontal">
+
         <ImageButton
             android:id="@+id/close_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/ic_close_black_24dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_close_black_24dp" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tv_logitude"
-        android:layout_gravity="center"
-        android:text="구 정보를 입력하세요 (ex. 강남구)"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="구 정보를 입력하세요 (ex. 강남구)" />
 
     <LinearLayout
         android:layout_width="350dp"
         android:layout_height="40dp"
-        android:layout_marginTop="30dp"
-        android:paddingLeft="20dp"
         android:layout_gravity="center"
-        android:background="@drawable/radius_border">
+        android:layout_marginTop="30dp"
+        android:background="@drawable/radius_border"
+        android:paddingLeft="20dp">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/search_editText"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -48,8 +49,8 @@
         <ImageButton
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/ic_search_black_24dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:background="@drawable/ic_search_black_24dp" />
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -58,11 +59,9 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/ListView_Address"
+            android:id="@+id/search_listView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </ListView>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

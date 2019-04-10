@@ -75,37 +75,7 @@ public class PostRequest extends AsyncTask<JSONObject, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        /*try {
-            JSONObject jsonObject = new JSONObject(result);
-            String success = jsonObject.getString("success");
-            String type = jsonObject.getString("type");
-            if(type.equals("login")) {
-                if(success.equals("true")) {
-                    String token = jsonObject.getString("token");
-                    SharedPreferences test = activity.getSharedPreferences("token", activity.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = test.edit();
-                    editor.putString("token", token);
-                    editor.putBoolean("Auto_Login_enabled", true);
-                    editor.commit();
-                    Intent intent = new Intent(activity.getApplicationContext(), MainActivity.class);
-                    activity.startActivity(intent);
-                    activity.finish();
-                } else {
-                    Toast.makeText(activity,"아이디/비밀번호를 다시 확인하세요",Toast.LENGTH_LONG).show();
-                }
-            } else if(type.equals("signup")){
-                if(success.equals("true")) {
-                    Intent intent = new Intent(activity.getApplicationContext(), LoginActivity.class);
-                    activity.startActivity(intent);
-                    activity.finish();
-                    Toast.makeText(activity,"회원가입 완료",Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(activity,"아이디가 중복됩니다",Toast.LENGTH_LONG).show();
-                }
-            }
-        } catch (JSONException e){
-            e.printStackTrace();
-        }*/
+
     }
 
     private String getPostDataString(JSONObject params) throws Exception {
