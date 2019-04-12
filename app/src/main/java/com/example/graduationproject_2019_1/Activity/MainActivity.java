@@ -1,11 +1,7 @@
 package com.example.graduationproject_2019_1.Activity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.os.Build;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,7 +20,6 @@ import android.widget.TextView;
 
 import com.example.graduationproject_2019_1.Adapter.ActionInfoRecyclerAdapter;
 import com.example.graduationproject_2019_1.Adapter.WeatherInfoRecyclerAdapter;
-import com.example.graduationproject_2019_1.Data.GpsInfo;
 import com.example.graduationproject_2019_1.Data.ActionRecycleObject;
 import com.example.graduationproject_2019_1.Data.Url;
 import com.example.graduationproject_2019_1.Data.WeatherRecycleObject;
@@ -40,24 +35,19 @@ import com.example.graduationproject_2019_1.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private String TAG = "MainActivity";
-    private Boolean isMenuShow = false;
-    private Boolean isExitFlag = false;
+    private SharedPreferences sharedPreferences;
+
+    //sideView 관련
+    Boolean isMenuShow = false;
     private ViewGroup mainLayout;   //사이드 나왔을때 클릭방지할 영역
     private ViewGroup viewLayout;   //전체 감싸는 영역
     private ViewGroup sideLayout;   //사이드바만 감싸는 영역
-
-    //private static final String ALARM_PREF_NAME = "alarmPrefName";
-    //private static final String ALARM_CITY_NAME = "alarmCityName";
-    private static final String ALARM_CITY_NAME_STRING = "alarmCityNameString";
 
     // main_title
     TextView location;
@@ -65,12 +55,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView face;
 
     // main_detail
+
     // 미세먼지
     TextView main_pm10_status;
     TextView main_pm10_value;
     TextView main_pm10_status2;
     TextView main_pm10_value2;
-
     // 초미세먼지
     TextView main_pm25_status;
     TextView main_pm25_value;
@@ -97,34 +87,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     idex_mvl 통합대기환경지수
     arplt_main 지수결정물질
     */
-
+    //어제 오늘 내일 날씨데이터
     JSONArray DAY1;
     JSONArray DAY2;
     JSONArray DAY3;
 
+    //미세먼지 등급
     private int wholeGrade;
-    private boolean isSpinnerClickeRId = false;
 
+    //오늘날씨 텍스트뷰
     private TextView main_weather;
     private TextView main_temp;
     private TextView main_rain;
     private TextView main_reh;
 
-    public double latitude;
-    public double longitude;
-    public String string_location;
-    public String[] array_location;
+    //날씨정보, 구이름, 동이름
     public String result_weather;
     public String GU;
     public String DONG;
-    private final int PERMISSIONS_ACCESS_FINE_LOCATION = 1000;
-    private final int PERMISSIONS_ACCESS_COARSE_LOCATION = 1001;
-    private boolean isAccessFineLocation = false;
-    private boolean isAccessCoarseLocation = false;
-    private boolean isPermission = false;
 
     // GPSTracker class
-    private GpsInfo gps;
     public Intent intent_location;
     public String get_location_gu_intent = null;
     public String get_location_dong_intent = null;
@@ -156,15 +138,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         get_location_gu_intent = intent_location.getStringExtra("searching_location_gu");
         get_location_dong_intent = intent_location.getStringExtra("searching_location_dong");
         send_or_not = intent_location.getBooleanExtra("send_or_not", false);
-        if (send_or_not == false) {
-            GPS_function();
-        } else {
+        if (send_or_not == true) { //검색으로 정보 받아오는 경우
             GU = get_location_gu_intent;
             DONG = get_location_dong_intent;
+        } else if(send_or_not == false) { //현재위치 기반으로 받아오는 경우
+            sharedPreferences = getSharedPreferences("hyunsoo", MODE_PRIVATE);;
+            GU = sharedPreferences.getString("gu",null);
+            DONG = sharedPreferences.getString("dong",null);
         }
 
         try {
-            result_weather = (String) new WeatherAsynTask(GU, DONG).execute().get(); // --> perfectly doing well
+            result_weather = (String) new WeatherAsynTask(GU, DONG).execute().get();
             JSONArray jsonArray = new JSONArray(result_weather);
             DAY1 = new JSONArray();
             DAY2 = new JSONArray();
@@ -189,20 +173,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            Log.i("test", "day2" + DAY2.toString());
 //            Log.i("test", "day3" + DAY3.toString());
 
+        } catch (JSONException e) {
+            e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
 
-
-        weather_list(0);
         init(); //사이드바 init
         addSideView();  //사이드바 add
         findUIObjects(); //뷰 Id 매칭
         setWeatherText(); //오늘 날씨 데이터
+        weather_list(0); //주간 날씨 리스트 출력
         action_list(); //건강관리 및 행동요령 리스트 출력
         setData(GU); // 미세먼지 위치정보 구 이름 입력 ex) 성북구
     }
@@ -256,15 +239,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setTitleData(Map<String, String> titleData) {
         String date = makeMeasureTimeText(titleData).toString();
-        String _qualityMessage = AirGradeManager.getGradeMessageWithGrade(wholeGrade);
-        String shortMessage = AirGradeManager.getGradeShortMessageWithGrade(wholeGrade);
         int faceId = AirGradeManager.getGradeImageIdWithGrade(wholeGrade);
 
         location.setText("서울시 " + GU + " " + DONG);
-        //location.setText(titleData.get("MSRSTE_NM"));
         time.setText(date);
         today.setText(date.substring(0, date.lastIndexOf(" ")));
-
 //        face.setImageResource(faceId);
     }
 
@@ -513,89 +492,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mainLayout.setEnabled(false);
     }
     //SideBar - end
-
-
-    // This is previlege request logic
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
-        if (requestCode == PERMISSIONS_ACCESS_FINE_LOCATION
-                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-            isAccessFineLocation = true;
-        } else if (requestCode == PERMISSIONS_ACCESS_COARSE_LOCATION
-                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-            isAccessCoarseLocation = true;
-        }
-        if (isAccessFineLocation && isAccessCoarseLocation) {
-            isPermission = true;
-        }
-    }
-
-
-    // 권한 요청
-    private void callPermission() {
-        // Check the SDK version and whether the permission is already granted or not.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            requestPermissions(
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_ACCESS_FINE_LOCATION);
-
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            requestPermissions(
-                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                    PERMISSIONS_ACCESS_COARSE_LOCATION);
-        } else {
-            isPermission = true;
-        }
-    }
-
-
-    public void GPS_function() {
-        Geocoder mGeoCoder = new Geocoder(MainActivity.this);
-
-        callPermission();
-        // 권한 요청을 해야 함
-        if (!isPermission) {
-            callPermission();
-            return;
-        }
-        gps = new GpsInfo(MainActivity.this);
-        // GPS 사용유무 가져오기
-        if (gps.isGetLocation()) {
-            latitude = gps.getLatitude();
-            longitude = gps.getLongitude();
-            try {
-                List<Address> mResultList = mGeoCoder.getFromLocation(gps.getLatitude(), gps.getLongitude(), 1);
-                Log.d("TAG", "onComplete: " + mResultList.get(0).getAddressLine(0));
-                string_location = mResultList.get(0).getAddressLine(0);
-                array_location = string_location.split(" ");
-                GU = array_location[2];
-                DONG = array_location[3];
-
-                // array_location[2]: 구, array_location[3]: 동 만 살리면 된다.
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.d("TAG", "onComplete: 주소변환 실패");
-            }
-
-            // This is for test, you can delete it.
-//            Toast.makeText(
-//                    getApplicationContext(),
-//                    "당신의 위치 - \n위도: " + latitude + "\n경도: " + longitude,
-//                    Toast.LENGTH_LONG).show();
-        } else {
-            // GPS 를 사용할수 없으므로
-            gps.showSettingsAlert();
-        }
-    }
 }
 
     
