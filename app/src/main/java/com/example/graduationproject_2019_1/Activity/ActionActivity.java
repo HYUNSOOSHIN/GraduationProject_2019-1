@@ -68,32 +68,32 @@ public class ActionActivity extends Activity {
 
         recyclerView.setAdapter(actionInfoRecyclerAdapter);
 
-        //아래
-        recyclerView2 = findViewById(R.id.action_recycleView2);
-        recyclerView2.setHasFixedSize(true);
-        layoutManager2 = new LinearLayoutManager(this);
-        recyclerView2.setLayoutManager(layoutManager2);
-
-        ArrayList<ActionRecycleObject> getListArrayList = new ArrayList<>();
-        try {
-            String result = new GetListRequest(ActionActivity.this).execute().get();
-            JSONArray jsonArray = new JSONArray (result);
-            for(int i=0; i<jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                getListArrayList.add(new ActionRecycleObject(R.drawable.tmp, "카테고리",jsonObject.getString("comment")));
-            }
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        ActionInfoRecyclerAdapter actionInfoRecyclerAdapter2 = new ActionInfoRecyclerAdapter(getListArrayList);
-
-        recyclerView2.setAdapter(actionInfoRecyclerAdapter2);
+//        //아래
+//        recyclerView2 = findViewById(R.id.action_recycleView2);
+//        recyclerView2.setHasFixedSize(true);
+//        layoutManager2 = new LinearLayoutManager(this);
+//        recyclerView2.setLayoutManager(layoutManager2);
+//
+//        ArrayList<ActionRecycleObject> getListArrayList = new ArrayList<>();
+//        try {
+//            String result = new GetListRequest(ActionActivity.this).execute().get();
+//            JSONArray jsonArray = new JSONArray (result);
+//            for(int i=0; i<jsonArray.length(); i++) {
+//                JSONObject jsonObject = jsonArray.getJSONObject(i);
+//                getListArrayList.add(new ActionRecycleObject(R.drawable.tmp, "카테고리",jsonObject.getString("comment")));
+//            }
+//
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        ActionInfoRecyclerAdapter actionInfoRecyclerAdapter2 = new ActionInfoRecyclerAdapter(getListArrayList);
+//
+//        recyclerView2.setAdapter(actionInfoRecyclerAdapter2);
     }
 
     public void leftbtn(View v) {

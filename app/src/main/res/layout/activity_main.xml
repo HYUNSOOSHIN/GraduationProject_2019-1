@@ -39,7 +39,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_centerVertical="true"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -49,6 +48,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/nanumbarungothicbold"
                         android:text="서울특별시 송파구 석촌동"
                         android:textColor="#000000"
                         android:textSize="14sp" />
@@ -58,9 +58,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/nanumbarungothic"
                         android:text="월요일 AM 11:00"
                         android:textColor="#000000"
-                        android:textSize="11sp" />
+                        android:textSize="11sp"
+                        android:layout_marginTop="5dp"/>
 
 
                 </LinearLayout>
@@ -105,6 +107,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:fontFamily="@font/nanumbarungothic"
                             android:text="미세먼지 "
                             android:textColor="#000000"
                             android:textSize="18sp" />
@@ -114,6 +117,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:fontFamily="@font/nanumbarungothic"
                             android:text="매우 좋음"
                             android:textColor="#159123"
                             android:textSize="18sp" />
@@ -124,9 +128,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/nanumbarungothic"
                         android:text="182 ㎍/㎥"
                         android:textColor="#159123"
-                        android:textSize="34sp" />
+                        android:textSize="34sp"
+                        android:layout_marginTop="7dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -145,6 +151,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:fontFamily="@font/nanumbarungothic"
                             android:text="초미세먼지 "
                             android:textColor="#000000"
                             android:textSize="18sp" />
@@ -154,6 +161,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:fontFamily="@font/nanumbarungothic"
                             android:text="매우 좋음"
                             android:textColor="#159123"
                             android:textSize="18sp" />
@@ -164,73 +172,80 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/nanumbarungothic"
                         android:text="132 ㎍/㎥"
                         android:textColor="#159123"
-                        android:textSize="34sp" />
+                        android:textSize="34sp"
+                        android:layout_marginTop="7dp"/>
                 </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/todaytext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="46dp"
+                android:layout_marginLeft="22dp"
+                android:layout_below="@id/mise"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbarungothicbold"
+                    android:text="오늘 날씨 "
+                    android:textColor="#292929"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="오늘 날짜"
+                    android:textColor="#dddddd"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text=" | 기상청"
+                    android:textColor="#dddddd"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text=" | 에어코리아"
+                    android:textColor="#dddddd"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/today_weather"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/mise"
-                android:layout_marginTop="46dp"
+                android:layout_below="@id/todaytext"
                 android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="오늘 날씨 "
-                        android:textColor="#292929"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/today"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="오늘 날짜"
-                        android:textColor="#dddddd"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=" | 기상청"
-                        android:textColor="#dddddd"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=" | 에어코리아"
-                        android:textColor="#dddddd"
-                        android:textSize="12sp" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="85dp"
-                    android:layout_marginLeft="22dp"
+                    android:layout_marginHorizontal="22dp"
                     android:layout_marginTop="7dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothicbold"
                             android:text="날씨"
                             android:textColor="#555555"
                             android:textSize="15sp" />
@@ -239,20 +254,28 @@
                             android:id="@+id/main_weather"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothiclight"
                             android:text="구름 조금"
                             android:textColor="#555555"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            android:layout_marginTop="10dp"/>
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="48dp"
+                        android:background="#d8d8d8"
+                        android:layout_marginHorizontal="14dp"/>
+
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothicbold"
                             android:text="온도"
                             android:textColor="#555555"
                             android:textSize="15sp" />
@@ -261,20 +284,28 @@
                             android:id="@+id/main_temp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="21°C"
+                            android:fontFamily="@font/nanumbarungothiclight"
+                            android:text="21.0°C"
                             android:textColor="#555555"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            android:layout_marginTop="10dp"/>
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="48dp"
+                        android:background="#d8d8d8"
+                        android:layout_marginHorizontal="14dp"/>
+
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothicbold"
                             android:text="강수확률"
                             android:textColor="#555555"
                             android:textSize="15sp" />
@@ -283,20 +314,28 @@
                             android:id="@+id/main_rain"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothiclight"
                             android:text="50%"
                             android:textColor="#555555"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            android:layout_marginTop="10dp"/>
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="48dp"
+                        android:background="#d8d8d8"
+                        android:layout_marginHorizontal="14dp"/>
+
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothicbold"
                             android:text="습도"
                             android:textColor="#555555"
                             android:textSize="15sp" />
@@ -305,9 +344,11 @@
                             android:id="@+id/main_reh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothiclight"
                             android:text="50%"
                             android:textColor="#555555"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            android:layout_marginTop="10dp"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -325,6 +366,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
+                    android:fontFamily="@font/nanumbarungothicbold"
                     android:text="주간 날씨 정보"
                     android:textColor="#292929"
                     android:textSize="18sp" />
@@ -342,6 +384,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:onClick="whatday"
+                        android:fontFamily="@font/nanumbarungothicbold"
                         android:text="오늘"
                         android:textColor="#3a3a3a"
                         android:textSize="20dp" />
@@ -353,6 +396,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:onClick="whatday"
+                        android:fontFamily="@font/nanumbarungothicbold"
                         android:text="내일"
                         android:textColor="#818181"
                         android:textSize="20dp" />
@@ -364,6 +408,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:onClick="whatday"
+                        android:fontFamily="@font/nanumbarungothicbold"
                         android:text="모레"
                         android:textColor="#818181"
                         android:textSize="20dp" />
@@ -397,6 +442,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13dp"
+                    android:fontFamily="@font/nanumbarungothicbold"
                     android:text="미세먼지 수치에 따른 건강관리 및 행동요령"
                     android:textColor="#292929"
                     android:textSize="18sp" />
@@ -409,6 +455,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanumbarungothic"
                         android:text="미세먼지 "
                         android:textColor="#3a3a3a"
                         android:textSize="15sp" />
@@ -417,6 +464,7 @@
                         android:id="@+id/main_pm10_status2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanumbarungothic"
                         android:text="매우 좋음"
                         android:textColor="#159123"
                         android:textSize="15sp" />
@@ -426,6 +474,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="19dp"
+                        android:fontFamily="@font/nanumbarungothic"
                         android:text="0~50"
                         android:textColor="#3a3a3a"
                         android:textSize="15sp" />
@@ -440,6 +489,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -477,6 +527,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbarungothicbold"
                     android:text="생활 속 미세먼지를 줄이고 건강을 지킵시다"
                     android:textColor="#292929"
                     android:textSize="18sp" />
@@ -485,6 +536,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
+                    android:fontFamily="@font/nanumbarungothic"
                     android:text="어떻게 일상 속 미세먼지를 줄일 수 있을까요? 많은 사람들이 실천하고 있습니다. 함께 실천해 보세요."
                     android:textColor="#5c5c5c"
                     android:textSize="11sp" />
@@ -496,7 +548,8 @@
                     android:layout_gravity="right"
                     android:layout_marginTop="14dp"
                     android:background="@drawable/border_squar"
-                    android:text="더 알아보기 >"
+                    android:fontFamily="@font/nanumbarungothicbold"
+                    android:text="더 알아보기"
                     android:textColor="#646464"
                     android:textSize="12sp" />
 
@@ -505,14 +558,20 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="58dp"
-                    android:text="앱 버전 v1.0" />
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="앱 버전 v1.0"
+                    android:textSize="12sp"
+                    android:textColor="#8c8c8c"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="112dp"
-                    android:text="서울하늘" />
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="서울하늘"
+                    android:textSize="12sp"
+                    android:textColor="#8c8c8c"/>
 
             </LinearLayout>
 
