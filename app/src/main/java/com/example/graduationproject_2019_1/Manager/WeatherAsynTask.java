@@ -41,12 +41,12 @@ public class WeatherAsynTask extends AsyncTask {
     protected String doInBackground(Object[] objects) {
 
         RegionCode regionCode = new RegionCode();
-
         region_index = regionCode.find_Code(dong);
-        region_code = regionCode.find_Index(dong);
+//        Log.i("test","ㅇㅇㅇㅇ: "+gu+" "+dong);
+//        Log.i("test","ㅇㅇㅇㅇ: "+region_index);
 
         try{
-            document = Jsoup.connect("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=" + region_code).get();
+            document = Jsoup.connect("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=" + region_index).get();
             jsonArray = new JSONArray();
             //날씨데이터 갯수
             Element count = document.select("data").last();

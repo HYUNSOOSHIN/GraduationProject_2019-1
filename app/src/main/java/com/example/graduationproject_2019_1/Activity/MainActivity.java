@@ -141,10 +141,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (send_or_not == true) { //검색으로 정보 받아오는 경우
             GU = get_location_gu_intent;
             DONG = get_location_dong_intent;
+//            Log.i("test","검색위치 기반: "+GU+" "+DONG);
         } else if(send_or_not == false) { //현재위치 기반으로 받아오는 경우
             sharedPreferences = getSharedPreferences("hyunsoo", MODE_PRIVATE);;
             GU = sharedPreferences.getString("gu",null);
             DONG = sharedPreferences.getString("dong",null);
+//            Log.i("test","현재위치 기반: "+GU+" "+DONG);
         }
 
         try {
@@ -199,21 +201,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 day2.setTextColor(Color.parseColor("#818181"));
                 day3.setTextColor(Color.parseColor("#818181"));
                 weather_list(0); //오늘 조건으로 리스트 출력
-                Log.i("test", "오늘");
+//                Log.i("test", "오늘");
                 break;
             case R.id.day2:
                 day1.setTextColor(Color.parseColor("#818181"));
                 day2.setTextColor(Color.parseColor("#3a3a3a"));
                 day3.setTextColor(Color.parseColor("#818181"));
                 weather_list(1);
-                Log.i("test", "내일");
+//                Log.i("test", "내일");
                 break;
             case R.id.day3:
                 day1.setTextColor(Color.parseColor("#818181"));
                 day2.setTextColor(Color.parseColor("#818181"));
                 day3.setTextColor(Color.parseColor("#3a3a3a"));
                 weather_list(2);
-                Log.i("test", "모레");
+//                Log.i("test", "모레");
                 break;
             default:
                 return;
