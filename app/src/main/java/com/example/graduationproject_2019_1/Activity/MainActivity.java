@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.graduationproject_2019_1.Adapter.ActionInfoRecyclerAdapter;
 import com.example.graduationproject_2019_1.Adapter.WeatherInfoRecyclerAdapter;
@@ -28,6 +29,7 @@ import com.example.graduationproject_2019_1.Manager.AirGradeWrapper;
 import com.example.graduationproject_2019_1.Manager.AsyncManager;
 import com.example.graduationproject_2019_1.Manager.CityLocationManager;
 import com.example.graduationproject_2019_1.Manager.JSONManager;
+import com.example.graduationproject_2019_1.Manager.MyService;
 import com.example.graduationproject_2019_1.Manager.URLParameterManager;
 import com.example.graduationproject_2019_1.Manager.WeatherAsynTask;
 import com.example.graduationproject_2019_1.R;
@@ -61,9 +63,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView main_pm10_value;
     TextView main_pm10_status2;
     TextView main_pm10_value2;
+    String pm10_detail;
+
     // 초미세먼지
     TextView main_pm25_status;
     TextView main_pm25_value;
+    String pm25_detail;
 
     //잡
     private RecyclerView recyclerView;
@@ -116,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         Button nextView_btn = findViewById(R.id.nextView_btn);
         nextView_btn.setOnClickListener(new View.OnClickListener() {
@@ -188,6 +194,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         weather_list(0); //주간 날씨 리스트 출력
         action_list(); //건강관리 및 행동요령 리스트 출력
         setData(GU); // 미세먼지 위치정보 구 이름 입력 ex) 성북구
+
+
+        // AlarmService 시작, 지금은 임시로 1분 간격으로 알람이 한번씩 오도록 설정해둠
+        //알람에 올 데이터 (미세먼지, 현재 온도 ,날씨, 강수확률, 습도)
+        Toast.makeText(getApplicationContext(),"알람 서비스 시작",Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, MyService.class);
+        try {
+            intent.putExtra("mise", pm10_detail + " ㎍/㎥");
+            intent.putExtra("cho_mise", pm25_detail+ " ㎍/㎥");
+            intent.putExtra("temp", DAY1.getJSONObject(0).getString("temp") + "°C");
+            intent.putExtra("wfKor", DAY1.getJSONObject(0).getString("wfKor"));
+            intent.putExtra("pop", DAY1.getJSONObject(0).getString("pop") + "%");
+            intent.putExtra("reh", DAY1.getJSONObject(0).getString("reh") + "%");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        startService(intent);
+
+        /*
+        WData[0] = "hour";
+        WData[1] = "day";
+        WData[2] = "temp";
+        WData[3] = "wfKor";
+        WData[4] = "pop";
+        WData[5] = "reh";
+         */
     }
 
     //텍스트뷰 월/화/수 리스너
@@ -249,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setDetailData(Map<String, String> detailData) {
         // 미세먼지
-        String pm10_detail = detailData.get("PM10");
+        pm10_detail = detailData.get("PM10");
         AirGradeWrapper pm10_wrapper = AirGradeManager.get("PM10", pm10_detail);
         main_pm10_status.setText(pm10_wrapper.getQuality());
         main_pm10_value.setText(pm10_detail + " ㎍/㎥");
@@ -257,7 +290,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         main_pm10_value2.setText(pm10_detail);
 
         // 초미세먼지
-        String pm25_detail = detailData.get("PM25");
+        pm25_detail = detailData.get("PM25");
         AirGradeWrapper pm25_wrapper = AirGradeManager.get("PM25", pm25_detail);
         main_pm25_status.setText(pm25_wrapper.getQuality());
         main_pm25_value.setText(pm25_detail + " ㎍/㎥");
@@ -493,5 +526,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     //SideBar - end
 }
-
     

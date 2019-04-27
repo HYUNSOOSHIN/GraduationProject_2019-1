@@ -22,7 +22,6 @@ public class WeatherAsynTask extends AsyncTask {
     public int region_code;
     public int region_index;
 
-    Region region[] = new Region[449];
     Document document;
     JSONArray jsonArray;
     WeatherData weatherData = new WeatherData();
