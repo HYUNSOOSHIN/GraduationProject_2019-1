@@ -8,9 +8,11 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.graduationproject_2019_1.Data.GpsInfo;
 import com.example.graduationproject_2019_1.R;
@@ -27,12 +29,8 @@ public class LoadingActivity extends AppCompatActivity {
     public String string_location;
     public String[] array_location;
     private final int PERMISSIONS_ACCESS_FINE_LOCATION = 1000;
-    private final int PERMISSIONS_ACCESS_COARSE_LOCATION = 1001;
-    private boolean isAccessFineLocation = false;
-    private boolean isAccessCoarseLocation = false;
     private boolean isPermission = false;
 
-    public String result_weather;
     public String GU;
     public String DONG;
     private GpsInfo gps;
@@ -42,15 +40,20 @@ public class LoadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
-        Handler handler = new Handler();
-        handler.postDelayed(new splashHandler(), 1000);
+        if (!checkLocationPermissions()) {
+            Log.i("test","In " );
+            requestLocationPermissions(PERMISSIONS_ACCESS_FINE_LOCATION);
+        } else {
+            Log.i("test","else " );
+            Handler handler = new Handler();
+            handler.postDelayed(new splashHandler(), 1000);
+        }
     }
 
     class splashHandler implements Runnable{
         @Override
         public void run() {
             GPS_function();
-
             sharedPreferences = getSharedPreferences("hyunsoo", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("gu", GU);
@@ -63,56 +66,42 @@ public class LoadingActivity extends AppCompatActivity {
         }
     }
 
-    // This is previlege request logic
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
-        if (requestCode == PERMISSIONS_ACCESS_FINE_LOCATION
-                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-            isAccessFineLocation = true;
-        } else if (requestCode == PERMISSIONS_ACCESS_COARSE_LOCATION
-                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-            isAccessCoarseLocation = true;
-        }
-        if (isAccessFineLocation && isAccessCoarseLocation) {
-            isPermission = true;
+        switch (requestCode) {
+            case PERMISSIONS_ACCESS_FINE_LOCATION: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new splashHandler(), 1000);
+                } else {
+                    Toast.makeText(this, "Permission required", Toast.LENGTH_SHORT);
+                }
+            }
         }
     }
 
     // 권한 요청
-    private void callPermission() {
-        // Check the SDK version and whether the permission is already granted or not.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
+    private boolean checkLocationPermissions() {
+        int permissionState = ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION);
+        return permissionState == PackageManager.PERMISSION_GRANTED;
+    }
 
-            requestPermissions(
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_ACCESS_FINE_LOCATION);
-
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            requestPermissions(
-                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                    PERMISSIONS_ACCESS_COARSE_LOCATION);
-        } else {
-            isPermission = true;
+    private void requestLocationPermissions(int requestCode) {
+        switch (requestCode) {
+            case PERMISSIONS_ACCESS_FINE_LOCATION:
+                ActivityCompat.requestPermissions(
+                        LoadingActivity.this,            // MainActivity 액티비티의 객체 인스턴스를 나타냄
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},        // 요청할 권한 목록을 설정한 String 배열
+                        requestCode    // 사용자 정의 int 상수. 권한 요청 결과를 받을 때
+                );
         }
     }
 
     public void GPS_function() {
         Geocoder mGeoCoder = new Geocoder(LoadingActivity.this);
 
-        callPermission();
-        // 권한 요청을 해야 함
-        if (!isPermission) {
-            callPermission();
-            return;
-        }
         gps = new GpsInfo(LoadingActivity.this);
         // GPS 사용유무 가져오기
         if (gps.isGetLocation()) {

@@ -59,10 +59,10 @@ public class ActionActivity extends Activity {
         recyclerView.setLayoutManager(layoutManager);
 
         ArrayList<ActionRecycleObject> actionInfoArrayList = new ArrayList<>();
-        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.tmp, "수분보충","하루 물 8잔 이상 마시면 물로 인해 먼지를 걸러주게 되고 호흡기에 수분을 보충해줍니다."));
-        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.tmp, "차량2부제","미세먼지 비상저감조치가 발령됐을시 자발적인 차량 2부제로 미세먼지를 줄여보세요"));
-        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.tmp, "친환경 자동차","친환경 자동차의 보급을 위해 친환경차 협력금제"));
-        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.tmp, "미세먼지 관리 종합대책","미세먼지 저감을 위한 노력은 산업부분에서도 이루어집니다."));
+        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.mask, "수분보충","하루 물 8잔 이상 마시면 물로 인해 먼지를 걸러주게 되고 호흡기에 수분을 보충해줍니다."));
+        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.mask, "차량2부제","미세먼지 비상저감조치가 발령됐을시 자발적인 차량 2부제로 미세먼지를 줄여보세요"));
+        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.mask, "친환경 자동차","친환경 자동차의 보급을 위해 친환경차 협력금제"));
+        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.mask, "미세먼지 관리 종합대책","미세먼지 저감을 위한 노력은 산업부분에서도 이루어집니다."));
 
         ActionInfoRecyclerAdapter actionInfoRecyclerAdapter = new ActionInfoRecyclerAdapter(actionInfoArrayList);
 

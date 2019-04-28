@@ -5,19 +5,23 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context=".Activity.LoadingActivity">
+
+    <ImageView
+        android:id="@+id/loading_image"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:src="@drawable/loading" />
 
     <TextView
         android:id="@+id/loading_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="로딩페이지"
-        android:textSize="20sp" />
-
-    <ImageView
-        android:id="@+id/loading_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/tmp" />
+        android:fontFamily="@font/nanumbarungothic"
+        android:text="loading"
+        android:textSize="15dp"
+        android:textColor="#656565"
+        android:layout_marginTop="13.6dp"/>
 
 </LinearLayout>

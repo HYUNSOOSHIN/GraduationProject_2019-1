@@ -5,17 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context=".Activity.MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#ffffff">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:background="#ffffff"
             android:layout_marginTop="35dp">
 
             <ImageButton
@@ -29,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:layout_marginHorizontal="30dp"
+                android:layout_marginHorizontal="22dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -57,7 +60,7 @@
                 android:id="@+id/action_recycleView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="28dp"
+                android:layout_marginHorizontal="22dp"
                 android:layout_marginTop="33dp"></android.support.v7.widget.RecyclerView>
 
             <LinearLayout
@@ -71,7 +74,7 @@
                     android:id="@+id/leftbtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="16.5dp"
+                    android:layout_marginRight="15dp"
                     android:background="@drawable/ic_keyboard_arrow_left_black_24dp"
                     android:onClick="leftbtn"
                     tools:ignore="OnClick" />
@@ -88,7 +91,7 @@
                     android:id="@+id/rightbtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16.5dp"
+                    android:layout_marginLeft="15dp"
                     android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
                     android:onClick="rightbtn"
                     tools:ignore="OnClick" />
@@ -97,7 +100,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="30dp"
+                android:paddingHorizontal="22dp"
                 android:layout_marginTop="60dp"
                 android:orientation="vertical">
 
@@ -111,7 +114,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:orientation="horizontal"
                     android:layout_marginTop="6dp">
 
@@ -131,7 +134,7 @@
                         android:layout_height="27dp"
                         android:layout_gravity="center"
                         android:textAlignment="center"
-                        android:background="@drawable/border_squar"
+                        android:background="@drawable/border_10dp"
                         android:fontFamily="@font/nanumbarungothic"
                         android:text="참여하기"
                         android:textColor="#707070"
@@ -160,11 +163,11 @@
                         android:textAlignment="center"
                         android:textSize="8sp" />
 
-                    <com.github.lzyzsd.circleprogress.CircleProgress
-                        android:id="@+id/circle_progress_w"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        custom:circle_progress="20" />
+                    <com.github.lzyzsd.circleprogress.DonutProgress
+                        android:id="@+id/donut_progress_z"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        custom:donut_progress="30" />
 
                     <TextView
                         android:layout_width="46dp"
@@ -191,11 +194,11 @@
                         android:textAlignment="center"
                         android:textSize="8dp" />
 
-                    <com.github.lzyzsd.circleprogress.CircleProgress
-                        android:id="@+id/circle_progress_t"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        custom:circle_progress="30" />
+                    <com.github.lzyzsd.circleprogress.DonutProgress
+                        android:id="@+id/donut_progres_x"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        custom:donut_progress="50" />
 
                     <TextView
                         android:layout_width="46dp"
@@ -222,11 +225,11 @@
                         android:textAlignment="center"
                         android:textSize="8dp" />
 
-                    <com.github.lzyzsd.circleprogress.CircleProgress
-                        android:id="@+id/circle_progress_o"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        custom:circle_progress="40" />
+                    <com.github.lzyzsd.circleprogress.DonutProgress
+                        android:id="@+id/donut_progress_c"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        custom:donut_progress="70" />
 
                     <TextView
                         android:layout_width="46dp"
@@ -253,11 +256,11 @@
                         android:textAlignment="center"
                         android:textSize="8dp" />
 
-                    <com.github.lzyzsd.circleprogress.CircleProgress
-                        android:id="@+id/circle_progress_v"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        custom:circle_progress="50" />
+                    <com.github.lzyzsd.circleprogress.DonutProgress
+                        android:id="@+id/donut_progress_v"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        custom:donut_progress="90" />
 
                     <TextView
                         android:layout_width="46dp"
@@ -275,7 +278,7 @@
                 android:id="@+id/action_recycleView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="28dp"
+                android:layout_marginHorizontal="22dp"
                 android:layout_marginTop="36dp"/>
 
         </LinearLayout>
