@@ -8,7 +8,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:scrollbars="none" >
 
         <RelativeLayout
             android:id="@+id/id_main"
@@ -242,7 +243,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/todaytext"
                 android:layout_marginTop="26dp"
-                android:scrollbars="none">
+                android:scrollbars="none" >
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -11,28 +11,29 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#ffffff"
         android:orientation="vertical"
-        android:background="#ffffff">
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_marginTop="35dp"
             android:background="#ffffff"
-            android:layout_marginTop="35dp">
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/back_btn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/ic_keyboard_arrow_left_black_24dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:layout_marginHorizontal="22dp"
+                android:layout_marginTop="30dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -46,13 +47,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="33dp"
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:text="어떻게 일상 속 미세먼지를 줄일 수 있을까요? 많은 사람들이 실천하고 있습니다. 함께 실천해보세요."
-                    android:textSize="12sp"
-                    android:textColor="#707070"
-                    android:lineSpacingExtra="3dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginRight="33dp"/>
+                    android:layout_marginRight="33dp"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:lineSpacingExtra="3dp"
+                    android:text="어떻게 일상 속 미세먼지를 줄일 수 있을까요? 많은 사람들이 실천하고 있습니다. 함께 실천해보세요."
+                    android:textColor="#707070"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -100,9 +101,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="22dp"
                 android:layout_marginTop="60dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingHorizontal="22dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -115,16 +116,16 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="6dp">
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="27dp"
-                        android:gravity="center|left"
-                        android:fontFamily="@font/nanumbarungothic"
-                        android:text="함께 실천해 보세요!"
                         android:layout_weight="1"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:gravity="center|left"
+                        android:text="함께 실천해 보세요!"
                         android:textColor="#707070"
                         android:textSize="12sp" />
 
@@ -133,10 +134,10 @@
                         android:layout_width="80dp"
                         android:layout_height="27dp"
                         android:layout_gravity="center"
-                        android:textAlignment="center"
                         android:background="@drawable/border_10dp"
                         android:fontFamily="@font/nanumbarungothic"
                         android:text="참여하기"
+                        android:textAlignment="center"
                         android:textColor="#707070"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -172,10 +173,10 @@
                     <TextView
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="1231/10000"
                         android:textAlignment="center"
-                        android:textSize="8sp"
-                        android:layout_marginTop="10dp"/>
+                        android:textSize="8sp" />
 
                 </LinearLayout>
 
@@ -203,10 +204,10 @@
                     <TextView
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="1231/10000"
                         android:textAlignment="center"
-                        android:textSize="8sp"
-                        android:layout_marginTop="10dp"/>
+                        android:textSize="8sp" />
 
                 </LinearLayout>
 
@@ -234,10 +235,10 @@
                     <TextView
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="1231/10000"
                         android:textAlignment="center"
-                        android:textSize="8sp"
-                        android:layout_marginTop="10dp"/>
+                        android:textSize="8sp" />
 
                 </LinearLayout>
 
@@ -265,10 +266,10 @@
                     <TextView
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="1231/10000"
                         android:textAlignment="center"
-                        android:textSize="8sp"
-                        android:layout_marginTop="10dp"/>
+                        android:textSize="8sp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -279,7 +280,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="22dp"
-                android:layout_marginTop="36dp"/>
+                android:layout_marginTop="36dp" />
 
         </LinearLayout>
     </ScrollView>

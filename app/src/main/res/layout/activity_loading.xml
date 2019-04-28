@@ -12,7 +12,7 @@
         android:id="@+id/loading_image"
         android:layout_width="115dp"
         android:layout_height="115dp"
-        android:src="@drawable/loading" />
+        android:background="@drawable/loading" />
 
     <TextView
         android:id="@+id/loading_text"
