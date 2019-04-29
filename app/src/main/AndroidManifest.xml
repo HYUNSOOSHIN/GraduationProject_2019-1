@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
 
+    <!-- 백그라운드 알람 서비스 관련 퍼미션 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_SERVICE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,10 +20,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <service
-            android:name=".Manager.MyService"
+            android:name=".Manager.PersistentService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:process=":remote" >
+        </service>
+
 
         <activity android:name=".Activity.LoadingActivity">
             <intent-filter>
@@ -32,11 +41,24 @@
         <activity android:name=".Activity.UploadActivity" />
         <activity android:name=".Activity.ActionActivity" />
 
+        <receiver
+            android:name=".Manager.RestartService"
+            android:enabled="true"
+            android:exported="false"
+            android:label="RestartService"
+            android:process=":remote" >
+            <intent-filter>
+                <action android:name="ACTION.RESTART.PersistentService" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+
         <receiver android:name=".Activity.AppWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <!-- BUTTON1 부분 수정해야 함 -->
-                <action android:name="com.example.graduationproject_2019_1.Activity.BUTTON1"/>
+                <!-- BUTTON1 부분 나타나지 않음 -> WHY? -->
+                <action android:name="com.example.graduationproject_2019_1.BUTTON1"/>
             </intent-filter>
 
             <meta-data

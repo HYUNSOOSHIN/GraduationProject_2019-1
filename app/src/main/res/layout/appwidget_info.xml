@@ -6,7 +6,7 @@
     android:minWidth="130dp"
     android:previewImage="@drawable/ic_android_black_24dp"
     android:resizeMode="horizontal|vertical"
-    android:updatePeriodMillis="1000"
+    android:updatePeriodMillis="1800000"
     android:widgetCategory="home_screen"
-    android:layout_height="200dp"
-    android:layout_width="250dp"></appwidget-provider>
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"></appwidget-provider>

@@ -18,47 +18,9 @@ import java.util.Random;
 
 public class AppWidget extends AppWidgetProvider{
 
-    private static final String ACTION_BUTTON1 = "com.example.graduationproject_2019_1.Activity.BUTTON1";
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+    private static final String ACTION_BUTTON1 = "com.example.graduationproject_2019_1.BUTTON1";
 
-        // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget);
-
-        // 제목 부분
-        //시작되면서 동적으로 타이틀 넣고 스타일 설정하기
-        CharSequence widgetText = context.getString(R.string.appwidget_text);
-        views.setTextColor(R.id.appwidget_text, Color.WHITE);
-        views.setViewPadding(R.id.appwidget_text, 8, 8, 8, 8);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
-
-        // 숫자 부분
-        //랜덤 값을 만들어 화면에 출력해 보기
-        int number = (new Random().nextInt(100));
-        views.setViewPadding(R.id.message_text, 0, 8,0,8);
-        views.setTextColor(R.id.message_text, Color.YELLOW);
-        views.setTextViewText(R.id.message_text, String.valueOf(number));
-
-        // 이미지 부분
-        //시작되면서 지정 이미지로 교체
-        views.setImageViewResource(R.id.imageView, R.drawable.ic_android_black_24dp); // this is for test
-
-
-
-        //버튼1 클릭 : 클릭 성공 메세지 출력!
-        Intent intent1 = new Intent(ACTION_BUTTON1);
-        PendingIntent pendingIntent1 = PendingIntent.getBroadcast(context, 0, intent1, PendingIntent.FLAG_CANCEL_CURRENT);
-        views.setOnClickPendingIntent(R.id.button1, pendingIntent1);
-
-        //버튼2 클릭 : 클릭하면 웹브라우저를 열어서 지정된 사이트를 보내 준다.
-        Intent intent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com"));
-        PendingIntent pendingIntent2 = PendingIntent.getActivity(context, 0, intent2, 0);
-        views.setOnClickPendingIntent(R.id.button2, pendingIntent2);
-
-        // Instruct the widget manager to update the widget
-        appWidgetManager.updateAppWidget(appWidgetId, views);
-    }
 
     @Override
     public void onReceive(Context context, Intent intent){
@@ -84,6 +46,43 @@ public class AppWidget extends AppWidgetProvider{
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
 
+    }
+
+    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+                                int appWidgetId) {
+
+
+        // Construct the RemoteViews object
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget);
+
+        // 제목 부분
+        //시작되면서 동적으로 타이틀 넣고 스타일 설정하기
+        CharSequence widgetText = context.getString(R.string.appwidget_text);
+        views.setTextColor(R.id.appwidget_text, Color.WHITE);
+        views.setViewPadding(R.id.appwidget_text, 8, 8, 8, 8);
+        views.setTextViewText(R.id.appwidget_text, widgetText);
+
+        // 숫자 부분
+        //랜덤 값을 만들어 화면에 출력해 보기
+        int number = (new Random().nextInt(100));
+        views.setViewPadding(R.id.message_text, 0, 8,0,8);
+        views.setTextColor(R.id.message_text, Color.YELLOW);
+        views.setTextViewText(R.id.message_text, String.valueOf(number));
+
+
+        // 이미지 부분
+        //시작되면서 지정 이미지로 교체
+        views.setImageViewResource(R.id.imageView, R.drawable.ic_android_black_24dp); // this is for test
+
+
+
+        //버튼1 클릭 : 클릭 성공 메세지 출력!  --> 해당 버튼을 새로고침 버튼으로 만들어야 함
+        Intent intent1 = new Intent(ACTION_BUTTON1);
+        PendingIntent pendingIntent1 = PendingIntent.getBroadcast(context, 0, intent1, PendingIntent.FLAG_CANCEL_CURRENT);
+        views.setOnClickPendingIntent(R.id.button1, pendingIntent1);
+
+        // Instruct the widget manager to update the widget
+        appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
     @Override

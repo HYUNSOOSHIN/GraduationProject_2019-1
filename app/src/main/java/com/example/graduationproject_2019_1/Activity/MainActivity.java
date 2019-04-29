@@ -1,6 +1,8 @@
 package com.example.graduationproject_2019_1.Activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -29,7 +31,8 @@ import com.example.graduationproject_2019_1.Manager.AirGradeWrapper;
 import com.example.graduationproject_2019_1.Manager.AsyncManager;
 import com.example.graduationproject_2019_1.Manager.CityLocationManager;
 import com.example.graduationproject_2019_1.Manager.JSONManager;
-import com.example.graduationproject_2019_1.Manager.MyService;
+import com.example.graduationproject_2019_1.Manager.PersistentService;
+import com.example.graduationproject_2019_1.Manager.RestartService;
 import com.example.graduationproject_2019_1.Manager.URLParameterManager;
 import com.example.graduationproject_2019_1.Manager.WeatherAsynTask;
 import com.example.graduationproject_2019_1.R;
@@ -40,6 +43,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
+
+import static com.example.graduationproject_2019_1.Activity.AppWidget.updateAppWidget;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -117,11 +122,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public String get_location_dong_intent = null;
     public boolean send_or_not = false;
 
+    // 죽지않는 서비스 구현
+    BroadcastReceiver receiver;
+    Intent intentMyService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         Button nextView_btn = findViewById(R.id.nextView_btn);
         nextView_btn.setOnClickListener(new View.OnClickListener() {
@@ -195,23 +203,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         action_list(); //건강관리 및 행동요령 리스트 출력
         setData(GU); // 미세먼지 위치정보 구 이름 입력 ex) 성북구
 
-
-        // AlarmService 시작, 지금은 임시로 1분 간격으로 알람이 한번씩 오도록 설정해둠
-        //알람에 올 데이터 (미세먼지, 현재 온도 ,날씨, 강수확률, 습도)
-        Toast.makeText(getApplicationContext(),"알람 서비스 시작",Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(MainActivity.this, MyService.class);
+        // immortal service 등록
+        intentMyService = new Intent(this, PersistentService.class);
+        // 리시버 등록
+        receiver = new RestartService();
         try {
-            intent.putExtra("mise", pm10_detail + " ㎍/㎥");
-            intent.putExtra("cho_mise", pm25_detail+ " ㎍/㎥");
-            intent.putExtra("temp", DAY1.getJSONObject(0).getString("temp") + "°C");
-            intent.putExtra("wfKor", DAY1.getJSONObject(0).getString("wfKor"));
-            intent.putExtra("pop", DAY1.getJSONObject(0).getString("pop") + "%");
-            intent.putExtra("reh", DAY1.getJSONObject(0).getString("reh") + "%");
-        } catch (JSONException e) {
+            intentMyService.putExtra("mise", pm10_detail + " ㎍/㎥");
+            intentMyService.putExtra("cho_mise", pm25_detail+ " ㎍/㎥");
+            intentMyService.putExtra("temp", DAY1.getJSONObject(0).getString("temp") + "°C");
+            intentMyService.putExtra("wfKor", DAY1.getJSONObject(0).getString("wfKor"));
+            intentMyService.putExtra("pop", DAY1.getJSONObject(0).getString("pop") + "%");
+            intentMyService.putExtra("reh", DAY1.getJSONObject(0).getString("reh") + "%");
+
+            // xml에서 정의해도 됨?
+            // 이것이 정확히 무슨 기능을 하지는지?
+            IntentFilter mainFilter = new IntentFilter("com.hamon.GPSservice.ssss");
+
+            // 리시버 저장
+            registerReceiver(receiver, mainFilter);
+
+            // 서비스 시작
+            startService(intentMyService);
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-        startService(intent);
 
         /*
         WData[0] = "hour";
@@ -221,6 +237,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         WData[4] = "pop";
         WData[5] = "reh";
          */
+    }
+
+    @Override
+    public void onDestroy() {
+        // 리시버 삭세를 하지 않으면 에러
+        // 리시버를 삭제함으로 종료되지 않도록
+        Log.d("MpMainActivity", "Service Destroy");
+        unregisterReceiver(receiver);
+        super.onDestroy();
     }
 
     //텍스트뷰 월/화/수 리스너
@@ -526,4 +551,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     //SideBar - end
 }
-    
+
+
+
