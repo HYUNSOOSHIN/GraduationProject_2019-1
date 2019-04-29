@@ -6,30 +6,4 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-
-    <color name="layout_background">#56e3e4</color>
-
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-
-    <!-- Air Grade color -->
-    <color name="grade_01">#0073d0</color>
-    <color name="grade_02">#00bae6</color>
-    <color name="grade_03">#00d5e6</color>
-    <color name="grade_04">#00d575</color>
-
-    <color name="grade_05">#f9a60d</color>
-    <color name="grade_06">#fe6e24</color>
-    <color name="grade_07">#fe3124</color>
-    <color name="grade_08">#808080</color>
-
-    <color name="grade_01_thick">#004d8c</color>
-    <color name="grade_02_thick">#006982</color>
-    <color name="grade_03_thick">#007a84</color>
-    <color name="grade_04_thick">#008247</color>
-
-    <color name="grade_05_thick">#916007</color>
-    <color name="grade_06_thick">#913e14</color>
-    <color name="grade_07_thick">#961c15</color>
-    <color name="grade_08_thick">#000000</color>
 </resources>

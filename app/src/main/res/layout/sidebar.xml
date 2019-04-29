@@ -5,74 +5,86 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/nanumbarungothicbold"
+            android:text="서울하늘 설정"
+            android:textColor="#656565"
+            android:textSize="17sp"
+            android:layout_marginLeft="27dp" />
 
         <ImageButton
             android:id="@+id/btn_cancel"
-            android:layout_width="21dp"
-            android:layout_height="21dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="22dp"
             android:background="@drawable/ic_close_black_24dp" />
 
+    </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0.7dp"
-            android:layout_alignParentBottom="true"
-            android:background="#202735" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="200dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@drawable/tmp2" />
-
-    </RelativeLayout>
+        android:layout_height="1dp"
+        android:background="#f7f7f7" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
-
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="12dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
-                android:text="text1"
-                android:textColor="#202735"
-                android:textSize="25sp" />
-
+                android:layout_weight="1"
+                android:layout_marginLeft="27dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="미세먼지 8단계"
+                android:textColor="#656565"
+                android:textSize="15sp" />
             <ImageButton
                 android:id="@+id/btn_side_level_1"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="22dp"
                 android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="0.7dp"
-                android:layout_alignParentBottom="true"
-                android:background="#202735" />
-
-        </RelativeLayout>
-
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="12dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="27dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="알림 설정"
+                android:textColor="#656565"
+                android:textSize="15sp" />
+            <ImageButton
+                android:id="@+id/btn_side_level_2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="22dp"
+                android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

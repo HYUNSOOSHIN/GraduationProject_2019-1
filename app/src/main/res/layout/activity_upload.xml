@@ -4,25 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context=".Activity.UploadActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp">
+        android:layout_marginTop="35dp"
+        android:layout_gravity="center"
+        android:background="#ffffff">
 
         <ImageButton
             android:id="@+id/back_btn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/ic_keyboard_arrow_left_black_24dp" />
 
         <TextView
             android:id="@+id/main_location"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:gravity="center"
             android:fontFamily="@font/nanumbarungothicbold"
@@ -35,7 +37,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="22dp"
         android:layout_marginTop="35dp"
         android:orientation="vertical">
 
@@ -62,7 +64,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#ffffff">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -74,9 +77,8 @@
             <ImageButton
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:background="@drawable/border_squar"
                 android:scaleType="centerInside"
-                android:src="@drawable/tmp" />
+                android:background="@drawable/mask" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -97,9 +99,8 @@
             <ImageButton
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:background="@drawable/border_squar"
                 android:scaleType="centerInside"
-                android:src="@drawable/tmp" />
+                android:background="@drawable/aircleaner" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -120,9 +121,8 @@
             <ImageButton
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:background="@drawable/border_squar"
                 android:scaleType="centerInside"
-                android:src="@drawable/tmp" />
+                android:background="@drawable/window" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -139,7 +139,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#ffffff">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -151,9 +152,8 @@
             <ImageButton
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:background="@drawable/border_squar"
                 android:scaleType="centerInside"
-                android:src="@drawable/tmp" />
+                android:background="@drawable/outdoor_activities" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -174,9 +174,8 @@
             <ImageButton
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:background="@drawable/border_squar"
                 android:scaleType="centerInside"
-                android:src="@drawable/tmp" />
+                android:background="@drawable/mask" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -197,9 +196,8 @@
             <ImageButton
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:background="@drawable/border_squar"
                 android:scaleType="centerInside"
-                android:src="@drawable/tmp" />
+                android:background="@drawable/aircleaner" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -226,24 +224,24 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:textSize="18sp"
             android:textColor="#3b3b3b"
-            android:layout_marginLeft="30dp"/>
+            android:layout_marginLeft="22dp"/>
 
         <EditText
             android:id="@+id/comment"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="17dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="22dp"
             android:layout_marginRight="17dp"
             android:paddingLeft="14dp"
-            android:background="@drawable/border_squar"
+            android:background="@drawable/border_10dp"
             android:hint="실천합니다!"
             android:fontFamily="@font/nanumbarungothic"
             android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="32dp"
             android:gravity="right"
             android:orientation="horizontal">
@@ -251,8 +249,8 @@
             <Button
                 android:id="@+id/cancel"
                 android:layout_width="58dp"
-                android:layout_height="39dp"
-                android:background="@drawable/border_squar"
+                android:layout_height="38dp"
+                android:background="@drawable/border_10dp"
                 android:fontFamily="@font/nanumbarungothic"
                 android:text="취소"
                 android:textSize="20sp"
@@ -262,8 +260,8 @@
             <Button
                 android:id="@+id/upload"
                 android:layout_width="58dp"
-                android:layout_height="39dp"
-                android:background="@drawable/border_squar"
+                android:layout_height="38dp"
+                android:background="@drawable/border_10dp"
                 android:fontFamily="@font/nanumbarungothic"
                 android:text="등록"
                 android:textSize="20sp"

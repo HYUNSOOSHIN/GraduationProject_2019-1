@@ -8,7 +8,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:scrollbars="none" >
 
         <RelativeLayout
             android:id="@+id/id_main"
@@ -19,27 +20,27 @@
                 android:id="@+id/main_face"
                 android:layout_width="match_parent"
                 android:layout_height="462dp"
-                android:background="@drawable/temp"
                 android:scaleType="fitCenter" />
 
             <RelativeLayout
                 android:id="@+id/rl_001"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="9dp">
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp">
 
                 <ImageButton
                     android:id="@+id/sidebar_btn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="24dp"
+                    android:layout_height="19dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/ic_menu_black_24dp" />
+                    android:layout_marginLeft="22dp"
+                    android:background="@drawable/menu" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -48,10 +49,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:fontFamily="@font/nanumbarungothicbold"
+                        android:fontFamily="@font/nanumbarungothic"
                         android:text="서울특별시 송파구 석촌동"
                         android:textColor="#000000"
-                        android:textSize="14sp" />
+                        android:textSize="15dp" />
 
                     <TextView
                         android:id="@+id/main_time"
@@ -61,20 +62,19 @@
                         android:fontFamily="@font/nanumbarungothic"
                         android:text="월요일 AM 11:00"
                         android:textColor="#000000"
-                        android:textSize="11sp"
-                        android:layout_marginTop="5dp"/>
+                        android:textSize="11sp" />
 
 
                 </LinearLayout>
 
                 <ImageButton
                     android:id="@+id/searchView_btn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="19.3dp"
+                    android:layout_height="28.7dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/ic_location_on_black_24dp" />
+                    android:layout_marginRight="21.7dp"
+                    android:background="@drawable/location" />
             </RelativeLayout>
 
             <View
@@ -86,21 +86,23 @@
             <LinearLayout
                 android:id="@+id/mise"
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/view"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <TextView
@@ -110,7 +112,7 @@
                             android:fontFamily="@font/nanumbarungothic"
                             android:text="미세먼지 "
                             android:textColor="#000000"
-                            android:textSize="18sp" />
+                            android:textSize="17sp" />
 
                         <TextView
                             android:id="@+id/main_pm10_status"
@@ -120,31 +122,34 @@
                             android:fontFamily="@font/nanumbarungothic"
                             android:text="매우 좋음"
                             android:textColor="#159123"
-                            android:textSize="18sp" />
+                            android:textSize="17sp" />
                     </LinearLayout>
 
                     <TextView
                         android:id="@+id/main_pm10_value"
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginTop="11.7dp"
                         android:fontFamily="@font/nanumbarungothic"
+                        android:gravity="center"
                         android:text="182 ㎍/㎥"
                         android:textColor="#159123"
-                        android:textSize="34sp"
-                        android:layout_marginTop="7dp"/>
+                        android:textSize="30sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="105dp"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <TextView
@@ -154,7 +159,7 @@
                             android:fontFamily="@font/nanumbarungothic"
                             android:text="초미세먼지 "
                             android:textColor="#000000"
-                            android:textSize="18sp" />
+                            android:textSize="17sp" />
 
                         <TextView
                             android:id="@+id/main_pm25_status"
@@ -164,35 +169,44 @@
                             android:fontFamily="@font/nanumbarungothic"
                             android:text="매우 좋음"
                             android:textColor="#159123"
-                            android:textSize="18sp" />
+                            android:textSize="17sp" />
                     </LinearLayout>
 
                     <TextView
                         android:id="@+id/main_pm25_value"
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginTop="11.7dp"
                         android:fontFamily="@font/nanumbarungothic"
+                        android:gravity="center"
                         android:text="132 ㎍/㎥"
                         android:textColor="#159123"
-                        android:textSize="34sp"
-                        android:layout_marginTop="7dp"/>
+                        android:textSize="30sp" />
                 </LinearLayout>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_below="@id/mise"
+                android:layout_marginTop="10dp"
+                android:background="#f7f7f7"/>
+
             <LinearLayout
                 android:id="@+id/todaytext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="46dp"
-                android:layout_marginLeft="22dp"
                 android:layout_below="@id/mise"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="46dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbarungothicbold"
-                    android:text="오늘 날씨 "
+                    android:text="오늘 날씨"
                     android:textColor="#292929"
                     android:textSize="18sp" />
 
@@ -202,15 +216,16 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbarungothic"
                     android:text="오늘 날짜"
-                    android:textColor="#dddddd"
-                    android:textSize="12sp" />
+                    android:textColor="#727272"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="10dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbarungothic"
                     android:text=" | 기상청"
-                    android:textColor="#dddddd"
+                    android:textColor="#727272"
                     android:textSize="12sp" />
 
                 <TextView
@@ -218,148 +233,163 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbarungothic"
                     android:text=" | 에어코리아"
-                    android:textColor="#dddddd"
+                    android:textColor="#727272"
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <LinearLayout
+            <HorizontalScrollView
                 android:id="@+id/today_weather"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/todaytext"
-                android:orientation="vertical">
+                android:layout_marginTop="26dp"
+                android:scrollbars="none" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="85dp"
-                    android:layout_marginHorizontal="22dp"
-                    android:layout_marginTop="7dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/todaytext"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="66dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothicbold"
-                            android:text="날씨"
-                            android:textColor="#555555"
-                            android:textSize="15sp" />
+                            android:layout_marginLeft="22dp"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/main_weather"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanumbarungothicbold"
+                                android:text="날씨"
+                                android:textColor="#3b3b3b"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/main_weather"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/nanumbarungothic"
+                                android:text="구름 조금"
+                                android:textColor="#3b3b3b"
+                                android:textSize="25sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="48dp"
+                            android:layout_marginHorizontal="21dp"
+                            android:background="#d8d8d8" />
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothiclight"
-                            android:text="구름 조금"
-                            android:textColor="#555555"
-                            android:textSize="20sp"
-                            android:layout_marginTop="10dp"/>
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanumbarungothicbold"
+                                android:text="온도"
+                                android:textColor="#3b3b3b"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/main_temp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/nanumbarungothic"
+                                android:text="21.0°C"
+                                android:textColor="#3b3b3b"
+                                android:textSize="25sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="48dp"
+                            android:layout_marginHorizontal="21dp"
+                            android:background="#d8d8d8" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanumbarungothicbold"
+                                android:text="강수확률"
+                                android:textColor="#3b3b3b"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/main_rain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/nanumbarungothic"
+                                android:text="50%"
+                                android:textColor="#3b3b3b"
+                                android:textSize="25sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="48dp"
+                            android:layout_marginHorizontal="21dp"
+                            android:background="#d8d8d8" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="22dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanumbarungothicbold"
+                                android:text="습도"
+                                android:textColor="#3b3b3b"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/main_reh"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/nanumbarungothic"
+                                android:text="50%"
+                                android:textColor="#3b3b3b"
+                                android:textSize="25sp" />
+                        </LinearLayout>
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="48dp"
-                        android:background="#d8d8d8"
-                        android:layout_marginHorizontal="14dp"/>
-
-                    <LinearLayout
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothicbold"
-                            android:text="온도"
-                            android:textColor="#555555"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:id="@+id/main_temp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothiclight"
-                            android:text="21.0°C"
-                            android:textColor="#555555"
-                            android:textSize="20sp"
-                            android:layout_marginTop="10dp"/>
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="48dp"
-                        android:background="#d8d8d8"
-                        android:layout_marginHorizontal="14dp"/>
-
-                    <LinearLayout
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothicbold"
-                            android:text="강수확률"
-                            android:textColor="#555555"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:id="@+id/main_rain"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothiclight"
-                            android:text="50%"
-                            android:textColor="#555555"
-                            android:textSize="20sp"
-                            android:layout_marginTop="10dp"/>
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="48dp"
-                        android:background="#d8d8d8"
-                        android:layout_marginHorizontal="14dp"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothicbold"
-                            android:text="습도"
-                            android:textColor="#555555"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:id="@+id/main_reh"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothiclight"
-                            android:text="50%"
-                            android:textColor="#555555"
-                            android:textSize="20sp"
-                            android:layout_marginTop="10dp"/>
-                    </LinearLayout>
                 </LinearLayout>
+            </HorizontalScrollView>
 
-            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_below="@id/today_weather"
+                android:layout_marginTop="18dp"
+                android:background="#f7f7f7"/>
 
             <LinearLayout
                 android:id="@+id/week_weather"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/today_weather"
-                android:layout_marginTop="31dp"
+                android:layout_marginTop="42dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -380,44 +410,43 @@
                     <TextView
                         android:id="@+id/day1"
                         android:layout_width="120dp"
-                        android:layout_height="26dp"
+                        android:layout_height="31dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/nanumbarungothicbold"
                         android:gravity="center"
                         android:onClick="whatday"
-                        android:fontFamily="@font/nanumbarungothicbold"
                         android:text="오늘"
                         android:textColor="#3a3a3a"
-                        android:textSize="20dp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/day2"
                         android:layout_width="120dp"
-                        android:layout_height="26dp"
+                        android:layout_height="31dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/nanumbarungothicbold"
                         android:gravity="center"
                         android:onClick="whatday"
-                        android:fontFamily="@font/nanumbarungothicbold"
                         android:text="내일"
                         android:textColor="#818181"
-                        android:textSize="20dp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/day3"
                         android:layout_width="120dp"
-                        android:layout_height="26dp"
+                        android:layout_height="31dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/nanumbarungothicbold"
                         android:gravity="center"
                         android:onClick="whatday"
-                        android:fontFamily="@font/nanumbarungothicbold"
                         android:text="모레"
                         android:textColor="#818181"
-                        android:textSize="20dp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="23dp"
                     android:layout_marginTop="19dp"
                     android:scrollbars="none">
 
@@ -428,6 +457,13 @@
 
                 </HorizontalScrollView>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_below="@id/week_weather"
+                android:layout_marginTop="22dp"
+                android:background="#f7f7f7"/>
 
             <LinearLayout
                 android:id="@+id/list"
@@ -450,7 +486,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -467,17 +504,8 @@
                         android:fontFamily="@font/nanumbarungothic"
                         android:text="매우 좋음"
                         android:textColor="#159123"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/main_pm10_value2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="19dp"
-                        android:fontFamily="@font/nanumbarungothic"
-                        android:text="0~50"
-                        android:textColor="#3a3a3a"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_marginLeft="10dp"/>
                 </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
@@ -497,6 +525,7 @@
                         android:id="@+id/leftbtn"
                         android:layout_width="27dp"
                         android:layout_height="27dp"
+                        android:layout_marginRight="15dp"
                         android:background="@drawable/ic_keyboard_arrow_left_black_24dp" />
 
                     <TextView
@@ -511,9 +540,17 @@
                         android:id="@+id/rightbtn"
                         android:layout_width="27dp"
                         android:layout_height="27dp"
+                        android:layout_marginLeft="15dp"
                         android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
                 </LinearLayout>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_below="@id/list"
+                android:layout_marginTop="23dp"
+                android:background="#f7f7f7"/>
 
             <LinearLayout
                 android:id="@+id/action"
@@ -528,6 +565,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbarungothicbold"
+                    android:layout_marginTop="23dp"
                     android:text="생활 속 미세먼지를 줄이고 건강을 지킵시다"
                     android:textColor="#292929"
                     android:textSize="18sp" />
@@ -547,7 +585,7 @@
                     android:layout_height="28dp"
                     android:layout_gravity="right"
                     android:layout_marginTop="14dp"
-                    android:background="@drawable/border_squar"
+                    android:background="@drawable/border_10dp"
                     android:fontFamily="@font/nanumbarungothicbold"
                     android:text="더 알아보기"
                     android:textColor="#646464"
@@ -560,8 +598,8 @@
                     android:layout_marginTop="58dp"
                     android:fontFamily="@font/nanumbarungothic"
                     android:text="앱 버전 v1.0"
-                    android:textSize="12sp"
-                    android:textColor="#8c8c8c"/>
+                    android:textColor="#8c8c8c"
+                    android:textSize="10sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -570,8 +608,8 @@
                     android:layout_marginBottom="112dp"
                     android:fontFamily="@font/nanumbarungothic"
                     android:text="서울하늘"
-                    android:textSize="12sp"
-                    android:textColor="#8c8c8c"/>
+                    android:textColor="#8c8c8c"
+                    android:textSize="10sp" />
 
             </LinearLayout>
 

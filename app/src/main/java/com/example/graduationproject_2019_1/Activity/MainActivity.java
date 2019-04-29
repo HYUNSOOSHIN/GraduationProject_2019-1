@@ -155,10 +155,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (send_or_not == true) { //검색으로 정보 받아오는 경우
             GU = get_location_gu_intent;
             DONG = get_location_dong_intent;
+//            Log.i("test","검색위치 기반: "+GU+" "+DONG);
         } else if(send_or_not == false) { //현재위치 기반으로 받아오는 경우
             sharedPreferences = getSharedPreferences("hyunsoo", MODE_PRIVATE);;
             GU = sharedPreferences.getString("gu",null);
             DONG = sharedPreferences.getString("dong",null);
+//            Log.i("test","현재위치 기반: "+GU+" "+DONG);
         }
 
         try {
@@ -183,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
 
-//            Log.i("test", "day1" + DAY1.toString());
+            Log.i("test", "day1" + DAY1.toString());
 //            Log.i("test", "day2" + DAY2.toString());
 //            Log.i("test", "day3" + DAY3.toString());
 
@@ -257,21 +259,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 day2.setTextColor(Color.parseColor("#818181"));
                 day3.setTextColor(Color.parseColor("#818181"));
                 weather_list(0); //오늘 조건으로 리스트 출력
-                Log.i("test", "오늘");
+//                Log.i("test", "오늘");
                 break;
             case R.id.day2:
                 day1.setTextColor(Color.parseColor("#818181"));
                 day2.setTextColor(Color.parseColor("#3a3a3a"));
                 day3.setTextColor(Color.parseColor("#818181"));
                 weather_list(1);
-                Log.i("test", "내일");
+//                Log.i("test", "내일");
                 break;
             case R.id.day3:
                 day1.setTextColor(Color.parseColor("#818181"));
                 day2.setTextColor(Color.parseColor("#818181"));
                 day3.setTextColor(Color.parseColor("#3a3a3a"));
                 weather_list(2);
-                Log.i("test", "모레");
+//                Log.i("test", "모레");
                 break;
             default:
                 return;
@@ -279,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setData(String gu) {
-        //Log.i("test", "setData");
+        Log.i("test", gu+"jj");
         AsyncManager manager = AsyncManager.getInstance();
         String nm = CityLocationManager.getNMbyCityName(gu);
         String a = manager.make(Url.REAL_TIME_CITY_AIR, URLParameterManager.getRequestString(nm, gu));
@@ -292,7 +294,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         wholeGrade = AirGradeManager.getGradeWithWholeValue(titleQualityInt);
         setTitleData(parsedData);
         setDetailData(parsedData);
-        setTextColor(AirGradeManager.getTextColorIdWithGrade(wholeGrade, false));
+        setTextColor(AirGradeManager.getTextColorIdWithGrade(wholeGrade));
     }
 
     private void setTitleData(Map<String, String> titleData) {
@@ -302,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         location.setText("서울시 " + GU + " " + DONG);
         time.setText(date);
         today.setText(date.substring(0, date.lastIndexOf(" ")));
-//        face.setImageResource(faceId);
+        face.setImageResource(faceId);
     }
 
     private void setDetailData(Map<String, String> detailData) {
@@ -312,7 +314,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         main_pm10_status.setText(pm10_wrapper.getQuality());
         main_pm10_value.setText(pm10_detail + " ㎍/㎥");
         main_pm10_status2.setText(pm10_wrapper.getQuality());
-        main_pm10_value2.setText(pm10_detail);
 
         // 초미세먼지
         pm25_detail = detailData.get("PM25");
@@ -324,7 +325,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setWeatherText() {
         try {
             main_weather.setText(DAY1.getJSONObject(0).getString("wfKor")); // 날씨 ex)맑음
-            main_temp.setText(DAY1.getJSONObject(0).getString("temp") + "°C"); // 온도
+            main_temp.setText(DAY1.getJSONObject(0).getString("temp").substring(0,DAY1.getJSONObject(0).getString("temp").indexOf(".")) + "°C"); // 온도
             main_rain.setText(DAY1.getJSONObject(0).getString("pop") + "%"); // 강수확률
             main_reh.setText(DAY1.getJSONObject(0).getString("reh") + "%"); // 습도
         } catch (JSONException e) {
@@ -363,7 +364,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         main_pm10_status = (TextView) findViewById(R.id.main_pm10_status);
         main_pm10_value = (TextView) findViewById(R.id.main_pm10_value);
         main_pm10_status2 = (TextView) findViewById(R.id.main_pm10_status2);
-        main_pm10_value2 = (TextView) findViewById(R.id.main_pm10_value2);
 
         // 초미세먼지
         main_pm25_status = (TextView) findViewById(R.id.main_pm25_status);
@@ -391,10 +391,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setLayoutManager(layoutManager);
 
         ArrayList<ActionRecycleObject> adtionInfoArrayList = new ArrayList<>();
-        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.tmp, "마스크", "마스크는 K94를 권장합니다."));
-        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.tmp, "공기청정기", "외출 후 공기청정기를 가동해주세요."));
-        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.tmp, "창문", "절때 열지 마세요."));
-        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.tmp, "야외활동", "야외활동을 최대한 자제하며 외출 후 반드시 샤워를 하세요."));
+        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.mask, "마스크", "마스크는 K94를 권장합니다."));
+        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.aircleaner, "공기청정기", "외출 후 공기청정기를 가동해주세요."));
+        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.window, "창문", "절때 열지 마세요."));
+        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.outdoor_activities, "야외활동", "야외활동을 최대한 자제하며 외출 후 반드시 샤워를 하세요."));
 
         ActionInfoRecyclerAdapter actionInfoRecyclerAdapter = new ActionInfoRecyclerAdapter(adtionInfoArrayList);
 
@@ -415,42 +415,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 for (int i = 0; i < DAY1.length(); i++) {
                     weatherInfoArrayList.add(
                             new WeatherRecycleObject(
-                                    DAY1.getJSONObject(i).getString("hour") + "시",
-                                    R.drawable.tmp,
+                                    timeFormat(DAY1.getJSONObject(i).getString("hour")) + "시",
+                                    AirGradeManager.getWeatherImageId(DAY1.getJSONObject(i).getString("wfKor")),
                                     DAY1.getJSONObject(i).getString("temp") + "°C",
-                                    R.drawable.tmp,
-                                    DAY1.getJSONObject(i).getString("wfKor"),
-                                    R.drawable.tmp,
+                                    R.drawable.humidity,
                                     DAY1.getJSONObject(i).getString("pop") + "%",
-                                    R.drawable.tmp,
+                                    R.drawable.precipitation,
                                     DAY1.getJSONObject(i).getString("reh") + "%"));
                 }
             } else if (condition == 1) {
                 for (int i = 0; i < DAY2.length(); i++) {
                     weatherInfoArrayList.add(
                             new WeatherRecycleObject(
-                                    DAY2.getJSONObject(i).getString("hour") + "시",
-                                    R.drawable.tmp,
+                                    timeFormat(DAY2.getJSONObject(i).getString("hour")) + "시",
+                                    AirGradeManager.getWeatherImageId(DAY2.getJSONObject(i).getString("wfKor")),
                                     DAY2.getJSONObject(i).getString("temp") + "°C",
-                                    R.drawable.tmp,
-                                    DAY2.getJSONObject(i).getString("wfKor"),
-                                    R.drawable.tmp,
+                                    R.drawable.humidity,
                                     DAY2.getJSONObject(i).getString("pop") + "%",
-                                    R.drawable.tmp,
+                                    R.drawable.precipitation,
                                     DAY2.getJSONObject(i).getString("reh") + "%"));
                 }
             } else {
                 for (int i = 0; i < DAY3.length(); i++) {
                     weatherInfoArrayList.add(
                             new WeatherRecycleObject(
-                                    DAY3.getJSONObject(i).getString("hour") + "시",
-                                    R.drawable.tmp,
+                                    timeFormat(DAY3.getJSONObject(i).getString("hour")) + "시",
+                                    AirGradeManager.getWeatherImageId(DAY3.getJSONObject(i).getString("wfKor")),
                                     DAY3.getJSONObject(i).getString("temp") + "°C",
-                                    R.drawable.tmp,
-                                    DAY3.getJSONObject(i).getString("wfKor"),
-                                    R.drawable.tmp,
+                                    R.drawable.humidity,
                                     DAY3.getJSONObject(i).getString("pop") + "%",
-                                    R.drawable.tmp,
+                                    R.drawable.precipitation,
                                     DAY3.getJSONObject(i).getString("reh") + "%"));
                 }
             }
@@ -461,6 +455,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         WeatherInfoRecyclerAdapter weatherInfoRecyclerAdapter = new WeatherInfoRecyclerAdapter(weatherInfoArrayList);
 
         recyclerView2.setAdapter(weatherInfoRecyclerAdapter);
+    }
+
+    private  String timeFormat(String time){
+        if(Integer.parseInt(time)>=12){
+            time = "오후 "+time;
+        }
+        else {
+            time = "오전 "+time;
+        }
+
+        return time;
     }
 
     //측정시간

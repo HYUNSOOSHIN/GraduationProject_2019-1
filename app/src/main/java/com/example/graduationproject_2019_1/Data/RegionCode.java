@@ -462,26 +462,11 @@ public class RegionCode {
     public int find_Code(String dong){ //동이름으로 코드값 찾는 함수
         int cnt = 0;
         for(int i=0; i<region.length; i++) {
-            Log.d("region", region[i].getDong());
-            if (region[i].getDong() == dong) {
+            if (region[i].getDong().equals(dong)) {
                 cnt = i;
-            }
-            else{
-                return 400; //에러코드
+                return region[cnt].getCode();
             }
         }
-        return region[cnt].getCode();
-    }
-    public int find_Index(String dong){
-        int cnt=0;
-        for(int i=0; i<region.length; i++){
-            if(region[i].getDong() == dong){
-                cnt = i;
-            }
-            else{
-                return 400; //에러코드
-            }
-        }
-        return cnt;
+        return 400; //에러코드
     }
 }

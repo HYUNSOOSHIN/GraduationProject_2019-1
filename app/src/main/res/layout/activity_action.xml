@@ -5,31 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context=".Activity.MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="35dp">
+            android:layout_marginTop="35dp"
+            android:background="#ffffff"
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/back_btn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/ic_keyboard_arrow_left_black_24dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="22dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginHorizontal="30dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -43,13 +47,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="33dp"
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:text="어떻게 일상 속 미세먼지를 줄일 수 있을까요? 많은 사람들이 실천하고 있습니다. 함께 실천해보세요."
-                    android:textSize="12sp"
-                    android:textColor="#707070"
-                    android:lineSpacingExtra="3dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginRight="33dp"/>
+                    android:layout_marginRight="33dp"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:lineSpacingExtra="3dp"
+                    android:text="어떻게 일상 속 미세먼지를 줄일 수 있을까요? 많은 사람들이 실천하고 있습니다. 함께 실천해보세요."
+                    android:textColor="#707070"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -57,7 +61,7 @@
                 android:id="@+id/action_recycleView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="28dp"
+                android:layout_marginHorizontal="22dp"
                 android:layout_marginTop="33dp"></android.support.v7.widget.RecyclerView>
 
             <LinearLayout
@@ -71,7 +75,7 @@
                     android:id="@+id/leftbtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="16.5dp"
+                    android:layout_marginRight="15dp"
                     android:background="@drawable/ic_keyboard_arrow_left_black_24dp"
                     android:onClick="leftbtn"
                     tools:ignore="OnClick" />
@@ -88,7 +92,7 @@
                     android:id="@+id/rightbtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16.5dp"
+                    android:layout_marginLeft="15dp"
                     android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
                     android:onClick="rightbtn"
                     tools:ignore="OnClick" />
@@ -97,9 +101,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="30dp"
                 android:layout_marginTop="60dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingHorizontal="22dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -111,17 +115,17 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="6dp">
+                    android:layout_height="30dp"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="27dp"
-                        android:gravity="center|left"
-                        android:fontFamily="@font/nanumbarungothic"
-                        android:text="함께 실천해 보세요!"
                         android:layout_weight="1"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:gravity="center|left"
+                        android:text="함께 실천해 보세요!"
                         android:textColor="#707070"
                         android:textSize="12sp" />
 
@@ -130,10 +134,10 @@
                         android:layout_width="80dp"
                         android:layout_height="27dp"
                         android:layout_gravity="center"
-                        android:textAlignment="center"
-                        android:background="@drawable/border_squar"
+                        android:background="@drawable/border_10dp"
                         android:fontFamily="@font/nanumbarungothic"
                         android:text="참여하기"
+                        android:textAlignment="center"
                         android:textColor="#707070"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -160,19 +164,19 @@
                         android:textAlignment="center"
                         android:textSize="8sp" />
 
-                    <com.github.lzyzsd.circleprogress.CircleProgress
-                        android:id="@+id/circle_progress_w"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        custom:circle_progress="20" />
+                    <com.github.lzyzsd.circleprogress.DonutProgress
+                        android:id="@+id/donut_progress_z"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        custom:donut_progress="30" />
 
                     <TextView
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="1231/10000"
                         android:textAlignment="center"
-                        android:textSize="8sp"
-                        android:layout_marginTop="10dp"/>
+                        android:textSize="8sp" />
 
                 </LinearLayout>
 
@@ -191,19 +195,19 @@
                         android:textAlignment="center"
                         android:textSize="8dp" />
 
-                    <com.github.lzyzsd.circleprogress.CircleProgress
-                        android:id="@+id/circle_progress_t"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        custom:circle_progress="30" />
+                    <com.github.lzyzsd.circleprogress.DonutProgress
+                        android:id="@+id/donut_progres_x"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        custom:donut_progress="50" />
 
                     <TextView
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="1231/10000"
                         android:textAlignment="center"
-                        android:textSize="8sp"
-                        android:layout_marginTop="10dp"/>
+                        android:textSize="8sp" />
 
                 </LinearLayout>
 
@@ -222,19 +226,19 @@
                         android:textAlignment="center"
                         android:textSize="8dp" />
 
-                    <com.github.lzyzsd.circleprogress.CircleProgress
-                        android:id="@+id/circle_progress_o"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        custom:circle_progress="40" />
+                    <com.github.lzyzsd.circleprogress.DonutProgress
+                        android:id="@+id/donut_progress_c"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        custom:donut_progress="70" />
 
                     <TextView
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="1231/10000"
                         android:textAlignment="center"
-                        android:textSize="8sp"
-                        android:layout_marginTop="10dp"/>
+                        android:textSize="8sp" />
 
                 </LinearLayout>
 
@@ -253,19 +257,19 @@
                         android:textAlignment="center"
                         android:textSize="8dp" />
 
-                    <com.github.lzyzsd.circleprogress.CircleProgress
-                        android:id="@+id/circle_progress_v"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        custom:circle_progress="50" />
+                    <com.github.lzyzsd.circleprogress.DonutProgress
+                        android:id="@+id/donut_progress_v"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        custom:donut_progress="90" />
 
                     <TextView
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="1231/10000"
                         android:textAlignment="center"
-                        android:textSize="8sp"
-                        android:layout_marginTop="10dp"/>
+                        android:textSize="8sp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -275,8 +279,8 @@
                 android:id="@+id/action_recycleView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="28dp"
-                android:layout_marginTop="36dp"/>
+                android:layout_marginHorizontal="22dp"
+                android:layout_marginTop="36dp" />
 
         </LinearLayout>
     </ScrollView>
