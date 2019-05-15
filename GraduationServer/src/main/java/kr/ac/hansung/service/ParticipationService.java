@@ -14,8 +14,8 @@ public class ParticipationService {
 	@Autowired
 	private ParticipationDao participationDao;
 	
-	public boolean addParticipation(Participation participation) {
-		return participationDao.addParticipation(participation);
+	public void addParticipation(Participation participation) {
+		participationDao.addParticipation(participation);
 	}
 	
 	public List<Participation> getParticipationlist() {

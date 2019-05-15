@@ -28,9 +28,7 @@ public class HomeController {
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public String createParticipation(Participation participation) { //업로드 함수
 		
-		if( !participationService.addParticipation(participation)) {
-			System.out.println("Not Adding");
-		}
+		participationService.addParticipation(participation);
 		
 		return "home";
 	}
@@ -45,10 +43,6 @@ public class HomeController {
 	public @ResponseBody List<Participation> getParticipation() { //리스트 받기 함수
 		
 		List<Participation> participation = participationService.getParticipationlist();
-		
-		for(Participation a : participation) {
-			System.out.println(a.getId() + "   " + a.getComment());
-		}
 		
 		return participation;
 	}
