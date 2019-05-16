@@ -148,8 +148,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             DONG = get_location_dong_intent;
         } else if(send_or_not == false) { //현재위치 기반으로 받아오는 경우
             sharedPreferences = getSharedPreferences("hyunsoo", MODE_PRIVATE);;
-            GU = sharedPreferences.getString("gu",null);
-            DONG = sharedPreferences.getString("dong",null);
+            GU = sharedPreferences.getString("gu","영등포구");
+            DONG = sharedPreferences.getString("dong","당산1동");
         }
 
         try {
@@ -268,6 +268,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AirGradeWrapper pm25_wrapper = AirGradeManager.get("PM25", pm25_detail);
         main_pm25_status.setText(pm25_wrapper.getQuality());
         main_pm25_value.setText(pm25_detail + " ㎍/㎥");
+
+        // 기상 정보를 받아오지 못했을 경우를 대비하는 용도
+        sharedPreferences = getSharedPreferences("hyunsoo", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("PM10", pm10_detail);
+        editor.putString("PM25", pm25_detail);
     }
 
     private void setWeatherText() {
@@ -276,6 +282,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             main_temp.setText(DAY1.getJSONObject(0).getString("temp").substring(0,DAY1.getJSONObject(0).getString("temp").indexOf(".")) + "°C"); // 온도
             main_rain.setText(DAY1.getJSONObject(0).getString("pop") + "%"); // 강수확률
             main_reh.setText(DAY1.getJSONObject(0).getString("reh") + "%"); // 습도
+
+            // 기상 정보를 받아오지 못했을 경우를 대비하는 용도
+            sharedPreferences = getSharedPreferences("hyunsoo", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("wfKor", DAY1.getJSONObject(0).getString("wfKor"));
+            editor.putString("temp", DAY1.getJSONObject(0).getString("temp").substring(0,DAY1.getJSONObject(0).getString("temp").indexOf(".")) + "°C");
+            editor.putString("pop", DAY1.getJSONObject(0).getString("pop") + "%");
+            editor.putString("reh", DAY1.getJSONObject(0).getString("reh") + "%");
         } catch (JSONException e) {
             e.printStackTrace();
         }

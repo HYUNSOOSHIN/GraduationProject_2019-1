@@ -67,6 +67,7 @@ public class FireBaseMessagingService extends FirebaseMessagingService {
         messageBody = messageBody.trim();
         if(messageBody.equals("background")){
             set_Locaion_Weather(); // 위치정보, 기상정보 받아오기
+
             initChannel(); // 채널 설정, 알람 셋팅완료 --> 알람에 스타일 정하기
 
             Intent notificationIntent = new Intent(this, MainActivity.class);
@@ -163,6 +164,15 @@ public class FireBaseMessagingService extends FirebaseMessagingService {
 
             pm10_detail = parsedData.get("PM10");
             pm25_detail = parsedData.get("PM25");
+
+            if(wfKor_data.equals(null)){
+                wfKor_data = sharedPreferences.getString("wfKor", "맑음");
+                temp_data = sharedPreferences.getString("temp", "20°C");
+                pop_data = sharedPreferences.getString("pop", "0%");
+                reh_data = sharedPreferences.getString("reh", "10%");
+                pm10_detail = sharedPreferences.getString("PM10", "60");
+                pm25_detail = sharedPreferences.getString("PM25", "45");
+            }
 
         } catch (InterruptedException e) {
             e.printStackTrace();
