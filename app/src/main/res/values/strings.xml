@@ -148,4 +148,8 @@
     <string name="channel_description">채널 설명 ....</string>
     <string name="notification_title">배터리 경고</string>
     <string name="notification_text">배터리 수준이 매우 낮습니다 </string>
+
+    <string name="default_notification_channel_id">159</string>
+    <string name="default_notification_channel_name">Send FCM Notification</string>
+
 </resources>

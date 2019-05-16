@@ -21,14 +21,26 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
+    // appcompat -v7:27.1.1 에러로 아래 2줄 추가
+    implementation 'com.android.support:support-media-compat:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    //
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation files('libs/jsoup-1.11.3.jar')
     implementation 'com.github.lzyzsd:circleprogress:1.2.1'
-
     //리사이클러뷰
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
+    // Firebase: version 호환 되는 것 같음
+    //implementation 'com.google.firebase:firebase-core:16.0.8'
+    implementation 'com.google.firebase:firebase-core:10.2.1'
+    implementation 'com.google.firebase:firebase-messaging:10.2.1'
+    implementation 'com.google.firebase:firebase-database:10.2.1'
+
 }
+// Firebase
+apply plugin: 'com.google.gms.google-services' // Google Play services Gradle plugin
+

@@ -41,8 +41,6 @@ public class WeatherAsynTask extends AsyncTask {
 
         RegionCode regionCode = new RegionCode();
         region_index = regionCode.find_Code(dong);
-//        Log.i("test","ㅇㅇㅇㅇ: "+gu+" "+dong);
-//        Log.i("test","ㅇㅇㅇㅇ: "+region_index);
 
         try{
             document = Jsoup.connect("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=" + region_index).get();
@@ -68,9 +66,7 @@ public class WeatherAsynTask extends AsyncTask {
                 jsonObject.put("pop",pop.toString().substring(pop.toString().indexOf(" ")+1,pop.toString().lastIndexOf("\n")));
                 jsonObject.put("reh",reh.toString().substring(reh.toString().indexOf(" ")+1,reh.toString().lastIndexOf("\n")));
                 jsonArray.put(jsonObject);
-//                Log.i("test", "hyunsoo: "+hourr);
-//                Log.i("test", "hyunsoo: "+jsonObject);
-//                Log.i("test", "hyunsoo: "+jsonArray);
+
             }
         }catch (IOException e){
             e.printStackTrace();

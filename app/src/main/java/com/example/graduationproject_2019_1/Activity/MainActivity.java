@@ -2,7 +2,6 @@ package com.example.graduationproject_2019_1.Activity;
 
 import android.content.BroadcastReceiver;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,7 +18,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.graduationproject_2019_1.Adapter.ActionInfoRecyclerAdapter;
 import com.example.graduationproject_2019_1.Adapter.WeatherInfoRecyclerAdapter;
@@ -31,11 +29,10 @@ import com.example.graduationproject_2019_1.Manager.AirGradeWrapper;
 import com.example.graduationproject_2019_1.Manager.AsyncManager;
 import com.example.graduationproject_2019_1.Manager.CityLocationManager;
 import com.example.graduationproject_2019_1.Manager.JSONManager;
-import com.example.graduationproject_2019_1.Manager.PersistentService;
-import com.example.graduationproject_2019_1.Manager.RestartService;
 import com.example.graduationproject_2019_1.Manager.URLParameterManager;
 import com.example.graduationproject_2019_1.Manager.WeatherAsynTask;
 import com.example.graduationproject_2019_1.R;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,8 +40,6 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
-
-import static com.example.graduationproject_2019_1.Activity.AppWidget.updateAppWidget;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -122,10 +117,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public String get_location_dong_intent = null;
     public boolean send_or_not = false;
 
-    // 죽지않는 서비스 구현
-    BroadcastReceiver receiver;
-    Intent intentMyService;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,12 +146,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (send_or_not == true) { //검색으로 정보 받아오는 경우
             GU = get_location_gu_intent;
             DONG = get_location_dong_intent;
-//            Log.i("test","검색위치 기반: "+GU+" "+DONG);
         } else if(send_or_not == false) { //현재위치 기반으로 받아오는 경우
             sharedPreferences = getSharedPreferences("hyunsoo", MODE_PRIVATE);;
             GU = sharedPreferences.getString("gu",null);
             DONG = sharedPreferences.getString("dong",null);
-//            Log.i("test","현재위치 기반: "+GU+" "+DONG);
         }
 
         try {
@@ -205,50 +194,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         action_list(); //건강관리 및 행동요령 리스트 출력
         setData(GU); // 미세먼지 위치정보 구 이름 입력 ex) 성북구
 
-        // immortal service 등록
-        intentMyService = new Intent(this, PersistentService.class);
-        // 리시버 등록
-        receiver = new RestartService();
-        try {
-            intentMyService.putExtra("mise", pm10_detail + " ㎍/㎥");
-            intentMyService.putExtra("cho_mise", pm25_detail+ " ㎍/㎥");
-            intentMyService.putExtra("temp", DAY1.getJSONObject(0).getString("temp") + "°C");
-            intentMyService.putExtra("wfKor", DAY1.getJSONObject(0).getString("wfKor"));
-            intentMyService.putExtra("pop", DAY1.getJSONObject(0).getString("pop") + "%");
-            intentMyService.putExtra("reh", DAY1.getJSONObject(0).getString("reh") + "%");
 
-            // xml에서 정의해도 됨?
-            // 이것이 정확히 무슨 기능을 하지는지?
-            IntentFilter mainFilter = new IntentFilter("com.hamon.GPSservice.ssss");
-
-            // 리시버 저장
-            registerReceiver(receiver, mainFilter);
-
-            // 서비스 시작
-            startService(intentMyService);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        /*
-        WData[0] = "hour";
-        WData[1] = "day";
-        WData[2] = "temp";
-        WData[3] = "wfKor";
-        WData[4] = "pop";
-        WData[5] = "reh";
-         */
     }
 
-    @Override
-    public void onDestroy() {
-        // 리시버 삭세를 하지 않으면 에러
-        // 리시버를 삭제함으로 종료되지 않도록
-        Log.d("MpMainActivity", "Service Destroy");
-        unregisterReceiver(receiver);
-        super.onDestroy();
-    }
 
     //텍스트뷰 월/화/수 리스너
     public void whatday(View view) {

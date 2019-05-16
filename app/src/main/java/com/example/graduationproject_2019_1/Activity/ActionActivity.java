@@ -13,14 +13,8 @@ import android.widget.Toast;
 import com.example.graduationproject_2019_1.Adapter.ActionInfoRecyclerAdapter;
 import com.example.graduationproject_2019_1.Data.ActionRecycleObject;
 import com.example.graduationproject_2019_1.R;
-import com.example.graduationproject_2019_1.Request.GetListRequest;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 public class ActionActivity extends Activity {
 

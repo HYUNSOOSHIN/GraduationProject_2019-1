@@ -21,13 +21,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
+        <!--
         <service
             android:name=".Manager.PersistentService"
             android:enabled="true"
             android:process=":remote" >
         </service>
-
+        -->
 
         <activity android:name=".Activity.LoadingActivity">
             <intent-filter>
@@ -41,6 +41,21 @@
         <activity android:name=".Activity.UploadActivity" />
         <activity android:name=".Activity.ActionActivity" />
 
+        <service
+            android:name=".Manager.FireBaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".Manager.FirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <!--
         <receiver
             android:name=".Manager.RestartService"
             android:enabled="true"
@@ -52,7 +67,7 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
+        -->
 
         <receiver android:name=".Activity.AppWidget">
             <intent-filter>
