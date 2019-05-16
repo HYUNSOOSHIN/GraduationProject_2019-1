@@ -1,6 +1,8 @@
 package kr.ac.hansung.controller;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.ac.hansung.model.Category;
 import kr.ac.hansung.model.Participation;
 import kr.ac.hansung.service.ParticipationService;
 
@@ -28,9 +31,7 @@ public class HomeController {
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public String createParticipation(Participation participation) { //업로드 함수
 		
-		if( !participationService.addParticipation(participation)) {
-			System.out.println("Not Adding");
-		}
+		participationService.addParticipation(participation);
 		
 		return "home";
 	}
@@ -45,10 +46,6 @@ public class HomeController {
 	public @ResponseBody List<Participation> getParticipation() { //리스트 받기 함수
 		
 		List<Participation> participation = participationService.getParticipationlist();
-		
-		for(Participation a : participation) {
-			System.out.println(a.getId() + "   " + a.getComment());
-		}
 		
 		return participation;
 	}
