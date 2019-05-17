@@ -8,10 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.graduationproject_2019_1.Adapter.ActionInfoRecyclerAdapter;
+import com.example.graduationproject_2019_1.Adapter.ParticipationRecyclerAdapter;
 import com.example.graduationproject_2019_1.Data.ActionRecycleObject;
+import com.example.graduationproject_2019_1.Data.ParticipationRecycleObject;
 import com.example.graduationproject_2019_1.R;
 import com.example.graduationproject_2019_1.Request.GetListRequest;
 
@@ -68,32 +71,32 @@ public class ActionActivity extends Activity {
 
         recyclerView.setAdapter(actionInfoRecyclerAdapter);
 
-//        //아래
-//        recyclerView2 = findViewById(R.id.action_recycleView2);
-//        recyclerView2.setHasFixedSize(true);
-//        layoutManager2 = new LinearLayoutManager(this);
-//        recyclerView2.setLayoutManager(layoutManager2);
-//
-//        ArrayList<ActionRecycleObject> getListArrayList = new ArrayList<>();
-//        try {
-//            String result = new GetListRequest(ActionActivity.this).execute().get();
-//            JSONArray jsonArray = new JSONArray (result);
-//            for(int i=0; i<jsonArray.length(); i++) {
-//                JSONObject jsonObject = jsonArray.getJSONObject(i);
-//                getListArrayList.add(new ActionRecycleObject(R.drawable.tmp, "카테고리",jsonObject.getString("comment")));
-//            }
-//
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//
-//        ActionInfoRecyclerAdapter actionInfoRecyclerAdapter2 = new ActionInfoRecyclerAdapter(getListArrayList);
-//
-//        recyclerView2.setAdapter(actionInfoRecyclerAdapter2);
+        //아래
+        recyclerView2 = findViewById(R.id.action_recycleView2);
+        recyclerView2.setHasFixedSize(true);
+        layoutManager2 = new LinearLayoutManager(this);
+        recyclerView2.setLayoutManager(layoutManager2);
+
+        ArrayList<ParticipationRecycleObject> getListArrayList = new ArrayList<>();
+        try {
+            String result = new GetListRequest(ActionActivity.this).execute().get();
+            JSONArray jsonArray = new JSONArray (result);
+            for(int i=0; i<jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                getListArrayList.add(new ParticipationRecycleObject(R.drawable.tmp, jsonObject.getString("category"), jsonObject.getString("comment")));
+            }
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ParticipationRecyclerAdapter participationRecyclerAdapter = new ParticipationRecyclerAdapter(getListArrayList);
+
+        recyclerView2.setAdapter(participationRecyclerAdapter);
     }
 
     public void leftbtn(View v) {

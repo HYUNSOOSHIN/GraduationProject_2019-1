@@ -108,47 +108,17 @@ public class AirGradeManager {
         return id;
     }
 
-//    public static String getGradeMessageWithGrade(int grade) {
-//        String result;
-//        switch (grade) {
-//            case 1:
-//                result = GRADE_01;
-//                break;
-//
-//            case 2:
-//                result = GRADE_02;
-//                break;
-//
-//            case 3:
-//                result = GRADE_03;
-//                break;
-//
-//            case 4:
-//                result = GRADE_04;
-//                break;
-//
-//            case 5:
-//                result = GRADE_05;
-//                break;
-//
-//            case 6:
-//                result = GRADE_06;
-//                break;
-//
-//            case 7:
-//                result = GRADE_07;
-//                break;
-//
-//            case 8:
-//                result = GRADE_08;
-//                break;
-//
-//            default:
-//                result = "미세먼지 정보를 불러오는 중 오류가 발생하였습니다.";
-//        }
-//
-//        return result;
-//    }
+    public static int getMarkImage(int gradeValue) {
+        int result;
+
+        if(gradeValue>=0 && gradeValue<30) result = R.drawable.good;
+        else if(gradeValue>=30 && gradeValue <80) result = R.drawable.normal;
+        else if(gradeValue>=80 && gradeValue <150) result = R.drawable.bad;
+        else if(gradeValue>=150) result =  R.drawable.verybad;
+        else result =  R.drawable.worst;
+
+        return result;
+    }
 
     public static int getGradeImageIdWithGrade(int grade) {
         int result;

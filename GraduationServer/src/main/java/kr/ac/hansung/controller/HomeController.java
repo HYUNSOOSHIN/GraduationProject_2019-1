@@ -1,8 +1,7 @@
 package kr.ac.hansung.controller;
 
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.ac.hansung.model.Category;
 import kr.ac.hansung.model.Participation;
 import kr.ac.hansung.service.ParticipationService;
 

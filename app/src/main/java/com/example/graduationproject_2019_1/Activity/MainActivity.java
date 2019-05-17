@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.graduationproject_2019_1.Adapter.ActionInfoRecyclerAdapter;
 import com.example.graduationproject_2019_1.Adapter.WeatherInfoRecyclerAdapter;
@@ -94,6 +97,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //미세먼지 등급
     private int wholeGrade;
 
+    //마크
+    private RelativeLayout mark;
+    private ImageView mark_img;
+    private TextView mark_text;
+
     //오늘날씨 텍스트뷰
     private TextView main_weather;
     private TextView main_temp;
@@ -170,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
 
-            Log.i("test", "day1" + DAY1.toString());
+//            Log.i("test", "day1" + DAY1.toString());
 //            Log.i("test", "day2" + DAY2.toString());
 //            Log.i("test", "day3" + DAY3.toString());
 
@@ -255,6 +263,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         main_pm10_status.setText(pm10_wrapper.getQuality());
         main_pm10_value.setText(pm10_detail + " ㎍/㎥");
         main_pm10_status2.setText(pm10_wrapper.getQuality());
+        mark.setPadding(markLocation(Integer.parseInt((pm10_detail))),0,0,0);
+        mark_img.setImageResource(AirGradeManager.getMarkImage(Integer.parseInt(pm10_detail)));
+        mark_text.setText(pm10_detail);
 
         // 초미세먼지
         String pm25_detail = detailData.get("PM25");
@@ -315,6 +326,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         day1 = findViewById(R.id.day1);
         day2 = findViewById(R.id.day2);
         day3 = findViewById(R.id.day3);
+        mark = findViewById(R.id.mark);
+        mark_img = findViewById(R.id.mark_img);
+        mark_text = findViewById(R.id.mark_text);
     }
 
     private void findTodayWeather() {
@@ -431,6 +445,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return date;
     }
 
+    private int markLocation(int gradeValue) {
+
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        int result = Math.round(12 * dm.density); // 처음 여백을 포함한 결과값
+        int one = Math.round(77 * dm.density); //범위 길이 77dp
+
+        if(gradeValue>=0 && gradeValue<30) {
+            int size = Math.round(gradeValue * dm.density); // gradeValue에 따른 dp값
+            result +=  size*(2.56);
+        } else if(gradeValue>=30 && gradeValue <80) {
+            int size = Math.round((gradeValue-30) * dm.density); // gradeValue에 따른 dp값
+            result += one;
+            result += (size*1.54);
+        } else if(gradeValue>=80 && gradeValue <150) {
+            int size = Math.round((gradeValue-80) * dm.density); // gradeValue에 따른 dp값
+            result += 2*one;
+            result +=  size*(1.1);
+        } else if(gradeValue>=150 && gradeValue<227){
+            int size = Math.round((gradeValue-150) * dm.density); // gradeValue에 따른 dp값
+            result += 3*one;
+            result += size;
+        } else result =  0;
+
+        Log.e("test",gradeValue+" grade");
+        Log.e("test",result+" result");
+
+        return result;
+    }
+
     //SideBar - start
     private void init() {
         findViewById(R.id.sidebar_btn).setOnClickListener(this);
@@ -457,7 +500,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             @Override
-            public void btnLevel1() {
+            public void btnMise() {
+                startActivity(new Intent(MainActivity.this, MiseInfoActivity.class));
+            }
+
+            @Override
+            public void btnAlarm() {
                 closeMenu();
             }
         });

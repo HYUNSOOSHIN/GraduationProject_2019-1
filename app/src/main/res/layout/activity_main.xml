@@ -470,7 +470,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/week_weather"
-                android:layout_marginHorizontal="22dp"
                 android:layout_marginTop="46dp"
                 android:orientation="vertical">
 
@@ -478,6 +477,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13dp"
+                    android:layout_marginHorizontal="22dp"
                     android:fontFamily="@font/nanumbarungothicbold"
                     android:text="미세먼지 수치에 따른 건강관리 및 행동요령"
                     android:textColor="#292929"
@@ -486,6 +486,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="22dp"
                     android:orientation="horizontal"
                     android:layout_marginTop="12dp">
 
@@ -507,12 +508,104 @@
                         android:textSize="15sp"
                         android:layout_marginLeft="10dp"/>
                 </LinearLayout>
+                
+                <RelativeLayout
+                    android:id="@+id/mark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="1.5dp">
+                    <ImageView
+                        android:id="@+id/mark_img"
+                        android:layout_width="28dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/good"/>
+                    <TextView
+                        android:id="@+id/mark_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@id/mark_img"
+                        android:layout_alignTop="@id/mark_img"
+                        android:layout_alignRight="@id/mark_img"
+                        android:layout_alignBottom="@id/mark_img"
+                        android:gravity="center"
+                        android:layout_marginBottom="8.5dp"
+                        android:text="22"
+                        android:textColor="#ffffff"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="77dp"
+                        android:layout_height="3dp"
+                        android:background="#77efff"/>
+
+                    <View
+                        android:layout_width="77dp"
+                        android:layout_height="3dp"
+                        android:background="#67adff"/>
+
+                    <View
+                        android:layout_width="77dp"
+                        android:layout_height="3dp"
+                        android:background="#ffc424"/>
+
+                    <View
+                        android:layout_width="77dp"
+                        android:layout_height="3dp"
+                        android:background="#b70000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="23dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="66dp"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="0"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="62dp"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="30"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="60dp"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="80"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="51dp"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="150~"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/main_recycleView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="36dp" />
+                    android:layout_marginHorizontal="22dp"
+                    android:layout_marginTop="21dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
