@@ -39,8 +39,6 @@ public class FireBaseMessagingService extends FirebaseMessagingService {
     String result_weather = null;
     private static final int NOTI_ID = 100;
 
-    JSONArray DAY1;
-
     public String GU;
     public String DONG;
 
@@ -141,20 +139,11 @@ public class FireBaseMessagingService extends FirebaseMessagingService {
         try {
             result_weather = (String) new WeatherAsynTask(GU, DONG).execute().get();
             JSONArray jsonArray = new JSONArray(result_weather);
-            DAY1 = new JSONArray();
 
-            int count = jsonArray.getInt(0);
-
-            for (int i = 1; i <= count; i++) {
-                if (jsonArray.getJSONObject(i).getString("day").equals("0")) { //오늘
-                    DAY1.put(jsonArray.getJSONObject(i));
-                }
-            }
-
-            temp_data = DAY1.getJSONObject(0).getString("temp") + "°C";
-            wfKor_data = DAY1.getJSONObject(0).getString("wfKor");
-            pop_data = DAY1.getJSONObject(0).getString("pop") + "%";
-            reh_data = DAY1.getJSONObject(0).getString("reh") + "%";
+            temp_data = jsonArray.getJSONObject(1).getString("temp") + "°C";
+            wfKor_data = jsonArray.getJSONObject(1).getString("wfKor");
+            pop_data = jsonArray.getJSONObject(1).getString("pop") + "%";
+            reh_data = jsonArray.getJSONObject(1).getString("reh") + "%";
 
             AsyncManager manager = AsyncManager.getInstance();
             String nm = CityLocationManager.getNMbyCityName(GU);

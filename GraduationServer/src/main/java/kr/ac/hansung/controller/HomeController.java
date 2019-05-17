@@ -1,16 +1,5 @@
 package kr.ac.hansung.controller;
 
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Collections;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import kr.ac.hansung.model.Participation;
-import kr.ac.hansung.service.ParticipationService;
-
 import java.io.FileInputStream;
 import java.text.DateFormat;
 import java.util.Arrays;
@@ -21,6 +10,7 @@ import java.util.Locale;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -31,9 +21,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+
+import kr.ac.hansung.model.Participation;
+import kr.ac.hansung.service.ParticipationService;
 
 /**
  * Handles requests for the application home page.
@@ -99,8 +93,13 @@ public class HomeController {
         	
         	// path OK
         	// C:/Users/LG/Documents/GitHub/GraduationProject_2019-1/GraduationServer/src/main/webapp/resources/google/seoulsky-c5295-firebase-adminsdk-9enbm-6973550e3b.json
-        	//String path = "GraduationServer/src/main/webapp/resources/google/seoulsky-c5295-firebase-adminsdk-9enbm-6973550e3b.json";             
-        	String path = "C:/Users/LG/Documents/GitHub/GraduationProject_2019-1/GraduationServer/src/main/webapp/resources/google/seoulsky-c5295-firebase-adminsdk-9enbm-6973550e3b.json";
+        	//String path = "GraduationServer/src/main/webapp/resources/google/seoulsky-c5295-firebase-adminsdk-9enbm-6973550e3b.json";
+
+        	//지환 경로
+//			String path = "C:/Users/LG/Documents/GitHub/GraduationProject_2019-1/GraduationServer/src/main/webapp/resources/google/seoulsky-c5295-firebase-adminsdk-9enbm-6973550e3b.json";
+        	//현수 경로
+			String path = "C:/Users/hyunsoo/Android projects/GraduationProject_2019-1/GraduationServer/src/main/webapp/resources/google/seoulsky-c5295-firebase-adminsdk-9enbm-6973550e3b.json";
+
             String MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging";
             String[] SCOPES = { MESSAGING_SCOPE };
             
