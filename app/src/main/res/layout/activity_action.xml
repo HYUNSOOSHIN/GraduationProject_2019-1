@@ -160,7 +160,7 @@
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="6dp"
-                        android:text="마스크 착용"
+                        android:text="수분보충 1"
                         android:textAlignment="center"
                         android:textSize="8sp" />
 
@@ -174,7 +174,7 @@
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="1231/10000"
+                        android:text="100/100"
                         android:textAlignment="center"
                         android:textSize="8sp" />
 
@@ -191,7 +191,7 @@
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="6dp"
-                        android:text="물 8잔"
+                        android:text="수분 보충2"
                         android:textAlignment="center"
                         android:textSize="8dp" />
 
@@ -205,7 +205,7 @@
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="1231/10000"
+                        android:text="100/100"
                         android:textAlignment="center"
                         android:textSize="8sp" />
 
@@ -222,7 +222,7 @@
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="6dp"
-                        android:text="마스크 착용"
+                        android:text="수분 보충3"
                         android:textAlignment="center"
                         android:textSize="8dp" />
 
@@ -236,7 +236,7 @@
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="1231/10000"
+                        android:text="100/100"
                         android:textAlignment="center"
                         android:textSize="8sp" />
 
@@ -253,7 +253,7 @@
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="6dp"
-                        android:text="마스크 착용"
+                        android:text="수분 보충4"
                         android:textAlignment="center"
                         android:textSize="8dp" />
 
@@ -267,7 +267,7 @@
                         android:layout_width="46dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="1231/10000"
+                        android:text="100/100"
                         android:textAlignment="center"
                         android:textSize="8sp" />
 
@@ -280,7 +280,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="22dp"
-                android:layout_marginTop="36dp" />
+                android:layout_marginTop="36dp"
+                android:layout_marginBottom="40dp"/>
 
         </LinearLayout>
     </ScrollView>

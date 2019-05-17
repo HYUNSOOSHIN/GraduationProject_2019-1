@@ -2,11 +2,12 @@ package kr.ac.hansung.controller;
 
 import java.util.Iterator;
 import java.util.Set;
+import java.util.Collections;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.ac.hansung.model.Category;
 import kr.ac.hansung.model.Participation;
 import kr.ac.hansung.service.ParticipationService;
 

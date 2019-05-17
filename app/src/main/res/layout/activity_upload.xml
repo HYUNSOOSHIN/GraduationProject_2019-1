@@ -34,241 +34,264 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="22dp"
-        android:layout_marginTop="35dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nanumbarungothicbold"
-            android:text="실천 카테고리"
-            android:textColor="#3b3b3b"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/nanumbarungothic"
-            android:text="중복선택 가능"
-            android:textColor="#707070"
-            android:textSize="12sp" />
-    </LinearLayout>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:background="#ffffff">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:scaleType="centerInside"
-                android:background="@drawable/mask" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="수분보충"
-                android:textColor="#3e3e3e"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:scaleType="centerInside"
-                android:background="@drawable/aircleaner" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="수분보충"
-                android:textColor="#3e3e3e"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:scaleType="centerInside"
-                android:background="@drawable/window" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="수분보충"
-                android:textColor="#3e3e3e"
-                android:textSize="15sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:background="#ffffff">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:scaleType="centerInside"
-                android:background="@drawable/outdoor_activities" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="수분보충"
-                android:textColor="#3e3e3e"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:scaleType="centerInside"
-                android:background="@drawable/mask" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="수분보충"
-                android:textColor="#3e3e3e"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:scaleType="centerInside"
-                android:background="@drawable/aircleaner" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="수분보충"
-                android:textColor="#3e3e3e"
-                android:textSize="15sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:orientation="vertical"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="짧은 코멘트를 남겨주세요!"
-            android:fontFamily="@font/nanumbarungothicbold"
-            android:textSize="18sp"
-            android:textColor="#3b3b3b"
-            android:layout_marginLeft="22dp"/>
-
-        <EditText
-            android:id="@+id/comment"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginLeft="22dp"
-            android:layout_marginRight="17dp"
-            android:paddingLeft="14dp"
-            android:background="@drawable/border_10dp"
-            android:hint="실천합니다!"
-            android:fontFamily="@font/nanumbarungothic"
-            android:textSize="18sp" />
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="32dp"
-            android:gravity="right"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="35dp"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/cancel"
-                android:layout_width="58dp"
-                android:layout_height="38dp"
-                android:background="@drawable/border_10dp"
-                android:fontFamily="@font/nanumbarungothic"
-                android:text="취소"
-                android:textSize="20sp"
-                android:textColor="#707070"
-                android:layout_marginRight="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbarungothicbold"
+                    android:text="실천 카테고리"
+                    android:textColor="#3b3b3b"
+                    android:textSize="18sp" />
 
-            <Button
-                android:id="@+id/upload"
-                android:layout_width="58dp"
-                android:layout_height="38dp"
-                android:background="@drawable/border_10dp"
-                android:fontFamily="@font/nanumbarungothic"
-                android:text="등록"
-                android:textSize="20sp"
-                android:textColor="#707070"
-                android:layout_marginRight="17dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="중복선택 가능"
+                    android:textColor="#707070"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="#ffffff">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/category1"
+                        android:onClick="onClickCategory"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:scaleType="centerInside"
+                        android:background="@drawable/mask" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="수분보충1"
+                        android:textColor="#3e3e3e"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/category2"
+                        android:onClick="onClickCategory"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:scaleType="centerInside"
+                        android:background="@drawable/aircleaner" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="수분보충2"
+                        android:textColor="#3e3e3e"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/category3"
+                        android:onClick="onClickCategory"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:scaleType="centerInside"
+                        android:background="@drawable/window" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="수분보충3"
+                        android:textColor="#3e3e3e"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="#ffffff">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/category4"
+                        android:onClick="onClickCategory"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:scaleType="centerInside"
+                        android:background="@drawable/outdoor_activities" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="수분보충4"
+                        android:textColor="#3e3e3e"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/category5"
+                        android:onClick="onClickCategory"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:scaleType="centerInside"
+                        android:background="@drawable/mask" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="수분보충5"
+                        android:textColor="#3e3e3e"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/category6"
+                        android:onClick="onClickCategory"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:scaleType="centerInside"
+                        android:background="@drawable/aircleaner" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="수분보충6"
+                        android:textColor="#3e3e3e"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="vertical"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="짧은 코멘트를 남겨주세요!"
+                    android:fontFamily="@font/nanumbarungothicbold"
+                    android:textSize="18sp"
+                    android:textColor="#3b3b3b"
+                    android:layout_marginLeft="22dp"/>
+
+                <EditText
+                    android:id="@+id/comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="17dp"
+                    android:paddingLeft="14dp"
+                    android:background="@drawable/border_10dp"
+                    android:hint="실천합니다!"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="40dp"
+                    android:gravity="right"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/cancel"
+                        android:layout_width="58dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/border_10dp"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="취소"
+                        android:textSize="20sp"
+                        android:textColor="#707070"
+                        android:layout_marginRight="10dp"/>
+
+                    <Button
+                        android:id="@+id/upload"
+                        android:layout_width="58dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/border_10dp"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="등록"
+                        android:textSize="20sp"
+                        android:textColor="#707070"
+                        android:layout_marginRight="17dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
