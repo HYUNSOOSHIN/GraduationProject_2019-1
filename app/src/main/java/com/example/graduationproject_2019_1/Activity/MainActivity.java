@@ -1,5 +1,6 @@
 package com.example.graduationproject_2019_1.Activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -34,6 +35,7 @@ import com.example.graduationproject_2019_1.Manager.JSONManager;
 import com.example.graduationproject_2019_1.Manager.URLParameterManager;
 import com.example.graduationproject_2019_1.Manager.WeatherAsynTask;
 import com.example.graduationproject_2019_1.R;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,9 +65,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView main_pm10_status;
     TextView main_pm10_value;
     TextView main_pm10_status2;
+    TextView main_pm10_value2;
+    String pm10_detail;
+
     // 초미세먼지
     TextView main_pm25_status;
     TextView main_pm25_value;
+    String pm25_detail;
 
     //잡
     private RecyclerView recyclerView;
@@ -148,12 +154,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (send_or_not == true) { //검색으로 정보 받아오는 경우
             GU = get_location_gu_intent;
             DONG = get_location_dong_intent;
-//            Log.i("test","검색위치 기반: "+GU+" "+DONG);
         } else if(send_or_not == false) { //현재위치 기반으로 받아오는 경우
             sharedPreferences = getSharedPreferences("hyunsoo", MODE_PRIVATE);;
-            GU = sharedPreferences.getString("gu",null);
-            DONG = sharedPreferences.getString("dong",null);
-//            Log.i("test","현재위치 기반: "+GU+" "+DONG);
+            GU = sharedPreferences.getString("gu","영등포구");
+            DONG = sharedPreferences.getString("dong","당산1동");
         }
 
         try {
@@ -197,7 +201,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         weather_list(0); //주간 날씨 리스트 출력
         action_list(); //건강관리 및 행동요령 리스트 출력
         setData(GU); // 미세먼지 위치정보 구 이름 입력 ex) 성북구
+
+
     }
+
 
     //텍스트뷰 월/화/수 리스너
     public void whatday(View view) {
@@ -258,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setDetailData(Map<String, String> detailData) {
         // 미세먼지
-        String pm10_detail = detailData.get("PM10");
+        pm10_detail = detailData.get("PM10");
         AirGradeWrapper pm10_wrapper = AirGradeManager.get("PM10", pm10_detail);
         main_pm10_status.setText(pm10_wrapper.getQuality());
         main_pm10_value.setText(pm10_detail + " ㎍/㎥");
@@ -268,10 +275,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mark_text.setText(pm10_detail);
 
         // 초미세먼지
-        String pm25_detail = detailData.get("PM25");
+        pm25_detail = detailData.get("PM25");
         AirGradeWrapper pm25_wrapper = AirGradeManager.get("PM25", pm25_detail);
         main_pm25_status.setText(pm25_wrapper.getQuality());
         main_pm25_value.setText(pm25_detail + " ㎍/㎥");
+
+        // 기상 정보를 받아오지 못했을 경우를 대비하는 용도
+        sharedPreferences = getSharedPreferences("hyunsoo", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("PM10", pm10_detail);
+        editor.putString("PM25", pm25_detail);
     }
 
     private void setWeatherText() {
@@ -280,6 +293,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             main_temp.setText(DAY1.getJSONObject(0).getString("temp").substring(0,DAY1.getJSONObject(0).getString("temp").indexOf(".")) + "°C"); // 온도
             main_rain.setText(DAY1.getJSONObject(0).getString("pop") + "%"); // 강수확률
             main_reh.setText(DAY1.getJSONObject(0).getString("reh") + "%"); // 습도
+
+            // 기상 정보를 받아오지 못했을 경우를 대비하는 용도
+            sharedPreferences = getSharedPreferences("hyunsoo", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("wfKor", DAY1.getJSONObject(0).getString("wfKor"));
+            editor.putString("temp", DAY1.getJSONObject(0).getString("temp").substring(0,DAY1.getJSONObject(0).getString("temp").indexOf(".")) + "°C");
+            editor.putString("pop", DAY1.getJSONObject(0).getString("pop") + "%");
+            editor.putString("reh", DAY1.getJSONObject(0).getString("reh") + "%");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -546,4 +567,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //SideBar - end
 }
 
-    
+
+

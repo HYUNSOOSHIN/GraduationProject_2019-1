@@ -33,7 +33,7 @@ public class LoadingActivity extends AppCompatActivity {
 
     public String GU;
     public String DONG;
-    private GpsInfo gps;
+    public GpsInfo gps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
