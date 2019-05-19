@@ -1,25 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/rl_001"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp">
+        android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/back_btn"
-            android:layout_width="40dp"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dust_image"
+            android:scaleType="fitStart" />
+
+        <RelativeLayout
+            android:id="@+id/rl_001"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/ic_keyboard_arrow_left_black_24dp" />
+            android:layout_marginTop="15dp"
+            android:gravity="right">
+
+            <ImageButton
+                android:id="@+id/back_btn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="11dp"
+                android:background="@drawable/close" />
+        </RelativeLayout>
     </RelativeLayout>
-    <ImageView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/loading"/>
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="22dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumbarungothicbold"
+            android:text="WHO 기준"
+            android:textColor="#313131"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:lineSpacingExtra="10dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="미세먼지는 머리카락 지름보다 더 작은 대기 중의 물질로, 석탄, 석유 등 화석연료를 태울 때나 공장 자동차등의 배출가스에서 발생합니다. WHO 산하국제암연구소(IARC)에서는 1급 발암물질로 지정한 바 있습니다.
+한국 기준과 WHO 및 기타 해외 기준은 모두 조금씩 다릅니다. 한국 기준 등급의 조정이 있었지만 WHO보다 덜 엄격한 것이 사실입니다. 1급 발암 물질인 미세먼지의 수치를 제대로 알지 못하면 건강에 심각한 영향을 미칠 수 있기 때문에 국내 예보 외에도 WHO의 기준을 확인하고 대응하는 것을 권해드립니다."
+            android:textColor="#656565"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/nanumbarungothicbold"
+        android:text="미세먼지 8단계"
+        android:textColor="#313131"
+        android:textSize="16sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="253dp"
+        android:layout_marginTop="11dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="86dp"
+            android:layout_height="253dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="66dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="56dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/nanumbarungothicbold"
+                android:text="상태"
+                android:textAlignment="center"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="66dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/nanumbarungothicbold"
+                android:text="미세먼지"
+                android:textAlignment="center"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="66dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/nanumbarungothicbold"
+                android:text="초미세먼지"
+                android:textAlignment="center"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="66dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/nanumbarungothicbold"
+                android:text="오존"
+                android:textAlignment="center"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="66dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/nanumbarungothicbold"
+                android:text="이산화질소"
+                android:textAlignment="center"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="66dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/nanumbarungothicbold"
+                android:text="일산화질소"
+                android:textAlignment="center"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="66dp"
+                android:layout_height="20dp"
+                android:fontFamily="@font/nanumbarungothicbold"
+                android:text="아황산가스"
+                android:textAlignment="center"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mise_recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>

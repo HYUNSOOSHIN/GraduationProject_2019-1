@@ -11,12 +11,14 @@ public class AirGradeManager {
     }
 
     public static final String SUNNY = "맑음";
-    public static final String SUN_CLOUD= "몰라";
+    public static final String SUN_CLOUD= "흐림";
     public static final String MANY_CLOUD = "구름 많음";
     public static final String LITTLE_CLOUD = "구름 조금";
     public static final String RAIN = "비";
     public static final String SNOW = "눈";
 
+
+    public static final int GRADE_0 = Color.parseColor("#000000");
     public static final int GRADE_1 = Color.parseColor("#d9feff");
     public static final int GRADE_2 = Color.parseColor("#86edf0");
     public static final int GRADE_3 = Color.parseColor("#67caff");
@@ -25,9 +27,6 @@ public class AirGradeManager {
     public static final int GRADE_6 = Color.parseColor("#ff8914");
     public static final int GRADE_7 = Color.parseColor("#db5454");
     public static final int GRADE_8 = Color.parseColor("#383838");
-
-
-
 
     public static AirGradeWrapper get(String type, String data) {
         AirGradeWrapper result;
@@ -47,7 +46,10 @@ public class AirGradeManager {
 
     public static int getGradeWithWholeValue(int value) {
         int result;
-        if (value > 00 && value <= 30) {
+
+        if(value<0){
+            result = 0;
+        } else if (value > 00 && value <= 30) {
             result = 1;
         } else if (value > 30 && value <= 60) {
             result = 2;
@@ -70,6 +72,10 @@ public class AirGradeManager {
     public static int getTextColorIdWithGrade(int grade) {
         int id;
         switch (grade) {
+            case 0:
+                id = GRADE_0;
+                break;
+
             case 1:
                 id = GRADE_1;
                 break;
@@ -122,6 +128,9 @@ public class AirGradeManager {
 
     public static int getGradeImageIdWithGrade(int grade) {
         int result;
+
+        Log.e("test", grade+"");
+
         switch (grade) {
             case 1:
                 result = R.drawable.finedust_1;

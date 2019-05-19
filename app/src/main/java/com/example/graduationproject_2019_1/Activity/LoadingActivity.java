@@ -76,7 +76,7 @@ public class LoadingActivity extends AppCompatActivity {
                     Handler handler = new Handler();
                     handler.postDelayed(new splashHandler(), 1000);
                 } else {
-                    Toast.makeText(this, "Permission required", Toast.LENGTH_SHORT);
+//                    Toast.makeText(this, "Permission required", Toast.LENGTH_SHORT);
                 }
             }
         }

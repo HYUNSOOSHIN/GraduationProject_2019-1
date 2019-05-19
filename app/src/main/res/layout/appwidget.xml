@@ -1,11 +1,128 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:background="#09C"
-    android:padding="10dp">
+    android:background="#ffffff" >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/widget_1" />
+
+    <LinearLayout
+        android:layout_width="83dp"
+        android:layout_height="42dp"
+        android:orientation="vertical"
+        android:layout_marginTop="19dp"
+        android:layout_marginLeft="48dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="영등포구"
+            android:textSize="14sp"
+            android:textColor="#191919"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="당산1동"
+            android:textSize="14sp"
+            android:textColor="#191919"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="119dp"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:layout_marginTop="19dp"
+        android:layout_marginLeft="131dp">
+        <LinearLayout
+            android:layout_width="119dp"
+            android:layout_height="14dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="미세먼지"
+                android:textSize="12sp"
+                android:textColor="#191919" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="나쁨"
+                android:textSize="12sp"
+                android:textColor="#ffc424"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="119dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="9.7dp"
+            android:fontFamily="@font/nanumbarungothicbold"
+            android:textAlignment="center"
+            android:text="53 ㎍/㎥"
+            android:textSize="23sp"
+            android:textColor="#ffc424"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="119dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginLeft="251dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="119dp"
+            android:layout_height="14dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="초미세먼지"
+                android:textColor="#191919"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="나쁨"
+                android:textColor="#ffc424"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="119dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="9.7dp"
+            android:fontFamily="@font/nanumbarungothicbold"
+            android:textAlignment="center"
+            android:text="53 ㎍/㎥"
+            android:textColor="#ffc424"
+            android:textSize="23sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="71dp"
+        android:layout_marginLeft="72dp"
+        android:fontFamily="@font/nanumbarungothic"
+        android:text="정보"
+        android:textSize="10sp"
+        android:textColor="#191919" />
 
     <TextView
         android:id="@+id/appwidget_text"
@@ -20,20 +137,12 @@
         android:textColor="#ffffff"
         android:textSize="24dp" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:src="@mipmap/ic_launcher_round"
-        android:layout_margin="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="150dp" />
+    <ImageButton
+        android:id="@+id/resetBtn"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="4.5dp"
+        android:background="@drawable/refresh"/>
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:textSize="14dp"
-        android:text="위젯 업데이트" />
-
-
-
-</LinearLayout>
+</RelativeLayout>

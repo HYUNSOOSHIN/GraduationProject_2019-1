@@ -36,12 +36,13 @@ public class UploadActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(UploadActivity.this, ActionActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
         comment= findViewById(R.id.comment);
 
-        Button upload_btn = findViewById(R.id.upload);
+        ImageButton upload_btn = findViewById(R.id.upload);
         upload_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,11 +81,13 @@ public class UploadActivity extends Activity {
             }
         });
 
-        Button cancel_btn = findViewById(R.id.cancel);
+        ImageButton cancel_btn = findViewById(R.id.cancel);
         cancel_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(UploadActivity.this, ActionActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -93,22 +96,22 @@ public class UploadActivity extends Activity {
         ImageButton imageButton = findViewById(v.getId());
         switch (v.getId()){
             case R.id.category1:
-                category="수분 보충1";
+                category="걷거나 자전거 타기";
                 break;
             case R.id.category2:
-                category="수분 보충2";
+                category="대중교통 이용하기";
                 break;
             case R.id.category3:
-                category="수분 보충3";
+                category="차량운행 자제하기";
                 break;
             case R.id.category4:
-                category="수분 보충4";
+                category="물 많이 마시기";
                 break;
             case R.id.category5:
-                category="수분 보충5";
+                category="야외활동 자제하기 ";
                 break;
             case R.id.category6:
-                category="수분 보충6";
+                category="공기정화식물 키우기";
                 break;
         }
     }

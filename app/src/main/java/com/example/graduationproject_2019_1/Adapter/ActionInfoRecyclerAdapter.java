@@ -54,8 +54,8 @@ public class ActionInfoRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         actionViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Context context = view.getContext();
-                Toast.makeText(context, position+" ",Toast.LENGTH_LONG).show();
+//                Context context = view.getContext();
+//                Toast.makeText(context, position+" ",Toast.LENGTH_LONG).show();
             }
         });
     }

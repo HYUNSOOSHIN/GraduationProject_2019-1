@@ -9,4 +9,4 @@
     android:updatePeriodMillis="1800000"
     android:widgetCategory="home_screen"
     android:layout_height="wrap_content"
-    android:layout_width="wrap_content"></appwidget-provider>
+    android:layout_width="match_parent"></appwidget-provider>

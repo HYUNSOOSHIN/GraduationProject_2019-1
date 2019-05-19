@@ -72,12 +72,10 @@ public class AppWidget extends AppWidgetProvider{
         //시작되면서 지정 이미지로 교체
         views.setImageViewResource(R.id.imageView, R.drawable.ic_android_black_24dp); // this is for test
 
-
-
         //버튼1 클릭 : 클릭 성공 메세지 출력!  --> 해당 버튼을 새로고침 버튼으로 만들어야 함
         Intent intent1 = new Intent(ACTION_BUTTON1);
         PendingIntent pendingIntent1 = PendingIntent.getBroadcast(context, 0, intent1, PendingIntent.FLAG_CANCEL_CURRENT);
-        views.setOnClickPendingIntent(R.id.button1, pendingIntent1);
+        views.setOnClickPendingIntent(R.id.resetBtn, pendingIntent1);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
