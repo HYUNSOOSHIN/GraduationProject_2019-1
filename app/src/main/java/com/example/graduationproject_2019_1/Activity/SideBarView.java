@@ -27,6 +27,8 @@ public class SideBarView extends RelativeLayout implements View.OnClickListener 
         void btnCancel();
         void btnMise();
         void btnAlarm();
+        void btnContact();
+        void btnInfo();
     }
 
     public SideBarView(Context context) {
@@ -43,6 +45,8 @@ public class SideBarView extends RelativeLayout implements View.OnClickListener 
         findViewById(R.id.btn_cancel).setOnClickListener(this);
         findViewById(R.id.mise_btn).setOnClickListener(this);
         findViewById(R.id.alarm_btn).setOnClickListener(this);
+        findViewById(R.id.developer_contact).setOnClickListener(this);
+        findViewById(R.id.developer_info).setOnClickListener(this);
     }
 
     @Override
@@ -56,6 +60,12 @@ public class SideBarView extends RelativeLayout implements View.OnClickListener 
                 break;
             case R.id.alarm_btn:
                 listener.btnAlarm();
+                break;
+            case R.id.developer_contact:
+                listener.btnContact();
+                break;
+            case R.id.developer_info:
+                listener.btnInfo();
                 break;
             default:
                 break;

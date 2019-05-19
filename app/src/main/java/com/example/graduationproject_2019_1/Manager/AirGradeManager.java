@@ -114,6 +114,49 @@ public class AirGradeManager {
         return id;
     }
 
+    public static int getWidgetImage(int grade) {
+        int result;
+
+        switch (grade) {
+            case 1:
+                result = R.drawable.widget_1;
+                break;
+
+            case 2:
+                result = R.drawable.widget_2;
+                break;
+
+            case 3:
+                result = R.drawable.widget_3;
+                break;
+
+            case 4:
+                result = R.drawable.widget_4;
+                break;
+
+            case 5:
+                result = R.drawable.widget_5;
+                break;
+
+            case 6:
+                result = R.drawable.widget_6;
+                break;
+
+            case 7:
+                result = R.drawable.widget_7;
+                break;
+
+            case 8:
+                result = R.drawable.widget_8;
+                break;
+
+            default:
+                result = R.drawable.widget_8;
+        }
+
+        return result;
+    }
+
     public static int getMarkImage(int gradeValue) {
         int result;
 

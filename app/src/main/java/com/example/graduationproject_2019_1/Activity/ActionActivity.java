@@ -73,17 +73,17 @@ public class ActionActivity extends Activity {
 
         //1페이지
         actionInfoArrayList = new ArrayList<>();
-        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.mask, "걷거나 자전거 타기","가까운 곳은 승용차 대신 두 발로 걷거나 자전거를 타고 가면 어떨까요?"));
-        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.mask, "대중교통 이용하기","대중교통을 이용하면 에너지 절약과 기후변화 완화, 미세먼지 저감에 기여할 수 있습니다."));
-        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.mask, "차량 운행을 자제하기","대기 오염의 가장 큰 원인은 자동차입니다. 스스로 차량 운행만 줄여도 교통량과 혼잡비용을 절약하며 대기 오염을 해결할 수 있는 길입니다."));
-        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.mask, "경유차 구매를 자제하기","경유차의 배기가스는 우리가 생각하는 이상으로 위험합니다. 초미세먼지의 원인 물질인 질소산화물에서 67%나 배출됩니다."));
+        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.bicycle, "걷거나 자전거 타기","가까운 곳은 승용차 대신 두 발로 걷거나 자전거를 타고 가면 어떨까요?"));
+        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.bus, "대중교통 이용하기","대중교통을 이용하면 에너지 절약과 기후변화 완화, 미세먼지 저감에 기여할 수 있습니다."));
+        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.car, "차량 운행을 자제하기","대기 오염의 가장 큰 원인은 자동차입니다. 스스로 차량 운행만 줄여도 교통량과 혼잡비용을 절약하며 대기 오염을 해결할 수 있는 길입니다."));
+        actionInfoArrayList.add(new ActionRecycleObject(R.drawable.diesel, "경유차 구매를 자제하기","경유차의 배기가스는 우리가 생각하는 이상으로 위험합니다. 초미세먼지의 원인 물질인 질소산화물에서 67%나 배출됩니다."));
 
         //2페이지
         actionInfoArrayList2 = new ArrayList<>();
-        actionInfoArrayList2.add(new ActionRecycleObject(R.drawable.mask, "공기정화식물 키우기","식물은 오염 물질 제거뿐만 아니라 음이온,산소,수분등으로 실내 공기를 쾌적하게 해줍니다."));
-        actionInfoArrayList2.add(new ActionRecycleObject(R.drawable.mask, "요리 시 직화 구이를 삼가하기","음식을 조리하는 과정에서도 많은 미세먼지가 발생합니다. 가급적 굽거나 튀기는 요리를 자제하고 환기와 조리용 후드를 꼭 이용해 주세요 "));
-        actionInfoArrayList2.add(new ActionRecycleObject(R.drawable.mask, "물 많이 마시기","미세먼지에 좋은 음식이라면 바로 물입니다. 하루이 2L이상 충분한 물을 마시면 기관지나 혈액에 있는 미세먼지를 배출하는데 큰 도움이 됩니다."));
-        actionInfoArrayList2.add(new ActionRecycleObject(R.drawable.mask, "미세먼지가 심할 때 외출을 자제하기기","자신의 건강 피해를 최소화하기 위해 미세먼지 농도를 확인하고 심할경우 외출을 자제해야 합니다."));
+        actionInfoArrayList2.add(new ActionRecycleObject(R.drawable.plant, "공기정화식물 키우기","식물은 오염 물질 제거뿐만 아니라 음이온,산소,수분등으로 실내 공기를 쾌적하게 해줍니다."));
+        actionInfoArrayList2.add(new ActionRecycleObject(R.drawable.cook, "요리 시 직화 구이를 삼가하기","음식을 조리하는 과정에서도 많은 미세먼지가 발생합니다. 가급적 굽거나 튀기는 요리를 자제하고 환기와 조리용 후드를 꼭 이용해 주세요 "));
+        actionInfoArrayList2.add(new ActionRecycleObject(R.drawable.drinkwater, "물 많이 마시기","미세먼지에 좋은 음식이라면 바로 물입니다. 하루이 2L이상 충분한 물을 마시면 기관지나 혈액에 있는 미세먼지를 배출하는데 큰 도움이 됩니다."));
+        actionInfoArrayList2.add(new ActionRecycleObject(R.drawable.dustouting, "미세먼지가 심할 때 외출을 자제하기기","자신의 건강 피해를 최소화하기 위해 미세먼지 농도를 확인하고 심할경우 외출을 자제해야 합니다."));
 
         actionInfoRecyclerAdapter = new ActionInfoRecyclerAdapter(actionInfoArrayList);
         recyclerView.setAdapter(actionInfoRecyclerAdapter);

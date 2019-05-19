@@ -25,10 +25,11 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginLeft="27dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/nanumbarungothicbold"
+                android:gravity="center_vertical"
                 android:text="서울하늘 설정"
                 android:textColor="#656565"
                 android:textSize="17sp" />
@@ -118,7 +119,32 @@
                     android:layout_marginLeft="27dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/nanumbarungothic"
-                    android:text="개발자에게 문의"
+                    android:text="문의"
+                    android:textColor="#656565"
+                    android:textSize="15sp" />
+
+                <ImageButton
+                    android:layout_width="9.8dp"
+                    android:layout_height="16.4dp"
+                    android:layout_marginRight="22dp"
+                    android:background="@drawable/in" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/developer_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="13dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="27dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="개발자 정보"
                     android:textColor="#656565"
                     android:textSize="15sp" />
 
@@ -135,7 +161,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
@@ -143,7 +169,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/nanumbarungothic"
             android:text="앱 버전 v1.0"
-            android:textColor="#8c8c8c"
+            android:textColor="#bcbcbc"
             android:textSize="10sp" />
 
         <TextView
@@ -152,33 +178,8 @@
             android:layout_gravity="center"
             android:fontFamily="@font/nanumbarungothic"
             android:text="서울하늘"
-            android:textColor="#8c8c8c"
+            android:textColor="#bcbcbc"
             android:textSize="10sp" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/developer_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="13dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="27dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/nanumbarungothic"
-            android:text="개발자 정보"
-            android:textColor="#656565"
-            android:textSize="15sp" />
-
-        <ImageButton
-            android:layout_width="9.8dp"
-            android:layout_height="16.4dp"
-            android:layout_marginRight="22dp"
-            android:background="@drawable/in" />
     </LinearLayout>
 </RelativeLayout>

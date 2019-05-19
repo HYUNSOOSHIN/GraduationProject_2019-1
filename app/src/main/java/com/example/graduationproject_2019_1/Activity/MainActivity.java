@@ -528,6 +528,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void btnAlarm() {
                 closeMenu();
             }
+
+            @Override
+            public void btnContact() {
+                startActivity(new Intent(MainActivity.this, QnAActivity.class));
+            }
+
+            @Override
+            public void btnInfo() {
+                startActivity(new Intent(MainActivity.this, DeveloperActivity.class));
+            }
+
+
         });
     }
 

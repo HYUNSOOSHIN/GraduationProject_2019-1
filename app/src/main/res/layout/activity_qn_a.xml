@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rl_001"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:gravity="right">
+
+            <ImageButton
+                android:id="@+id/back_btn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="11dp"
+                android:background="@drawable/close" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="27dp"
+        android:fontFamily="@font/nanumbarungothicbold"
+        android:text="문의"
+        android:textSize="16sp"
+        android:textColor="#656565"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="27dp"
+        android:fontFamily="@font/nanumbarungothic"
+        android:gravity="center"
+        android:text="shs0655@gmail.com로 남겨주세요"
+        android:textSize="15sp"
+        android:textColor="#656565"/>
+</LinearLayout>

@@ -78,7 +78,7 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:scaleType="centerInside"
-                        android:background="@drawable/mask" />
+                        android:background="@drawable/bicycle" />
 
                     <TextView
                         android:layout_width="91dp"
@@ -103,7 +103,7 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:scaleType="centerInside"
-                        android:background="@drawable/aircleaner" />
+                        android:background="@drawable/bus" />
 
                     <TextView
                         android:layout_width="91dp"
@@ -128,7 +128,7 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:scaleType="centerInside"
-                        android:background="@drawable/window" />
+                        android:background="@drawable/car" />
 
                     <TextView
                         android:layout_width="91dp"
@@ -161,7 +161,7 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:scaleType="centerInside"
-                        android:background="@drawable/outdoor_activities" />
+                        android:background="@drawable/drinkwater" />
 
                     <TextView
                         android:layout_width="91dp"
@@ -186,7 +186,7 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:scaleType="centerInside"
-                        android:background="@drawable/mask" />
+                        android:background="@drawable/dustouting" />
 
                     <TextView
                         android:layout_width="91dp"
@@ -211,7 +211,7 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:scaleType="centerInside"
-                        android:background="@drawable/aircleaner" />
+                        android:background="@drawable/plant" />
 
                     <TextView
                         android:layout_width="91dp"
@@ -249,7 +249,7 @@
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="17dp"
                     android:paddingLeft="14dp"
-                    android:background="@drawable/border_10dp"
+                    android:background="@drawable/radius_10dp"
                     android:hint="실천합니다!"
                     android:fontFamily="@font/nanumbarungothic"
                     android:textSize="18sp" />
