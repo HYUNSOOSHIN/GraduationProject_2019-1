@@ -21,14 +21,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--
-        <service
-            android:name=".Manager.PersistentService"
-            android:enabled="true"
-            android:process=":remote" >
-        </service>
-        -->
-
         <activity android:name=".Activity.MiseInfoActivity"></activity>
         <activity android:name=".Activity.LoadingActivity">
             <intent-filter>
@@ -56,25 +48,12 @@
             </intent-filter>
         </service>
 
-        <!--
-        <receiver
-            android:name=".Manager.RestartService"
-            android:enabled="true"
-            android:exported="false"
-            android:label="RestartService"
-            android:process=":remote" >
-            <intent-filter>
-                <action android:name="ACTION.RESTART.PersistentService" />
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        -->
-
         <receiver android:name=".Activity.AppWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <!-- BUTTON1 부분 나타나지 않음 -> WHY? -->
-                <action android:name="com.example.graduationproject_2019_1.BUTTON1"/>
+                <!-- BUTTON1 부분 작동X -> WHY? -->
+                <!-- <action android:name="com.example.graduationproject_2019_1.BUTTON1"/> -->
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
 
             <meta-data
