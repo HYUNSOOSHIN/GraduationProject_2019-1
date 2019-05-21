@@ -89,7 +89,7 @@ public class AppWidget extends AppWidgetProvider{
 
         // 숫자 부분
         //랜덤 값을 만들어 화면에 출력해 보기
-        int number = (new Random().nextInt(100)); // 새로고침 테스트 용도
+        //int number = (new Random().nextInt(100)); // 새로고침 테스트 용도
         String body = "미세먼지: " +pm10_detail+"| 초미세먼지: "+pm25_detail+"| 온도: "+temp_data+"| 날씨: "+wfKor_data+"| 강수확률: "+pop_data+"| 습도: "+reh_data;
         views.setViewPadding(R.id.message_text, 0, 8,0,8);
         views.setTextColor(R.id.message_text, Color.YELLOW);
@@ -102,6 +102,8 @@ public class AppWidget extends AppWidgetProvider{
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
+        // 새로고침 알림
+        Toast.makeText(context, "새로고침 버튼을 클릭했어요.", Toast.LENGTH_LONG).show();
     }
 
 
