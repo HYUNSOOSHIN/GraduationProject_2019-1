@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // main_detail
 
+    //통합대기지수
+
+    TextView total_value;
+
     // 미세먼지
     TextView main_pm10_status;
     TextView main_pm10_value;
@@ -213,20 +217,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.day1:
                 day1.setTextColor(Color.parseColor("#3a3a3a"));
                 day2.setTextColor(Color.parseColor("#818181"));
+                day2.setBackgroundColor(Color.parseColor("#fafafa"));
                 day3.setTextColor(Color.parseColor("#818181"));
+                day3.setBackgroundColor(Color.parseColor("#fafafa"));
                 weather_list(0); //오늘 조건으로 리스트 출력
 //                Log.i("test", "오늘");
                 break;
             case R.id.day2:
                 day1.setTextColor(Color.parseColor("#818181"));
+                day1.setBackgroundColor(Color.parseColor("#fafafa"));
                 day2.setTextColor(Color.parseColor("#3a3a3a"));
                 day3.setTextColor(Color.parseColor("#818181"));
+                day3.setBackgroundColor(Color.parseColor("#fafafa"));
                 weather_list(1);
 //                Log.i("test", "내일");
                 break;
             case R.id.day3:
                 day1.setTextColor(Color.parseColor("#818181"));
+                day1.setBackgroundColor(Color.parseColor("#fafafa"));
                 day2.setTextColor(Color.parseColor("#818181"));
+                day2.setBackgroundColor(Color.parseColor("#fafafa"));
                 day3.setTextColor(Color.parseColor("#3a3a3a"));
                 weather_list(2);
 //                Log.i("test", "모레");
@@ -245,11 +255,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // 통합대기환경등급을 비교해 background color change
         String titleQuality = parsedData.get("IDEX_MVL");
+
         int titleQualityInt = Integer.parseInt(titleQuality);
         wholeGrade = AirGradeManager.getGradeWithWholeValue(titleQualityInt);
+
+        // 통합대기지수 값 텍스트 설정
+        total_value.setText(AirGradeManager.getGradetextWithWholeValue(wholeGrade));
+        total_value.setTextColor(AirGradeManager.getTextColorIdWithGrade(wholeGrade));
+
         setTitleData(parsedData);
         setDetailData(parsedData);
-        setTextColor(AirGradeManager.getTextColorIdWithGrade(wholeGrade));
+        setTextColor();
     }
 
     private void setTitleData(Map<String, String> titleData) {
@@ -263,23 +279,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setDetailData(Map<String, String> detailData) {
-        // 미세먼지
+
         pm10_detail = detailData.get("PM10");
         AirGradeWrapper pm10_wrapper = AirGradeManager.get("PM10", pm10_detail);
-        main_pm10_status.setText(pm10_wrapper.getQuality());
-        main_pm10_value.setText(pm10_detail + " ㎍/㎥");
-        main_pm10_status2.setText(pm10_wrapper.getQuality());
-        mark.setPadding(markLocation(Integer.parseInt((pm10_detail))),0,0,0);
-        mark_img.setImageResource(AirGradeManager.getMarkImage(Integer.parseInt(pm10_detail)));
-        mark_text.setText(pm10_detail);
-
-        // 초미세먼지
         pm25_detail = detailData.get("PM25");
         AirGradeWrapper pm25_wrapper = AirGradeManager.get("PM25", pm25_detail);
-        main_pm25_status.setText(pm25_wrapper.getQuality());
-        main_pm25_value.setText(pm25_detail + " ㎍/㎥");
 
-        // 기상 정보를 받아오지 못했을 경우를 대비하는 용도
+        if(detailData.get("IDEX_NM").equals("점검중")){
+            main_pm10_status.setText(pm10_wrapper.getQuality());
+            main_pm10_value.setText("점검중");
+            main_pm10_status2.setText(pm10_wrapper.getQuality());
+
+            main_pm25_status.setText(pm25_wrapper.getQuality());
+            main_pm25_value.setText("점검중");
+
+            mark_img.setImageResource(AirGradeManager.getMarkImage(Integer.parseInt(pm10_detail)));
+
+            total_value.setText("점검중");
+        } else {
+            // 미세먼지
+            main_pm10_status.setText(pm10_wrapper.getQuality());
+            main_pm10_value.setText(pm10_detail + " ㎍/㎥");
+            main_pm10_status2.setText(pm10_wrapper.getQuality());
+            mark.setPadding(markLocation(Integer.parseInt((pm10_detail))),0,0,0);
+            mark_img.setImageResource(AirGradeManager.getMarkImage(Integer.parseInt(pm10_detail)));
+            mark_text.setText(pm10_detail);
+
+            // 초미세먼지
+            main_pm25_status.setText(pm25_wrapper.getQuality());
+            main_pm25_value.setText(pm25_detail + " ㎍/㎥");
+        }
+
+       // 기상 정보를 받아오지 못했을 경우를 대비하는 용도
         sharedPreferences = getSharedPreferences("hyunsoo", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("PM10", pm10_detail);
@@ -306,12 +337,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     // 텍스트 색 변경
-    private void setTextColor(int colorId) {
-        main_pm10_status.setTextColor(colorId);
-        main_pm25_status.setTextColor(colorId);
-        main_pm10_value.setTextColor(colorId);
-        main_pm25_value.setTextColor(colorId);
-        main_pm10_status2.setTextColor(colorId);
+    private void setTextColor() {
+        main_pm10_status.setTextColor(AirGradeManager.getPM10textColor(pm10_detail));
+        main_pm25_status.setTextColor(AirGradeManager.getPM25textColor(pm25_detail));
+        main_pm10_value.setTextColor(AirGradeManager.getPM10textColor(pm10_detail));
+        main_pm25_value.setTextColor(AirGradeManager.getPM25textColor(pm25_detail));
+        main_pm10_status2.setTextColor(AirGradeManager.getPM10textColor(pm10_detail));
     }
 
     private void findUIObjects() {
@@ -331,6 +362,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void findDetails() {
 
         today = findViewById(R.id.today);
+
+        total_value = findViewById(R.id.total_value);
 
         // 미세먼지
         main_pm10_status = (TextView) findViewById(R.id.main_pm10_status);
@@ -524,10 +557,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, MiseInfoActivity.class));
             }
 
-            @Override
-            public void btnAlarm() {
-                closeMenu();
-            }
+//            @Override
+//            public void btnAlarm() {
+//                closeMenu();
+//            }
 
             @Override
             public void btnContact() {

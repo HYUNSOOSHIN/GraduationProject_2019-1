@@ -45,6 +45,7 @@ public class AppWidget extends AppWidgetProvider{
     // 날씨 정보에 사용되는 변수
     String pm10_detail = null;
     String pm25_detail = null;
+    String total = null;
     String temp_data = null;
     String wfKor_data = null;
     String pop_data = null;
@@ -97,8 +98,14 @@ public class AppWidget extends AppWidgetProvider{
         //미세먼지 정보
         views.setTextViewText(R.id.pm10_text, AirGradeManager.get("PM10", pm10_detail).getQuality());
         views.setTextViewText(R.id.pm25_text, AirGradeManager.get("PM25", pm25_detail).getQuality());
-        views.setTextViewText(R.id.pm10_value, pm10_detail+" ㎍/㎥");
-        views.setTextViewText(R.id.pm25_value, pm25_detail+" ㎍/㎥");
+
+        if(total.equals("점검중")){
+            views.setTextViewText(R.id.pm10_value, "점검중");
+            views.setTextViewText(R.id.pm25_value, "점검중");
+        } else {
+            views.setTextViewText(R.id.pm10_value, pm10_detail+" ㎍/㎥");
+            views.setTextViewText(R.id.pm25_value, pm25_detail+" ㎍/㎥");
+        }
 
         views.setTextColor(R.id.pm10_text, AirGradeManager.getTextColorIdWithGrade(wholeGrade));
         views.setTextColor(R.id.pm25_text, AirGradeManager.getTextColorIdWithGrade(wholeGrade));
@@ -180,6 +187,7 @@ public class AppWidget extends AppWidgetProvider{
             pm10_detail = parsedData.get("PM10");
             pm25_detail = parsedData.get("PM25");
             String titleQuality = parsedData.get("IDEX_MVL");
+            total = parsedData.get("IDEX_NM");
 
             int titleQualityInt = Integer.parseInt(titleQuality);
             wholeGrade = AirGradeManager.getGradeWithWholeValue(titleQualityInt);

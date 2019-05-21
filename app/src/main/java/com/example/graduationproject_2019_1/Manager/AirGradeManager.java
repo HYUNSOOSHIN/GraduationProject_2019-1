@@ -17,8 +17,6 @@ public class AirGradeManager {
     public static final String RAIN = "비";
     public static final String SNOW = "눈";
 
-
-    public static final int GRADE_0 = Color.parseColor("#000000");
     public static final int GRADE_1 = Color.parseColor("#d9feff");
     public static final int GRADE_2 = Color.parseColor("#86edf0");
     public static final int GRADE_3 = Color.parseColor("#67caff");
@@ -44,10 +42,12 @@ public class AirGradeManager {
         return result;
     }
 
+
+    //등급
     public static int getGradeWithWholeValue(int value) {
         int result;
 
-        if(value<0){
+        if(value==-99){ // 점검중
             result = 0;
         } else if (value > 00 && value <= 30) {
             result = 1;
@@ -69,13 +69,36 @@ public class AirGradeManager {
         return result;
     }
 
+    //통합대기지수텍스트
+    public static String getGradetextWithWholeValue(int value) {
+        String result;
+
+        if(value==-99){ // 점검중
+            result = "점검중";
+        } else if (value > 00 && value <= 30) {
+            result = "최고";
+        } else if (value > 30 && value <= 60) {
+            result = "좋음";
+        } else if (value > 60 && value <= 90) {
+            result = "양호";
+        } else if (value > 90 && value <= 110) {
+            result = "보통";
+        } else if (value > 110 && value <= 130) {
+            result = "나쁨";
+        } else if (value > 130 && value <= 150) {
+            result = "상당히 나쁨";
+        } else if (value > 150 && value <= 170) {
+            result = "매우 나쁨";
+       } else {
+            result = "최악";
+        }
+        return result;
+    }
+
+    //통합대기지수 텍스트색
     public static int getTextColorIdWithGrade(int grade) {
         int id;
         switch (grade) {
-            case 0:
-                id = GRADE_0;
-                break;
-
             case 1:
                 id = GRADE_1;
                 break;
@@ -112,6 +135,63 @@ public class AirGradeManager {
                 id = Color.parseColor("#000000");
         }
         return id;
+    }
+
+    //미세먼지 텍스트색
+    public static int getPM10textColor(String pm10) {
+        int data = Integer.parseInt(pm10);
+        int result;
+
+        if (0 < data && data <= 15) {
+            result = GRADE_1;
+        } else if (16 <= data && data <= 30) {
+            result = GRADE_2;
+        } else if (31 <= data && data <= 40) {
+            result = GRADE_3;
+        } else if (41 <= data && data <= 50) {
+            result = GRADE_4;
+        } else if (51 <= data && data <= 75) {
+            result = GRADE_5;
+        } else if (76 <= data && data <= 100) {
+            result = GRADE_6;
+        } else if (101 <= data && data <= 150) {
+            result = GRADE_7;
+        } else if (151 <= data) {
+            result = GRADE_8;
+        } else {
+            result = GRADE_8;
+            Log.e("test", "미세먼지 텍스트색 에러");
+        }
+        return result;
+    }
+
+    //초미세먼지 텍스트색
+    public static int getPM25textColor(String pm25) {
+        int data = Integer.parseInt(pm25);
+        int result;
+
+        if (0 < data && data <= 8) {
+            result = GRADE_1;
+        } else if (9 <= data && data <= 15) {
+            result = GRADE_2;
+        } else if (16 <= data && data <= 20) {
+            result = GRADE_3;
+        } else if (21 <= data && data <= 25) {
+            result = GRADE_4;
+        } else if (26 <= data && data <= 37) {
+            result = GRADE_5;
+        } else if (38 <= data && data <= 50) {
+            result = GRADE_6;
+        } else if (51 <= data && data <= 75) {
+            result = GRADE_7;
+        } else if (76 <= data) {
+            result = GRADE_8;
+        } else {
+            result = GRADE_8;
+            Log.e("test", "초미세먼지 텍스트색 에러");
+        }
+
+        return result;
     }
 
     public static int getWidgetImage(int grade) {
@@ -160,7 +240,7 @@ public class AirGradeManager {
     public static int getMarkImage(int gradeValue) {
         int result;
 
-        if(gradeValue>=0 && gradeValue<30) result = R.drawable.good;
+        if(gradeValue>0 && gradeValue<30) result = R.drawable.good;
         else if(gradeValue>=30 && gradeValue <80) result = R.drawable.normal;
         else if(gradeValue>=80 && gradeValue <150) result = R.drawable.bad;
         else if(gradeValue>=150) result =  R.drawable.verybad;
@@ -252,7 +332,7 @@ public class AirGradeManager {
         int data = Integer.parseInt(pm10);
         AirGradeWrapper result;
 
-        if (0 <= data && data <= 15) {
+        if (0 < data && data <= 15) {
             result = AirGradeWrapper.create(R.drawable.finedust_1, "최고", "최고message");
         } else if (16 <= data && data <= 30) {
             result = AirGradeWrapper.create(R.drawable.finedust_2, "좋음", "좋음message");
@@ -279,7 +359,7 @@ public class AirGradeManager {
         int data = Integer.parseInt(pm25);
         AirGradeWrapper result;
 
-        if (0 <= data && data <= 8) {
+        if (0 < data && data <= 8) {
             result = AirGradeWrapper.create(R.drawable.finedust_1, "최고", "최고message");
         } else if (9 <= data && data <= 15) {
             result = AirGradeWrapper.create(R.drawable.finedust_2, "좋음", "좋음message");

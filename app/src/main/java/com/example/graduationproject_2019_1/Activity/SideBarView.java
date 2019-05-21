@@ -26,7 +26,7 @@ public class SideBarView extends RelativeLayout implements View.OnClickListener 
     public interface EventListener { // 닫기 버튼 클릭 이벤트
         void btnCancel();
         void btnMise();
-        void btnAlarm();
+//        void btnAlarm();
         void btnContact();
         void btnInfo();
     }
@@ -44,7 +44,7 @@ public class SideBarView extends RelativeLayout implements View.OnClickListener 
         LayoutInflater.from(getContext()).inflate(R.layout.sidebar, this, true);
         findViewById(R.id.btn_cancel).setOnClickListener(this);
         findViewById(R.id.mise_btn).setOnClickListener(this);
-        findViewById(R.id.alarm_btn).setOnClickListener(this);
+//        findViewById(R.id.alarm_btn).setOnClickListener(this);
         findViewById(R.id.developer_contact).setOnClickListener(this);
         findViewById(R.id.developer_info).setOnClickListener(this);
     }
@@ -58,9 +58,9 @@ public class SideBarView extends RelativeLayout implements View.OnClickListener 
             case R.id.mise_btn:
                 listener.btnMise();
                 break;
-            case R.id.alarm_btn:
-                listener.btnAlarm();
-                break;
+//            case R.id.alarm_btn:
+//                listener.btnAlarm();
+//                break;
             case R.id.developer_contact:
                 listener.btnContact();
                 break;

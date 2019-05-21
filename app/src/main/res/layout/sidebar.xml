@@ -4,13 +4,6 @@
     android:layout_height="match_parent"
     android:background="#ffffff">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nanumbarungothicbold"
-        android:text="서울하늘 설정"
-        android:textSize="17sp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -53,20 +46,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="27dp">
 
             <LinearLayout
                 android:id="@+id/mise_btn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="13dp"
+                android:layout_height="41dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="17dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="27dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/nanumbarungothic"
                     android:text="미세먼지 8단계"
@@ -81,42 +75,16 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/alarm_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="13dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="27dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:text="알림 설정"
-                    android:textColor="#656565"
-                    android:textSize="15sp" />
-
-                <ImageButton
-                    android:layout_width="9.8dp"
-                    android:layout_height="16.4dp"
-                    android:layout_marginRight="22dp"
-                    android:background="@drawable/in" />
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/developer_contact"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="13dp"
+                android:layout_height="41dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="17dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="27dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/nanumbarungothic"
                     android:text="문의"
@@ -133,15 +101,14 @@
             <LinearLayout
                 android:id="@+id/developer_info"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="13dp"
+                android:layout_height="41dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="17dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="27dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/nanumbarungothic"
                     android:text="개발자 정보"
