@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // main_detail
 
     //통합대기지수
-
     TextView total_value;
 
     // 미세먼지
@@ -78,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String pm25_detail;
 
     //잡
+    String array[];
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
     RecyclerView.LayoutManager layoutManager;
@@ -202,10 +202,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         addSideView();  //사이드바 add
         findUIObjects(); //뷰 Id 매칭
         setWeatherText(); //오늘 날씨 데이터
+        setData(GU); // 미세먼지 위치정보 구 이름 입력 ex) 성북구
         weather_list(0); //주간 날씨 리스트 출력
         action_list(); //건강관리 및 행동요령 리스트 출력
-        setData(GU); // 미세먼지 위치정보 구 이름 입력 ex) 성북구
-
 
     }
 
@@ -265,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setTitleData(parsedData);
         setDetailData(parsedData);
-        setTextColor();
+        setTextColor(parsedData);
     }
 
     private void setTitleData(Map<String, String> titleData) {
@@ -286,21 +285,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AirGradeWrapper pm25_wrapper = AirGradeManager.get("PM25", pm25_detail);
 
         if(detailData.get("IDEX_NM").equals("점검중")){
-            main_pm10_status.setText(pm10_wrapper.getQuality());
-            main_pm10_value.setText("점검중");
-            main_pm10_status2.setText(pm10_wrapper.getQuality());
+            //행동리스트에 들어갈 배열 받아놈
+            array = AirGradeManager.getActionName(0);
 
-            main_pm25_status.setText(pm25_wrapper.getQuality());
+            main_pm10_status.setText("점검중");
+            main_pm10_value.setText("점검중");
+            main_pm10_status2.setText("점검중");
+
+            main_pm25_status.setText("점검중");
             main_pm25_value.setText("점검중");
 
-            mark_img.setImageResource(AirGradeManager.getMarkImage(Integer.parseInt(pm10_detail)));
+            mark_img.setImageResource(AirGradeManager.getMarkImage(0));
 
             total_value.setText("점검중");
         } else {
+            //행동리스트에 들어갈 배열 받아놈
+            array = AirGradeManager.getActionName(Integer.parseInt(pm10_detail));
+
             // 미세먼지
             main_pm10_status.setText(pm10_wrapper.getQuality());
             main_pm10_value.setText(pm10_detail + " ㎍/㎥");
-            main_pm10_status2.setText(pm10_wrapper.getQuality());
+            main_pm10_status2.setText(AirGradeManager.getMarkerTEXT(Integer.parseInt(pm10_detail)));
             mark.setPadding(markLocation(Integer.parseInt((pm10_detail))),0,0,0);
             mark_img.setImageResource(AirGradeManager.getMarkImage(Integer.parseInt(pm10_detail)));
             mark_text.setText(pm10_detail);
@@ -337,12 +342,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     // 텍스트 색 변경
-    private void setTextColor() {
-        main_pm10_status.setTextColor(AirGradeManager.getPM10textColor(pm10_detail));
-        main_pm25_status.setTextColor(AirGradeManager.getPM25textColor(pm25_detail));
-        main_pm10_value.setTextColor(AirGradeManager.getPM10textColor(pm10_detail));
-        main_pm25_value.setTextColor(AirGradeManager.getPM25textColor(pm25_detail));
-        main_pm10_status2.setTextColor(AirGradeManager.getPM10textColor(pm10_detail));
+    private void setTextColor(Map<String, String> detailData) {
+
+        if(detailData.get("IDEX_NM").equals("점검중")) {
+            main_pm10_status.setTextColor(Color.parseColor("#000000"));
+            main_pm25_status.setTextColor(Color.parseColor("#000000"));
+            main_pm10_value.setTextColor(Color.parseColor("#000000"));
+            main_pm25_value.setTextColor(Color.parseColor("#000000"));
+            main_pm10_status2.setTextColor(Color.parseColor("#000000"));
+        } else{
+            main_pm10_status.setTextColor(AirGradeManager.getPM10textColor(pm10_detail));
+            main_pm25_status.setTextColor(AirGradeManager.getPM25textColor(pm25_detail));
+            main_pm10_value.setTextColor(AirGradeManager.getPM10textColor(pm10_detail));
+            main_pm25_value.setTextColor(AirGradeManager.getPM25textColor(pm25_detail));
+            main_pm10_status2.setTextColor(AirGradeManager.getMarkerTEXTcolor(Integer.parseInt(pm10_detail)));
+        }
     }
 
     private void findUIObjects() {
@@ -399,10 +413,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setLayoutManager(layoutManager);
 
         ArrayList<ActionRecycleObject> adtionInfoArrayList = new ArrayList<>();
-        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.mask, "마스크", "상쾌한 날입니다. 좋은 공기 많이 마시세요!"));
-        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.aircleaner, "공기청정기", "공기가 좋은 날입니다. 공기청정기 필터를 청소해주세요."));
-        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.window, "창문", "오늘은 환기를 마음껏 하시길 바랍니다."));
-        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.outdoor_activities, "야외활동", "야외활동하기 좋은 날입니다."));
+        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.mask, "마스크", array[0]));
+        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.aircleaner, "공기청정기", array[1]));
+        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.window, "창문",  array[2]));
+        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.outdoor_activities, "야외활동", array[3] ));
 
         ActionInfoRecyclerAdapter actionInfoRecyclerAdapter = new ActionInfoRecyclerAdapter(adtionInfoArrayList);
 

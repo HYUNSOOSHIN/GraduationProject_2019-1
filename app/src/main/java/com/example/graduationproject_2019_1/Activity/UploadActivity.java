@@ -3,6 +3,7 @@ package com.example.graduationproject_2019_1.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,10 +26,26 @@ public class UploadActivity extends Activity {
     private EditText comment;
     private String category="";
 
+
+    ImageButton category1;
+    ImageButton category2;
+    ImageButton category3;
+    ImageButton category4;
+    ImageButton category5;
+    ImageButton category6;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
+
+        category1 = findViewById(R.id.category1);
+        category2 = findViewById(R.id.category2);
+        category3 = findViewById(R.id.category3);
+        category4 = findViewById(R.id.category4);
+        category5 = findViewById(R.id.category5);
+        category6 = findViewById(R.id.category6);
 
         ImageButton back_btn = findViewById(R.id.back_btn);
         back_btn.setOnClickListener(new View.OnClickListener() {
@@ -93,24 +110,59 @@ public class UploadActivity extends Activity {
     }
 
     public void onClickCategory(View v){
-        ImageButton imageButton = findViewById(v.getId());
         switch (v.getId()){
             case R.id.category1:
+                category1.setBackgroundResource(R.drawable.loading);
+                category2.setBackgroundResource(R.drawable.bus);
+                category3.setBackgroundResource(R.drawable.car);
+                category4.setBackgroundResource(R.drawable.drinkwater);
+                category5.setBackgroundResource(R.drawable.dustouting);
+                category6.setBackgroundResource(R.drawable.plant);
                 category="걷거나 자전거 타기";
                 break;
             case R.id.category2:
+                category1.setBackgroundResource(R.drawable.bicycle);
+                category2.setBackgroundResource(R.drawable.loading);
+                category3.setBackgroundResource(R.drawable.car);
+                category4.setBackgroundResource(R.drawable.drinkwater);
+                category5.setBackgroundResource(R.drawable.dustouting);
+                category6.setBackgroundResource(R.drawable.plant);
                 category="대중교통 이용하기";
                 break;
             case R.id.category3:
+                category1.setBackgroundResource(R.drawable.bicycle);
+                category2.setBackgroundResource(R.drawable.bus);
+                category3.setBackgroundResource(R.drawable.loading);
+                category4.setBackgroundResource(R.drawable.drinkwater);
+                category5.setBackgroundResource(R.drawable.dustouting);
+                category6.setBackgroundResource(R.drawable.plant);
                 category="차량운행 자제하기";
                 break;
             case R.id.category4:
+                category1.setBackgroundResource(R.drawable.bicycle);
+                category2.setBackgroundResource(R.drawable.bus);
+                category3.setBackgroundResource(R.drawable.car);
+                category4.setBackgroundResource(R.drawable.loading);
+                category5.setBackgroundResource(R.drawable.dustouting);
+                category6.setBackgroundResource(R.drawable.plant);
                 category="물 많이 마시기";
                 break;
             case R.id.category5:
+                category1.setBackgroundResource(R.drawable.bicycle);
+                category2.setBackgroundResource(R.drawable.bus);
+                category3.setBackgroundResource(R.drawable.car);
+                category4.setBackgroundResource(R.drawable.drinkwater);
+                category5.setBackgroundResource(R.drawable.loading);
+                category6.setBackgroundResource(R.drawable.plant);
                 category="야외활동 자제하기 ";
                 break;
             case R.id.category6:
+                category1.setBackgroundResource(R.drawable.bicycle);
+                category2.setBackgroundResource(R.drawable.bus);
+                category3.setBackgroundResource(R.drawable.car);
+                category4.setBackgroundResource(R.drawable.drinkwater);
+                category5.setBackgroundResource(R.drawable.dustouting);
+                category6.setBackgroundResource(R.drawable.loading);
                 category="공기정화식물 키우기";
                 break;
         }

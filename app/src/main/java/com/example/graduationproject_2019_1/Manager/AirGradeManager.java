@@ -237,6 +237,70 @@ public class AirGradeManager {
         return result;
     }
 
+    public static String getMarkerTEXT(int gradeValue) {
+        String result;
+
+        if(gradeValue>0 && gradeValue<30)
+            result = "좋음";
+        else if(gradeValue>=30 && gradeValue <80)
+            result = "보통";
+        else if(gradeValue>=80 && gradeValue <150)
+            result = "나쁨";
+        else if(gradeValue>=150)
+            result = "매우 나쁨";
+        else result = "점검중";
+
+        return result;
+    }
+
+    public static int getMarkerTEXTcolor(int gradeValue) {
+        int result;
+
+        if(gradeValue>0 && gradeValue<30)
+            result = Color.parseColor("#77efff");
+        else if(gradeValue>=30 && gradeValue <80)
+            result = Color.parseColor("#67adff");
+        else if(gradeValue>=80 && gradeValue <150)
+            result = Color.parseColor("#ffc424");
+        else if(gradeValue>=150)
+            result = Color.parseColor("#b70000");
+        else result = Color.parseColor("#000000");
+
+        return result;
+    }
+
+    public static String[] getActionName(int gradeValue) {
+        String[] result;
+
+        if(gradeValue>0 && gradeValue<30)
+            result = new String[] { "상쾌한 날입니다. 좋은 공기 많이 마시세요!",
+                                    "공기가 좋은 날입니다. 공기청정기 필터를 청소해주세요.",
+                                    "오늘은 환기를 마음껏 하시길 바랍니다.",
+                                    "야외활동하기 좋은 날입니다."};
+        else if(gradeValue>=30 && gradeValue <80)
+            result = new String[] { "눈 아픔, 감기, 천식 환자는 마스크를 착용해주세요.",
+                                    "창문을 닫고있을 때는 공기청정기를 사용하여 환기해주세요.",
+                                    "오전 10시부터 오후 6시 사이에 미세먼지 농도가 상대적으로 낮아지는 시간대를 골라 하루 3회 30분씩 환기하는 것이 좋아요.",
+                                    "야외활동에 큰 지장이 없지만 외출 후, 손, 얼굴을 깨끗이 씻어주세요."};
+        else if(gradeValue>=80 && gradeValue <150)
+            result = new String[] { "외출시 황사마스크를 착용하세요",
+                                    "가급적 실내 환기는 공기청정기를 사용해주세요. 보통 실내 적정습도는 약 45도 수준이지만, 미세먼지가 나쁨일 때는 55도 이상으로 유지하는 것을 추천드려요.",
+                                    "창문을 열어 환기를 할 시 오전 10시부터 오후 6시 사이에 미세먼지 농도가 상대적으로 낮아지는 시간에 30분 정도 환기하고, 환기 이후에는 물걸레 청소를 해주세요.",
+                                    "장시간 또는 무리한 실외 활동은 자제해주세요. 충분히 수분을 섭취해주세요. 외출 후 손, 얼굴을 깨끗이 씻어주세요."};
+        else if(gradeValue>=150)
+            result = new String[] { "외출시 반드시 황사마스크를 착용하세요",
+                                    "공기청정기를 이용하여 환기하여 주세요.",
+                                    "창문을 절때 열지마세요.",
+                                    "실외 활동은 자제해주세요. 충분히 수분을 섭취해주세요. 외출 후 손, 얼굴을 깨끗이 씻어주세요. 차량 운행을 자제해주세요."};
+
+        else result = new String[] { "점검중",
+                                     "점검중",
+                                     "점검중",
+                                     "점검중"};
+
+        return result;
+    }
+
     public static int getMarkImage(int gradeValue) {
         int result;
 
