@@ -42,7 +42,7 @@ public class WeatherInfoRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
             temp_value = view.findViewById(R.id.weather_tempvalue);
 
 //            wfKor_image = view.findViewById(R.id.weather_wfKorimage);
-//            wfKor_value = view.findViewById(R.id.weather_wfKorvalue);
+            wfKor_value = view.findViewById(R.id.weather_imagetexxt);
 
             pop_image = view.findViewById(R.id.weather_popimage);
             pop_value = view.findViewById(R.id.weather_popvalue);
@@ -74,7 +74,7 @@ public class WeatherInfoRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
         weatherViewHolder.temp_image.setImageResource(weatherInfoArrayList.get(position).tempimage);
         weatherViewHolder.temp_value.setText(weatherInfoArrayList.get(position).tempvalue);
 //        weatherViewHolder.wfKor_image.setImageResource(weatherInfoArrayList.get(position).wfKorimage);
-//        weatherViewHolder.wfKor_value.setText(weatherInfoArrayList.get(position).wfKorvalue);
+        weatherViewHolder.wfKor_value.setText(weatherInfoArrayList.get(position).wfKorvalue);
         weatherViewHolder.pop_image.setImageResource(weatherInfoArrayList.get(position).popimage);
         weatherViewHolder.pop_value.setText(weatherInfoArrayList.get(position).popvalue);
         weatherViewHolder.reh_image.setImageResource(weatherInfoArrayList.get(position).rehimage);
@@ -83,8 +83,8 @@ public class WeatherInfoRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
         weatherViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Context context = view.getContext();
-                Toast.makeText(context, position+" ",Toast.LENGTH_LONG).show();
+//                Context context = view.getContext();
+//                Toast.makeText(context, position+" ",Toast.LENGTH_LONG).show();
             }
         });
     }

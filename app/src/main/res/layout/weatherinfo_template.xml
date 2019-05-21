@@ -3,17 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="33dp"
     android:layout_height="wrap_content"
-    android:gravity="center"
     android:layout_marginLeft="18dp"
     android:background="#fff"
+    android:gravity="center"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/weather_time"
         android:layout_width="33dp"
         android:layout_height="9dp"
-        android:textAlignment="center"
         android:text="시간"
+        android:textAlignment="center"
         android:textColor="#3a3a3a"
         android:textSize="8sp" />
 
@@ -26,30 +26,22 @@
         tools:src="@drawable/tmp" />
 
     <TextView
-        android:id="@+id/weather_tempvalue"
+        android:id="@+id/weather_imagetexxt"
         android:layout_width="33dp"
-        android:layout_height="9dp"
+        android:layout_height="11dp"
         android:layout_marginTop="7dp"
+        android:text="날씨"
         android:textAlignment="center"
-        android:text="마스크"
         android:textSize="8sp" />
 
-    <!--<ImageView-->
-        <!--android:id="@+id/weather_wfKorimage"-->
-        <!--android:layout_width="19dp"-->
-        <!--android:layout_height="19dp"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_marginTop="18dp"-->
-        <!--tools:src="@drawable/tmp" />-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/weather_wfKorvalue"-->
-        <!--android:layout_width="33dp"-->
-        <!--android:layout_height="9dp"-->
-        <!--android:layout_marginTop="7dp"-->
-        <!--android:textAlignment="center"-->
-        <!--android:text="마스크"-->
-        <!--android:textSize="8sp" />-->
+    <TextView
+        android:id="@+id/weather_tempvalue"
+        android:layout_width="33dp"
+        android:layout_height="11dp"
+        android:layout_marginTop="3dp"
+        android:text="온도"
+        android:textAlignment="center"
+        android:textSize="8sp" />
 
     <ImageView
         android:id="@+id/weather_popimage"
@@ -60,12 +52,20 @@
         tools:src="@drawable/tmp" />
 
     <TextView
+        android:layout_width="33dp"
+        android:layout_height="11dp"
+        android:layout_marginTop="7dp"
+        android:text="강수확률"
+        android:textAlignment="center"
+        android:textSize="8sp" />
+
+    <TextView
         android:id="@+id/weather_popvalue"
         android:layout_width="33dp"
-        android:layout_height="9dp"
-        android:layout_marginTop="7dp"
+        android:layout_height="11dp"
+        android:layout_marginTop="3dp"
+        android:text="강수확률"
         android:textAlignment="center"
-        android:text="마스크"
         android:textSize="8sp" />
 
     <ImageView
@@ -77,12 +77,20 @@
         tools:src="@drawable/tmp" />
 
     <TextView
+        android:layout_width="33dp"
+        android:layout_height="11dp"
+        android:layout_marginTop="7dp"
+        android:text="습도"
+        android:textAlignment="center"
+        android:textSize="8sp" />
+
+    <TextView
         android:id="@+id/weather_rehvalue"
         android:layout_width="33dp"
-        android:layout_height="9dp"
-        android:layout_marginTop="7dp"
+        android:layout_height="11dp"
+        android:layout_marginTop="3dp"
+        android:text="습도"
         android:textAlignment="center"
-        android:text="마스크"
         android:textSize="8sp" />
 
 </LinearLayout>

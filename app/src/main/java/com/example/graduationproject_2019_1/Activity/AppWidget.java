@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.graduationproject_2019_1.Data.GpsInfo;
 import com.example.graduationproject_2019_1.Data.Url;
+import com.example.graduationproject_2019_1.Manager.AirGradeManager;
 import com.example.graduationproject_2019_1.Manager.AsyncManager;
 import com.example.graduationproject_2019_1.Manager.CityLocationManager;
 import com.example.graduationproject_2019_1.Manager.JSONManager;
@@ -53,6 +54,9 @@ public class AppWidget extends AppWidgetProvider{
     public String GU = null;
     public String DONG = null;
 
+    // 미세먼지 등급
+    private static int wholeGrade;
+
     // GPS 관련
     public double latitude;
     public double longitude;
@@ -73,11 +77,12 @@ public class AppWidget extends AppWidgetProvider{
         //버튼1 클릭 : 클릭 성공 메세지 출력!
         Intent intent1 = new Intent(ACTION_BUTTON1);
         PendingIntent pendingIntent1 = PendingIntent.getBroadcast(context, 0, intent1, PendingIntent.FLAG_CANCEL_CURRENT);
-        views.setOnClickPendingIntent(R.id.button_refresh, pendingIntent1);
+        views.setOnClickPendingIntent(R.id.resetBtn, pendingIntent1);
 
         // 위치, 날씨정보 update
         GPS_function(context);
         set_Locaion_Weather(context);
+
 
         // 제목 부분
         //시작되면서 동적으로 타이틀 넣고 스타일 설정하기
@@ -96,8 +101,31 @@ public class AppWidget extends AppWidgetProvider{
         views.setTextViewText(R.id.message_text, body);
         //views.setTextViewText(R.id.message_text, String.valueOf(number)); // 새로고침 테스트 용도
 
+        // 위치 정보
+        views.setTextViewText(R.id.gu, GU);
+        views.setTextViewText(R.id.dong, DONG);
+
+        // 날씨 정보
+        views.setTextViewText(R.id.widget_weather, "날씨 : " +wfKor_data);
+        views.setTextViewText(R.id.widget_temp, "온도 : "+temp_data);
+        views.setTextViewText(R.id.widget_pop, "강수확률 : "+pop_data);
+        views.setTextViewText(R.id.widget_reh, "습도 : "+reh_data);
+
+
+        //미세먼지 정보
+        views.setTextViewText(R.id.pm10_text, AirGradeManager.get("PM10", pm10_detail).getQuality());
+        views.setTextViewText(R.id.pm25_text, AirGradeManager.get("PM25", pm25_detail).getQuality());
+        views.setTextViewText(R.id.pm10_value, pm10_detail+" ㎍/㎥");
+        views.setTextViewText(R.id.pm25_value, pm25_detail+" ㎍/㎥");
+
+        views.setTextColor(R.id.pm10_text, AirGradeManager.getTextColorIdWithGrade(wholeGrade));
+        views.setTextColor(R.id.pm25_text, AirGradeManager.getTextColorIdWithGrade(wholeGrade));
+        views.setTextColor(R.id.pm10_value, AirGradeManager.getTextColorIdWithGrade(wholeGrade));
+        views.setTextColor(R.id.pm25_value, AirGradeManager.getTextColorIdWithGrade(wholeGrade));
+
+
         // 이미지 부분
-        views.setImageViewResource(R.id.imageView, R.drawable.loading); // this is for test
+        views.setImageViewResource(R.id.imageView, AirGradeManager.getWidgetImage(Integer.parseInt(pm10_detail)));
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -105,7 +133,6 @@ public class AppWidget extends AppWidgetProvider{
         // 새로고침 알림
         Toast.makeText(context, "새로고침 버튼을 클릭했어요.", Toast.LENGTH_LONG).show();
     }
-
 
     //onReceive : 브로드캐스트가 왔을 때 호출된다.
     // onReceive에서 onUpdate를 호출해주면 되는 것
@@ -173,14 +200,18 @@ public class AppWidget extends AppWidgetProvider{
 
             pm10_detail = parsedData.get("PM10");
             pm25_detail = parsedData.get("PM25");
+            String titleQuality = parsedData.get("IDEX_MVL");
+
+            int titleQualityInt = Integer.parseInt(titleQuality);
+            wholeGrade = AirGradeManager.getGradeWithWholeValue(titleQualityInt);
 
             if(wfKor_data.equals(null)){
                 wfKor_data = sharedPreferences.getString("wfKor", "맑음");
                 temp_data = sharedPreferences.getString("temp", "20°C");
                 pop_data = sharedPreferences.getString("pop", "0%");
                 reh_data = sharedPreferences.getString("reh", "10%");
-                pm10_detail = sharedPreferences.getString("PM10", "60");
-                pm25_detail = sharedPreferences.getString("PM25", "45");
+                pm10_detail = sharedPreferences.getString("PM10", "60 ㎍/㎥");
+                pm25_detail = sharedPreferences.getString("PM25", "45 ㎍/㎥");
             }
 
         } catch (InterruptedException e) {
@@ -220,5 +251,4 @@ public class AppWidget extends AppWidgetProvider{
             gps.showSettingsAlert();
         }
     }
-
 }

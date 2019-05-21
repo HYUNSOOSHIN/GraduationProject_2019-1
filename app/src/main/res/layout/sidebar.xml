@@ -25,22 +25,23 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginLeft="27dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/nanumbarungothicbold"
+                android:gravity="center_vertical"
                 android:text="서울하늘 설정"
                 android:textColor="#656565"
                 android:textSize="17sp" />
 
             <ImageButton
                 android:id="@+id/btn_cancel"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="22dp"
-                android:background="@drawable/ic_close_black_24dp" />
+                android:layout_marginRight="11dp"
+                android:background="@drawable/close" />
 
         </LinearLayout>
 
@@ -58,7 +59,7 @@
                 android:id="@+id/mise_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="12dp"
+                android:layout_marginVertical="13dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -73,17 +74,17 @@
                     android:textSize="15sp" />
 
                 <ImageButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="9.8dp"
+                    android:layout_height="16.4dp"
                     android:layout_marginRight="22dp"
-                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+                    android:background="@drawable/in" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/alarm_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="12dp"
+                android:layout_marginVertical="13dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -98,11 +99,87 @@
                     android:textSize="15sp" />
 
                 <ImageButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="9.8dp"
+                    android:layout_height="16.4dp"
                     android:layout_marginRight="22dp"
-                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+                    android:background="@drawable/in" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/developer_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="13dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="27dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="문의"
+                    android:textColor="#656565"
+                    android:textSize="15sp" />
+
+                <ImageButton
+                    android:layout_width="9.8dp"
+                    android:layout_height="16.4dp"
+                    android:layout_marginRight="22dp"
+                    android:background="@drawable/in" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/developer_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="13dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="27dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="개발자 정보"
+                    android:textColor="#656565"
+                    android:textSize="15sp" />
+
+                <ImageButton
+                    android:layout_width="9.8dp"
+                    android:layout_height="16.4dp"
+                    android:layout_marginRight="22dp"
+                    android:background="@drawable/in" />
             </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="앱 버전 v1.0"
+            android:textColor="#bcbcbc"
+            android:textSize="10sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="서울하늘"
+            android:textColor="#bcbcbc"
+            android:textSize="10sp" />
+
     </LinearLayout>
 </RelativeLayout>

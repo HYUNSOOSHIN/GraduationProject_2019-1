@@ -237,7 +237,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setData(String gu) {
-        Log.i("test", gu+"jj");
         AsyncManager manager = AsyncManager.getInstance();
         String nm = CityLocationManager.getNMbyCityName(gu);
         String a = manager.make(Url.REAL_TIME_CITY_AIR, URLParameterManager.getRequestString(nm, gu));
@@ -367,10 +366,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setLayoutManager(layoutManager);
 
         ArrayList<ActionRecycleObject> adtionInfoArrayList = new ArrayList<>();
-        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.mask, "마스크", "마스크는 K94를 권장합니다."));
-        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.aircleaner, "공기청정기", "외출 후 공기청정기를 가동해주세요."));
-        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.window, "창문", "절때 열지 마세요."));
-        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.outdoor_activities, "야외활동", "야외활동을 최대한 자제하며 외출 후 반드시 샤워를 하세요."));
+        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.mask, "마스크", "상쾌한 날입니다. 좋은 공기 많이 마시세요!"));
+        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.aircleaner, "공기청정기", "공기가 좋은 날입니다. 공기청정기 필터를 청소해주세요."));
+        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.window, "창문", "오늘은 환기를 마음껏 하시길 바랍니다."));
+        adtionInfoArrayList.add(new ActionRecycleObject(R.drawable.outdoor_activities, "야외활동", "야외활동하기 좋은 날입니다."));
 
         ActionInfoRecyclerAdapter actionInfoRecyclerAdapter = new ActionInfoRecyclerAdapter(adtionInfoArrayList);
 
@@ -394,6 +393,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     timeFormat(DAY1.getJSONObject(i).getString("hour")) + "시",
                                     AirGradeManager.getWeatherImageId(DAY1.getJSONObject(i).getString("wfKor")),
                                     DAY1.getJSONObject(i).getString("temp") + "°C",
+                                    DAY1.getJSONObject(i).getString("wfKor"),
                                     R.drawable.humidity,
                                     DAY1.getJSONObject(i).getString("pop") + "%",
                                     R.drawable.precipitation,
@@ -406,6 +406,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     timeFormat(DAY2.getJSONObject(i).getString("hour")) + "시",
                                     AirGradeManager.getWeatherImageId(DAY2.getJSONObject(i).getString("wfKor")),
                                     DAY2.getJSONObject(i).getString("temp") + "°C",
+                                    DAY2.getJSONObject(i).getString("wfKor"),
                                     R.drawable.humidity,
                                     DAY2.getJSONObject(i).getString("pop") + "%",
                                     R.drawable.precipitation,
@@ -418,6 +419,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     timeFormat(DAY3.getJSONObject(i).getString("hour")) + "시",
                                     AirGradeManager.getWeatherImageId(DAY3.getJSONObject(i).getString("wfKor")),
                                     DAY3.getJSONObject(i).getString("temp") + "°C",
+                                    DAY3.getJSONObject(i).getString("wfKor"),
                                     R.drawable.humidity,
                                     DAY3.getJSONObject(i).getString("pop") + "%",
                                     R.drawable.precipitation,
@@ -489,9 +491,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             result += size;
         } else result =  0;
 
-        Log.e("test",gradeValue+" grade");
-        Log.e("test",result+" result");
-
         return result;
     }
 
@@ -529,6 +528,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void btnAlarm() {
                 closeMenu();
             }
+
+            @Override
+            public void btnContact() {
+                startActivity(new Intent(MainActivity.this, QnAActivity.class));
+            }
+
+            @Override
+            public void btnInfo() {
+                startActivity(new Intent(MainActivity.this, DeveloperActivity.class));
+            }
+
+
         });
     }
 
