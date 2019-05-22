@@ -18,14 +18,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="10dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/re_title"
             android:layout_width="match_parent"
             android:layout_height="19dp"
-            android:text="마스크"
+            android:text="미세먼지가 심할 때 외출을 자제하기"
             android:textColor="#1c1c1c"
             android:textSize="16sp" />
 

@@ -83,7 +83,7 @@ public class ActionActivity extends Activity {
         actionInfoArrayList2.add(new ActionRecycleObject(R.drawable.plant, "공기정화식물 키우기","식물은 오염 물질 제거뿐만 아니라 음이온,산소,수분등으로 실내 공기를 쾌적하게 해줍니다."));
         actionInfoArrayList2.add(new ActionRecycleObject(R.drawable.cook, "요리 시 직화 구이를 삼가하기","음식을 조리하는 과정에서도 많은 미세먼지가 발생합니다. 가급적 굽거나 튀기는 요리를 자제하고 환기와 조리용 후드를 꼭 이용해 주세요 "));
         actionInfoArrayList2.add(new ActionRecycleObject(R.drawable.drinkwater, "물 많이 마시기","미세먼지에 좋은 음식이라면 바로 물입니다. 하루이 2L이상 충분한 물을 마시면 기관지나 혈액에 있는 미세먼지를 배출하는데 큰 도움이 됩니다."));
-        actionInfoArrayList2.add(new ActionRecycleObject(R.drawable.dustouting, "미세먼지가 심할 때 외출을 자제하기기","자신의 건강 피해를 최소화하기 위해 미세먼지 농도를 확인하고 심할경우 외출을 자제해야 합니다."));
+        actionInfoArrayList2.add(new ActionRecycleObject(R.drawable.dustouting, "미세먼지가 심할 때 외출을 자제하기","자신의 건강 피해를 최소화하기 위해 미세먼지 농도를 확인하고 심할경우 외출을 자제해야 합니다."));
 
         actionInfoRecyclerAdapter = new ActionInfoRecyclerAdapter(actionInfoArrayList);
         recyclerView.setAdapter(actionInfoRecyclerAdapter);

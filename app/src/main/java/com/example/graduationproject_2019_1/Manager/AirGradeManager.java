@@ -70,27 +70,45 @@ public class AirGradeManager {
     }
 
     //통합대기지수텍스트
-    public static String getGradetextWithWholeValue(int value) {
+    public static String getGradetextWithWholeValue(int grade) {
         String result;
 
-        if(value==-99){ // 점검중
-            result = "점검중";
-        } else if (value > 00 && value <= 30) {
-            result = "최고";
-        } else if (value > 30 && value <= 60) {
-            result = "좋음";
-        } else if (value > 60 && value <= 90) {
-            result = "양호";
-        } else if (value > 90 && value <= 110) {
-            result = "보통";
-        } else if (value > 110 && value <= 130) {
-            result = "나쁨";
-        } else if (value > 130 && value <= 150) {
-            result = "상당히 나쁨";
-        } else if (value > 150 && value <= 170) {
-            result = "매우 나쁨";
-       } else {
-            result = "최악";
+        switch (grade) {
+            case 1:
+                result = "최고";
+                break;
+
+            case 2:
+                result = "좋음";
+                break;
+
+            case 3:
+                result = "양호";
+                break;
+
+            case 4:
+                result = "보통";
+                break;
+
+            case 5:
+                result = "나쁨";
+                break;
+
+            case 6:
+                result = "상당히 나쁨";
+                break;
+
+            case 7:
+                result = "매우 나쁨";
+                break;
+
+            case 8:
+                result = "최악";
+                break;
+
+            default:
+                result = "점검중";
+
         }
         return result;
     }
@@ -135,6 +153,52 @@ public class AirGradeManager {
                 id = Color.parseColor("#000000");
         }
         return id;
+    }
+
+    //통합대기지수에 따른 이미지
+    public static int getGradeImageIdWithGrade(int grade) {
+        int result;
+
+        Log.e("test", grade+"");
+
+        switch (grade) {
+            case 1:
+                result = R.drawable.finedust_1;
+                break;
+
+            case 2:
+                result = R.drawable.finedust_2;
+                break;
+
+            case 3:
+                result = R.drawable.finedust_3;
+                break;
+
+            case 4:
+                result = R.drawable.finedust_4;
+                break;
+
+            case 5:
+                result = R.drawable.finedust_5;
+                break;
+
+            case 6:
+                result = R.drawable.finedust_6;
+                break;
+
+            case 7:
+                result = R.drawable.finedust_7;
+                break;
+
+            case 8:
+                result = R.drawable.finedust_8;
+                break;
+
+            default:
+                result = R.drawable.finedust_8;
+        }
+
+        return result;
     }
 
     //미세먼지 텍스트색
@@ -194,6 +258,7 @@ public class AirGradeManager {
         return result;
     }
 
+    //위젯이미지
     public static int getWidgetImage(int grade) {
         int result;
 
@@ -237,6 +302,7 @@ public class AirGradeManager {
         return result;
     }
 
+    //마커텍스트
     public static String getMarkerTEXT(int gradeValue) {
         String result;
 
@@ -253,6 +319,7 @@ public class AirGradeManager {
         return result;
     }
 
+    //마커텍스트 색
     public static int getMarkerTEXTcolor(int gradeValue) {
         int result;
 
@@ -269,6 +336,7 @@ public class AirGradeManager {
         return result;
     }
 
+    //행동요령 맵핑
     public static String[] getActionName(int gradeValue) {
         String[] result;
 
@@ -301,6 +369,7 @@ public class AirGradeManager {
         return result;
     }
 
+    //마커 이미지
     public static int getMarkImage(int gradeValue) {
         int result;
 
@@ -313,51 +382,7 @@ public class AirGradeManager {
         return result;
     }
 
-    public static int getGradeImageIdWithGrade(int grade) {
-        int result;
-
-        Log.e("test", grade+"");
-
-        switch (grade) {
-            case 1:
-                result = R.drawable.finedust_1;
-                break;
-
-            case 2:
-                result = R.drawable.finedust_2;
-                break;
-
-            case 3:
-                result = R.drawable.finedust_3;
-                break;
-
-            case 4:
-                result = R.drawable.finedust_4;
-                break;
-
-            case 5:
-                result = R.drawable.finedust_5;
-                break;
-
-            case 6:
-                result = R.drawable.finedust_6;
-                break;
-
-            case 7:
-                result = R.drawable.finedust_7;
-                break;
-
-            case 8:
-                result = R.drawable.finedust_8;
-                break;
-
-            default:
-                result = R.drawable.finedust_8;
-        }
-
-        return result;
-    }
-
+    //날씨 이미지
     public static int getWeatherImageId(String weathertext) {
         int result;
         switch (weathertext) {
@@ -392,6 +417,7 @@ public class AirGradeManager {
         return result;
     }
 
+    //미세먼지 상태 텍스트
     public static AirGradeWrapper getPM10(String pm10) {
         int data = Integer.parseInt(pm10);
         AirGradeWrapper result;
@@ -419,6 +445,7 @@ public class AirGradeManager {
         return result;
     }
 
+    //초미세먼지 상태 텍스트
     public static AirGradeWrapper getPM25(String pm25) {
         int data = Integer.parseInt(pm25);
         AirGradeWrapper result;

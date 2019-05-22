@@ -215,6 +215,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.day1:
                 day1.setTextColor(Color.parseColor("#3a3a3a"));
+                day1.setBackgroundColor(Color.parseColor("#ffffff"));
                 day2.setTextColor(Color.parseColor("#818181"));
                 day2.setBackgroundColor(Color.parseColor("#fafafa"));
                 day3.setTextColor(Color.parseColor("#818181"));
@@ -226,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 day1.setTextColor(Color.parseColor("#818181"));
                 day1.setBackgroundColor(Color.parseColor("#fafafa"));
                 day2.setTextColor(Color.parseColor("#3a3a3a"));
+                day2.setBackgroundColor(Color.parseColor("#ffffff"));
                 day3.setTextColor(Color.parseColor("#818181"));
                 day3.setBackgroundColor(Color.parseColor("#fafafa"));
                 weather_list(1);
@@ -237,6 +239,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 day2.setTextColor(Color.parseColor("#818181"));
                 day2.setBackgroundColor(Color.parseColor("#fafafa"));
                 day3.setTextColor(Color.parseColor("#3a3a3a"));
+                day3.setBackgroundColor(Color.parseColor("#ffffff"));
                 weather_list(2);
 //                Log.i("test", "모레");
                 break;

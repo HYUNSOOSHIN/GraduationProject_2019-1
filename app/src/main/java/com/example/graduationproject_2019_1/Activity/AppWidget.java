@@ -107,13 +107,13 @@ public class AppWidget extends AppWidgetProvider{
             views.setTextViewText(R.id.pm25_value, pm25_detail+" ㎍/㎥");
         }
 
-        views.setTextColor(R.id.pm10_text, AirGradeManager.getTextColorIdWithGrade(wholeGrade));
-        views.setTextColor(R.id.pm25_text, AirGradeManager.getTextColorIdWithGrade(wholeGrade));
-        views.setTextColor(R.id.pm10_value, AirGradeManager.getTextColorIdWithGrade(wholeGrade));
-        views.setTextColor(R.id.pm25_value, AirGradeManager.getTextColorIdWithGrade(wholeGrade));
+        views.setTextColor(R.id.pm10_text, AirGradeManager.getPM10textColor(pm10_detail));
+        views.setTextColor(R.id.pm25_text, AirGradeManager.getPM10textColor(pm10_detail));
+        views.setTextColor(R.id.pm10_value, AirGradeManager.getPM25textColor(pm25_detail));
+        views.setTextColor(R.id.pm25_value, AirGradeManager.getPM25textColor(pm25_detail));
 
         // 이미지 부분
-        views.setImageViewResource(R.id.imageView, AirGradeManager.getWidgetImage(Integer.parseInt(pm10_detail)));
+        views.setImageViewResource(R.id.imageView, AirGradeManager.getWidgetImage(wholeGrade));
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -131,6 +131,8 @@ public class AppWidget extends AppWidgetProvider{
 
         String action = intent.getAction();
         Log.d(LOG, "action: " + action);
+
+        Toast.makeText(context, "새로고침되었습니다.", Toast.LENGTH_SHORT).show();
 
         if(action.equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)){
             if(widgetIds != null && widgetIds.length>0){

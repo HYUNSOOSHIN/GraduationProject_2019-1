@@ -61,7 +61,8 @@
                 android:id="@+id/action_recycleView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="22dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="22dp"
                 android:layout_marginTop="33dp"></android.support.v7.widget.RecyclerView>
 
             <LinearLayout
