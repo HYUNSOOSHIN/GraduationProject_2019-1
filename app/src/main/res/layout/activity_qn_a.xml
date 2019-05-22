@@ -39,7 +39,7 @@
         android:layout_marginHorizontal="27dp"
         android:fontFamily="@font/nanumbarungothic"
         android:gravity="center"
-        android:text="shs0655@gmail.com로 남겨주세요"
+        android:text="jhim147605@gmail.com로 남겨주세요"
         android:textSize="15sp"
         android:textColor="#656565"/>
 </LinearLayout>

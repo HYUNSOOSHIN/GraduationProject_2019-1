@@ -13,7 +13,7 @@
     <TextView
         android:id="@+id/gu"
         android:layout_width="114dp"
-        android:layout_height="13.3dp"
+        android:layout_height="14dp"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="9dp"
         android:fontFamily="@font/nanumbarungothic"
@@ -25,7 +25,7 @@
     <TextView
         android:id="@+id/dong"
         android:layout_width="114dp"
-        android:layout_height="13.3dp"
+        android:layout_height="14dp"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="34dp"
         android:fontFamily="@font/nanumbarungothic"
@@ -36,7 +36,7 @@
 
     <TextView
         android:layout_width="51.1dp"
-        android:layout_height="11.3dp"
+        android:layout_height="12dp"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="163.9dp"
         android:fontFamily="@font/nanumbarungothic"
@@ -48,7 +48,7 @@
     <TextView
         android:id="@+id/pm10_text"
         android:layout_width="51.1dp"
-        android:layout_height="11.7dp"
+        android:layout_height="12dp"
         android:layout_marginTop="24dp"
         android:layout_marginLeft="163.9dp"
         android:fontFamily="@font/nanumbarungothic"
@@ -60,7 +60,7 @@
     <TextView
         android:id="@+id/pm10_value"
         android:layout_width="51.1dp"
-        android:layout_height="11.7dp"
+        android:layout_height="12dp"
         android:layout_marginTop="40.3dp"
         android:layout_marginLeft="163.9dp"
         android:fontFamily="@font/nanumbarungothicbold"
@@ -71,7 +71,7 @@
 
     <TextView
         android:layout_width="51.1dp"
-        android:layout_height="11.3dp"
+        android:layout_height="12dp"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="227.9dp"
         android:fontFamily="@font/nanumbarungothic"
@@ -83,7 +83,7 @@
     <TextView
         android:id="@+id/pm25_text"
         android:layout_width="51.1dp"
-        android:layout_height="11.3dp"
+        android:layout_height="12dp"
         android:layout_marginTop="24dp"
         android:layout_marginLeft="227.9dp"
         android:fontFamily="@font/nanumbarungothic"
@@ -104,49 +104,55 @@
         android:textColor="#ffc424"
         android:textSize="10sp" />
 
-    <TextView
-        android:id="@+id/widget_weather"
-        android:layout_width="51dp"
-        android:layout_height="9.3dp"
-        android:layout_marginLeft="57dp"
-        android:layout_marginTop="58dp"
-        android:fontFamily="@font/nanumbarungothic"
-        android:text="날씨"
-        android:textColor="#191919"
-        android:textSize="8sp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp">
+        <TextView
+            android:id="@+id/widget_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="9.3dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="58dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="날씨"
+            android:textColor="#191919"
+            android:textSize="8sp" />
+        <TextView
+            android:id="@+id/widget_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="9.3dp"
+            android:layout_marginTop="58dp"
+            android:layout_marginLeft="9dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="온도"
+            android:textColor="#191919"
+            android:textSize="8sp" />
 
-    <TextView
-        android:id="@+id/widget_temp"
-        android:layout_width="45dp"
-        android:layout_height="9.3dp"
-        android:layout_marginLeft="117dp"
-        android:layout_marginTop="58dp"
-        android:fontFamily="@font/nanumbarungothic"
-        android:text="온도"
-        android:textColor="#191919"
-        android:textSize="8sp" />
+        <TextView
+            android:id="@+id/widget_pop"
+            android:layout_width="wrap_content"
+            android:layout_height="9.3dp"
+            android:layout_marginTop="58dp"
+            android:layout_marginLeft="9dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="강수확률"
+            android:textColor="#191919"
+            android:textSize="8sp" />
 
-    <TextView
-        android:id="@+id/widget_pop"
-        android:layout_width="57dp"
-        android:layout_height="9.3dp"
-        android:layout_marginLeft="171dp"
-        android:layout_marginTop="58dp"
-        android:fontFamily="@font/nanumbarungothic"
-        android:text="강수확률"
-        android:textColor="#191919"
-        android:textSize="8sp" />
-
-    <TextView
-        android:id="@+id/widget_reh"
-        android:layout_width="42dp"
-        android:layout_height="9.3dp"
-        android:layout_marginLeft="237dp"
-        android:layout_marginTop="58dp"
-        android:fontFamily="@font/nanumbarungothic"
-        android:text="습도"
-        android:textColor="#191919"
-        android:textSize="8sp" />
+        <TextView
+            android:id="@+id/widget_reh"
+            android:layout_width="wrap_content"
+            android:layout_height="9.3dp"
+            android:layout_marginTop="58dp"
+            android:layout_marginLeft="9dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="습도"
+            android:textColor="#191919"
+            android:textSize="8sp" />
+    </LinearLayout>
 
     <ImageButton
         android:id="@+id/resetBtn"
