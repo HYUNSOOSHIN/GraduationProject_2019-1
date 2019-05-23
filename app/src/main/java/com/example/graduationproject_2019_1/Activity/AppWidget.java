@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -77,30 +78,13 @@ public class AppWidget extends AppWidgetProvider{
 
         //버튼1 클릭 : 클릭 성공 메세지 출력!
         Intent intent1 = new Intent(ACTION_BUTTON1);
-        PendingIntent pendingIntent1 = PendingIntent.getBroadcast(context, 0, intent1, PendingIntent.FLAG_CANCEL_CURRENT);
+        //PendingIntent pendingIntent1 = PendingIntent.getBroadcast(context, 0, intent1, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent1 = PendingIntent.getBroadcast(context, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.resetBtn, pendingIntent1);
 
         // 위치, 날씨정보 update
         GPS_function(context);
         set_Locaion_Weather(context);
-
-
-        // 제목 부분
-        //시작되면서 동적으로 타이틀 넣고 스타일 설정하기
-        CharSequence widgetText = context.getString(R.string.appwidget_text);
-        String title = GU + " " + DONG + " 현재 기상정보";
-        views.setTextColor(R.id.appwidget_text, Color.WHITE);
-        views.setViewPadding(R.id.appwidget_text, 8, 8, 8, 8);
-        views.setTextViewText(R.id.appwidget_text, title);
-
-        // 숫자 부분
-        //랜덤 값을 만들어 화면에 출력해 보기
-        //int number = (new Random().nextInt(100)); // 새로고침 테스트 용도
-        String body = "미세먼지: " +pm10_detail+"| 초미세먼지: "+pm25_detail+"| 온도: "+temp_data+"| 날씨: "+wfKor_data+"| 강수확률: "+pop_data+"| 습도: "+reh_data;
-        views.setViewPadding(R.id.message_text, 0, 8,0,8);
-        views.setTextColor(R.id.message_text, Color.YELLOW);
-        views.setTextViewText(R.id.message_text, body);
-        //views.setTextViewText(R.id.message_text, String.valueOf(number)); // 새로고침 테스트 용도
 
         // 위치 정보
         views.setTextViewText(R.id.gu, GU);
@@ -130,15 +114,13 @@ public class AppWidget extends AppWidgetProvider{
         views.setTextColor(R.id.pm10_value, AirGradeManager.getPM25textColor(pm25_detail));
         views.setTextColor(R.id.pm25_value, AirGradeManager.getPM25textColor(pm25_detail));
 
-
         // 이미지 부분
         views.setImageViewResource(R.id.imageView, AirGradeManager.getWidgetImage(wholeGrade));
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
-        // 새로고침 알림
-        Toast.makeText(context, "새로고침 버튼을 클릭했어요.", Toast.LENGTH_LONG).show();
+        //Toast.makeText(context, "새로고침되었습니다.", Toast.LENGTH_SHORT).show();
     }
 
     //onReceive : 브로드캐스트가 왔을 때 호출된다.
@@ -153,9 +135,7 @@ public class AppWidget extends AppWidgetProvider{
         String action = intent.getAction();
         Log.d(LOG, "action: " + action);
 
-        Toast.makeText(context, "새로고침되었습니다.", Toast.LENGTH_SHORT).show();
-
-        if(action.equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)){
+        if(action.equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE) || action.equals("android.appwidget.action.APPWIDGET_UPDATE_OPTIONS")){
             if(widgetIds != null && widgetIds.length>0){
                 this.onUpdate(context, AppWidgetManager.getInstance(context), widgetIds);
             }
@@ -189,9 +169,8 @@ public class AppWidget extends AppWidgetProvider{
             GU = sharedPreferences.getString("gu","영등포구");
             DONG = sharedPreferences.getString("dong","당산1동");
 
-            Log.d(LOG, "GU : " + GU + ", DONG : " + DONG);
         }
-
+        Log.d(LOG, "set_Location_Weather(): GU : " + GU + ", DONG : " + DONG);
         try {
             result_weather = (String) new WeatherAsynTask(GU, DONG).execute().get();
             JSONArray jsonArray = new JSONArray(result_weather);
@@ -223,13 +202,14 @@ public class AppWidget extends AppWidgetProvider{
                 pm10_detail = sharedPreferences.getString("PM10", "60 ㎍/㎥");
                 pm25_detail = sharedPreferences.getString("PM25", "45 ㎍/㎥");
             }
+            Log.d(LOG, "Weather Data: " + "미세먼지: " +pm10_detail+"| 초미세먼지: "+pm25_detail+"| 온도: "+temp_data+"| 날씨: "+wfKor_data+"| 강수확률: "+pop_data+"| 습도: "+reh_data);
 
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            e.printStackTrace();    Log.d(LOG, String.valueOf(e));
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            e.printStackTrace();    Log.d(LOG, String.valueOf(e));
         } catch (JSONException e) {
-            e.printStackTrace();
+            e.printStackTrace();    Log.d(LOG, String.valueOf(e));
         }
 
     }
@@ -250,7 +230,7 @@ public class AppWidget extends AppWidgetProvider{
                 GU = array_location[2];
                 DONG = array_location[3];
 
-                Log.d(LOG, "GU : " + GU + ", DONG : " + DONG);
+                Log.d(LOG, "GPS_function(): GU : " + GU + ", DONG : " + DONG);
                 // array_location[2]: 구, array_location[3]: 동 만 살리면 된다.
             } catch (IOException e) {
                 e.printStackTrace();
@@ -261,4 +241,24 @@ public class AppWidget extends AppWidgetProvider{
             gps.showSettingsAlert();
         }
     }
+
+
+    public class BootReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(LOG, "BootReceiver onReceive() called");
+            if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
+
+                Intent i = new Intent(context, AppWidget.class);
+                //i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                context.startActivity(i);
+            }
+
+        }
+
+    }
+
+
 }
