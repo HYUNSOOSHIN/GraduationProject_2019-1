@@ -112,7 +112,7 @@ public class UploadActivity extends Activity {
     public void onClickCategory(View v){
         switch (v.getId()){
             case R.id.category1:
-                category1.setBackgroundResource(R.drawable.loading);
+                category1.setBackgroundResource(R.drawable.bicycle_choice);
                 category2.setBackgroundResource(R.drawable.bus);
                 category3.setBackgroundResource(R.drawable.car);
                 category4.setBackgroundResource(R.drawable.drinkwater);
@@ -122,7 +122,7 @@ public class UploadActivity extends Activity {
                 break;
             case R.id.category2:
                 category1.setBackgroundResource(R.drawable.bicycle);
-                category2.setBackgroundResource(R.drawable.loading);
+                category2.setBackgroundResource(R.drawable.bux_choice);
                 category3.setBackgroundResource(R.drawable.car);
                 category4.setBackgroundResource(R.drawable.drinkwater);
                 category5.setBackgroundResource(R.drawable.dustouting);
@@ -132,7 +132,7 @@ public class UploadActivity extends Activity {
             case R.id.category3:
                 category1.setBackgroundResource(R.drawable.bicycle);
                 category2.setBackgroundResource(R.drawable.bus);
-                category3.setBackgroundResource(R.drawable.loading);
+                category3.setBackgroundResource(R.drawable.car_choice);
                 category4.setBackgroundResource(R.drawable.drinkwater);
                 category5.setBackgroundResource(R.drawable.dustouting);
                 category6.setBackgroundResource(R.drawable.plant);
@@ -142,7 +142,7 @@ public class UploadActivity extends Activity {
                 category1.setBackgroundResource(R.drawable.bicycle);
                 category2.setBackgroundResource(R.drawable.bus);
                 category3.setBackgroundResource(R.drawable.car);
-                category4.setBackgroundResource(R.drawable.loading);
+                category4.setBackgroundResource(R.drawable.water_choice);
                 category5.setBackgroundResource(R.drawable.dustouting);
                 category6.setBackgroundResource(R.drawable.plant);
                 category="물 많이 마시기";
@@ -152,7 +152,7 @@ public class UploadActivity extends Activity {
                 category2.setBackgroundResource(R.drawable.bus);
                 category3.setBackgroundResource(R.drawable.car);
                 category4.setBackgroundResource(R.drawable.drinkwater);
-                category5.setBackgroundResource(R.drawable.loading);
+                category5.setBackgroundResource(R.drawable.dustouting_choice);
                 category6.setBackgroundResource(R.drawable.plant);
                 category="야외활동 자제하기 ";
                 break;
@@ -162,7 +162,7 @@ public class UploadActivity extends Activity {
                 category3.setBackgroundResource(R.drawable.car);
                 category4.setBackgroundResource(R.drawable.drinkwater);
                 category5.setBackgroundResource(R.drawable.dustouting);
-                category6.setBackgroundResource(R.drawable.loading);
+                category6.setBackgroundResource(R.drawable.plant_choice);
                 category="공기정화식물 키우기";
                 break;
         }
