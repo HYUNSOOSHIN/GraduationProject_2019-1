@@ -1,6 +1,5 @@
 package com.example.graduationproject_2019_1.Activity;
 
-import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -9,12 +8,10 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.util.Log;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import com.example.graduationproject_2019_1.Data.GpsInfo;
 import com.example.graduationproject_2019_1.Data.Url;
@@ -32,7 +29,6 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 public class AppWidget extends AppWidgetProvider{
@@ -96,7 +92,6 @@ public class AppWidget extends AppWidgetProvider{
         views.setTextViewText(R.id.widget_pop, "강수확률 : "+pop_data);
         views.setTextViewText(R.id.widget_reh, "습도 : "+reh_data);
 
-
         //미세먼지 정보
         views.setTextViewText(R.id.pm10_text, AirGradeManager.get("PM10", pm10_detail).getQuality());
         views.setTextViewText(R.id.pm25_text, AirGradeManager.get("PM25", pm25_detail).getQuality());
@@ -110,8 +105,8 @@ public class AppWidget extends AppWidgetProvider{
         }
 
         views.setTextColor(R.id.pm10_text, AirGradeManager.getPM10textColor(pm10_detail));
-        views.setTextColor(R.id.pm25_text, AirGradeManager.getPM10textColor(pm10_detail));
-        views.setTextColor(R.id.pm10_value, AirGradeManager.getPM25textColor(pm25_detail));
+        views.setTextColor(R.id.pm25_text, AirGradeManager.getPM25textColor(pm25_detail));
+        views.setTextColor(R.id.pm10_value, AirGradeManager.getPM10textColor(pm10_detail));
         views.setTextColor(R.id.pm25_value, AirGradeManager.getPM25textColor(pm25_detail));
 
         // 이미지 부분
@@ -124,7 +119,7 @@ public class AppWidget extends AppWidgetProvider{
     }
 
     //onReceive : 브로드캐스트가 왔을 때 호출된다.
-    // onReceive에서 onUpdate를 호출해주면 되는 것
+    //onReceive에서 onUpdate를 호출해주면 되는 것
     @Override
     public void onReceive(Context context, Intent intent){
 
@@ -140,7 +135,6 @@ public class AppWidget extends AppWidgetProvider{
                 this.onUpdate(context, AppWidgetManager.getInstance(context), widgetIds);
             }
         }
-
     }
 
     //onUpdate : 위젯 xml 파일 내의 android:updatePeriodMillis 값에 따라 주기적으로 호출된다. 위젯을 갱신하는 함수를 여기 넣으면 된다.(주기는 최소 30분으로 제한)
@@ -150,7 +144,6 @@ public class AppWidget extends AppWidgetProvider{
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
-
     }
 
     @Override
@@ -202,7 +195,7 @@ public class AppWidget extends AppWidgetProvider{
                 pm10_detail = sharedPreferences.getString("PM10", "60 ㎍/㎥");
                 pm25_detail = sharedPreferences.getString("PM25", "45 ㎍/㎥");
             }
-            Log.d(LOG, "Weather Data: " + "미세먼지: " +pm10_detail+"| 초미세먼지: "+pm25_detail+"| 온도: "+temp_data+"| 날씨: "+wfKor_data+"| 강수확률: "+pop_data+"| 습도: "+reh_data);
+            Log.d(LOG, "Weather Data: " + "미세먼지: " +pm10_detail+" | 초미세먼지: "+pm25_detail+" | 온도: "+temp_data+" | 날씨: "+wfKor_data+" | 강수확률: "+pop_data+" | 습도: "+reh_data);
 
         } catch (InterruptedException e) {
             e.printStackTrace();    Log.d(LOG, String.valueOf(e));

@@ -154,7 +154,7 @@ public class UploadActivity extends Activity {
                 category4.setBackgroundResource(R.drawable.drinkwater);
                 category5.setBackgroundResource(R.drawable.dustouting_choice);
                 category6.setBackgroundResource(R.drawable.plant);
-                category="야외활동 자제하기 ";
+                category="야외활동 자제하기";
                 break;
             case R.id.category6:
                 category1.setBackgroundResource(R.drawable.bicycle);

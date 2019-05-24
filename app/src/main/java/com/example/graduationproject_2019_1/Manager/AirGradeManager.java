@@ -473,4 +473,39 @@ public class AirGradeManager {
 
         return result;
     }
+
+    //날씨 이미지
+    public static int getImageByCategory(String category) {
+        int result;
+        switch (category) {
+            case "걷거나 자전거 타기":
+                result = R.drawable.bicycle;
+                break;
+
+            case "대중교통 이용하기":
+                result = R.drawable.bus;
+                break;
+
+            case "차량운행 자제하기":
+                result = R.drawable.car;
+                break;
+
+            case "물 많이 마시기":
+                result = R.drawable.drinkwater;
+                break;
+
+            case "야외활동 자제하기":
+                result = R.drawable.dustouting;
+                break;
+
+            case "공기정화식물 키우기":
+                result = R.drawable.plant;
+                break;
+
+            default:
+                result = R.drawable.finedust_8;
+        }
+
+        return result;
+    }
 }
