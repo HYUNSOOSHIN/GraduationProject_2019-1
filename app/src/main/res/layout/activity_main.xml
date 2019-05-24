@@ -85,30 +85,30 @@
             <LinearLayout
                 android:layout_width="160dp"
                 android:layout_height="19dp"
-                android:orientation="horizontal"
                 android:layout_above="@+id/mise"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="15.7dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbarungothic"
-                    android:textAlignment="center"
                     android:text="통합대기지수 "
-                    android:textSize="17sp"
-                    android:textColor="#191919"/>
+                    android:textAlignment="center"
+                    android:textColor="#191919"
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/total_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbarungothicbold"
-                    android:textAlignment="center"
                     android:text="70"
-                    android:textSize="17sp"
-                    android:textColor="#191919"/>
+                    android:textAlignment="center"
+                    android:textColor="#191919"
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
@@ -453,10 +453,10 @@
                         android:layout_width="120dp"
                         android:layout_height="31dp"
                         android:layout_weight="1"
+                        android:background="#fafafa"
                         android:fontFamily="@font/nanumbarungothicbold"
                         android:gravity="center"
                         android:onClick="whatday"
-                        android:background="#fafafa"
                         android:text="내일"
                         android:textColor="#818181"
                         android:textSize="16sp" />
@@ -466,10 +466,10 @@
                         android:layout_width="120dp"
                         android:layout_height="31dp"
                         android:layout_weight="1"
+                        android:background="#fafafa"
                         android:fontFamily="@font/nanumbarungothicbold"
                         android:gravity="center"
                         android:onClick="whatday"
-                        android:background="#fafafa"
                         android:text="모레"
                         android:textColor="#818181"
                         android:textSize="16sp" />
@@ -635,8 +635,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginRight="22dp"
-                    android:layout_marginTop="21dp" />
+                    android:layout_marginTop="21dp"
+                    android:layout_marginRight="22dp" />
 
             </LinearLayout>
 

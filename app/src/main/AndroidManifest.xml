@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -48,7 +49,7 @@
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <!-- BUTTON1 부분 작동X -> WHY? -->
-                <!-- <action android:name="com.example.graduationproject_2019_1.BUTTON1"/> -->
+                <!--<action android:name="com.example.graduationproject_2019_1.BUTTON1"/> -->
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
@@ -56,6 +57,16 @@
                 android:name="android.appwidget.provider"
                 android:resource="@layout/appwidget_info" />
         </receiver>
+
+        <receiver
+            android:name=".Activity.AppWidget$BootReceiver"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

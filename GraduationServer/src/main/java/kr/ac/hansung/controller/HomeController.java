@@ -96,9 +96,11 @@ public class HomeController {
         	//String path = "GraduationServer/src/main/webapp/resources/google/seoulsky-c5295-firebase-adminsdk-9enbm-6973550e3b.json";
 
         	//지환 경로
-			String path = "C:/Users/LG/Documents/GitHub/GraduationProject_2019-1/GraduationServer/src/main/webapp/resources/google/seoulsky-c5295-firebase-adminsdk-9enbm-6973550e3b.json";
+			//String path = "C:/Users/LG/Documents/GitHub/GraduationProject_2019-1/GraduationServer/src/main/webapp/resources/google/seoulsky-c5295-firebase-adminsdk-9enbm-6973550e3b.json";
         	//현수 경로
 			//String path = "C:/Users/hyunsoo/Android projects/GraduationProject_2019-1/GraduationServer/src/main/webapp/resources/google/seoulsky-c5295-firebase-adminsdk-9enbm-6973550e3b.json";
+			//AWS 경로
+			String path = "/var/lib/tomcat8/webapps/fcm/resources/google/seoulsky-c5295-firebase-adminsdk-9enbm-6973550e3b.json";
 
             String MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging";
             String[] SCOPES = { MESSAGING_SCOPE };
