@@ -78,6 +78,13 @@ public class AppWidget extends AppWidgetProvider{
         PendingIntent pendingIntent1 = PendingIntent.getBroadcast(context, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.resetBtn, pendingIntent1);
 
+        //위젯 버튼 리스너 : 위젯 누르면 앱 켜기
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+        intent.setComponent(new ComponentName(context, MainActivity.class));
+        PendingIntent pi = PendingIntent.getActivity(context, 0, intent, 0);
+        views.setOnClickPendingIntent(R.id.total_view, pi);
+
         // 위치, 날씨정보 update
         GPS_function(context);
         set_Locaion_Weather(context);
@@ -93,13 +100,14 @@ public class AppWidget extends AppWidgetProvider{
         views.setTextViewText(R.id.widget_reh, "습도 : "+reh_data);
 
         //미세먼지 정보
-        views.setTextViewText(R.id.pm10_text, AirGradeManager.get("PM10", pm10_detail).getQuality());
-        views.setTextViewText(R.id.pm25_text, AirGradeManager.get("PM25", pm25_detail).getQuality());
-
         if(total.equals("점검중")){
+            views.setTextViewText(R.id.pm10_text, "점검중");
+            views.setTextViewText(R.id.pm25_text, "점검중");
             views.setTextViewText(R.id.pm10_value, "점검중");
             views.setTextViewText(R.id.pm25_value, "점검중");
         } else {
+            views.setTextViewText(R.id.pm10_text, AirGradeManager.get("PM10", pm10_detail).getQuality());
+            views.setTextViewText(R.id.pm25_text, AirGradeManager.get("PM25", pm25_detail).getQuality());
             views.setTextViewText(R.id.pm10_value, pm10_detail+" ㎍/㎥");
             views.setTextViewText(R.id.pm25_value, pm25_detail+" ㎍/㎥");
         }
