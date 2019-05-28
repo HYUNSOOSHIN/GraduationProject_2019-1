@@ -5,4 +5,5 @@ public class Url {
 //    public static final String SPRING_SERVER = "http://172.16.2.232:8080/hansung"; //폰 연결해서 사용
     //public static final String SPRING_SERVER = "http://10.0.2.2:8080/hansung"; //안드로이드 에뮬레이터에서 사용
     public static final String SPRING_SERVER = "http://13.125.245.98:8080/fcm"; //안드로이드 에뮬레이터에서 사용
+
 }

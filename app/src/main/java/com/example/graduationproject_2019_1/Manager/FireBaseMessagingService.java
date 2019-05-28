@@ -39,6 +39,8 @@ public class FireBaseMessagingService extends FirebaseMessagingService {
     String result_weather = null;
     private static final int NOTI_ID = 100;
 
+    int wholeGrade;
+
     public String GU;
     public String DONG;
 
@@ -53,11 +55,10 @@ public class FireBaseMessagingService extends FirebaseMessagingService {
             alarm_function(remoteMessage.getNotification().getBody());
         }
 
-
         if(remoteMessage.getData() != null){
             Log.d(TAG, "Message Notification Data: " + remoteMessage.getData().get("message"));
             alarm_function(remoteMessage.getData().get("message"));
-            Log.d(TAG, "Weather Data: " + "미세먼지: " +pm10_detail+"| 초미세먼지: "+pm25_detail+"| 온도: "+temp_data+"| 날씨: "+wfKor_data+"| 강수확률: "+pop_data+"| 습도: "+reh_data);
+            Log.d(TAG, "Weather Data: " + "미세먼지: " +pm10_detail+" | 초미세먼지: "+pm25_detail+" | 온도: "+temp_data+" | 날씨: "+wfKor_data+" | 강수확률: "+pop_data+" | 습도: "+reh_data);
         }
     }
 
@@ -76,12 +77,12 @@ public class FireBaseMessagingService extends FirebaseMessagingService {
             //어떤 알림을 보낼지 생성해줌
             NotificationCompat.Builder notification = new NotificationCompat.Builder(FireBaseMessagingService.this, "default");
             notification.setContentTitle(GU + " " + DONG + " 현재 기상정보")
-                    .setContentText("미세먼지: " +pm10_detail+"| 초미세먼지: "+pm25_detail+"| 온도: "+temp_data+"| 날씨: "+wfKor_data+"| 강수확률: "+pop_data+"| 습도: "+reh_data)
+                    .setContentText("미세먼지: " +pm10_detail+" | 초미세먼지: "+pm25_detail+" | 온도: "+temp_data+" | 날씨: "+wfKor_data+" | 강수확률: "+pop_data+" | 습도: "+reh_data)
                     .setStyle(new NotificationCompat.BigTextStyle()
                             .setBigContentTitle(GU + " " + DONG + " 현재 기상정보")
-                            .bigText("미세먼지: " +pm10_detail+"| 초미세먼지: "+pm25_detail+"| 온도: "+temp_data+"| 날씨: "+wfKor_data+"| 강수확률: "+pop_data+"| 습도: "+reh_data))
-                    .setSmallIcon(R.drawable.loading)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.loading))
+                            .bigText("미세먼지: " +pm10_detail+" | 초미세먼지: "+pm25_detail+" | 온도: "+temp_data+" | 날씨: "+wfKor_data+" | 강수확률: "+pop_data+" | 습도: "+reh_data))
+                    .setSmallIcon(AirGradeManager.getGradeImageIdWithGrade(wholeGrade))
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), AirGradeManager.getGradeImageIdWithGrade(wholeGrade)))
                     .setContentIntent(contentIntent)
                     .setAutoCancel(true)
                     .setWhen(System.currentTimeMillis())
@@ -151,8 +152,13 @@ public class FireBaseMessagingService extends FirebaseMessagingService {
 
             Map<String, String> parsedData = JSONManager.parse(a);
 
+
             pm10_detail = parsedData.get("PM10");
             pm25_detail = parsedData.get("PM25");
+            String titleQuality = parsedData.get("IDEX_MVL");
+
+            int titleQualityInt = Integer.parseInt(titleQuality);
+            wholeGrade = AirGradeManager.getGradeWithWholeValue(titleQualityInt);
 
             if(wfKor_data.equals(null)){
                 wfKor_data = sharedPreferences.getString("wfKor", "맑음");

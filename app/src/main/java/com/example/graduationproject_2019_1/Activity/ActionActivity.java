@@ -16,6 +16,7 @@ import com.example.graduationproject_2019_1.Adapter.ActionInfoRecyclerAdapter;
 import com.example.graduationproject_2019_1.Adapter.ParticipationRecyclerAdapter;
 import com.example.graduationproject_2019_1.Data.ActionRecycleObject;
 import com.example.graduationproject_2019_1.Data.ParticipationRecycleObject;
+import com.example.graduationproject_2019_1.Manager.AirGradeManager;
 import com.example.graduationproject_2019_1.R;
 import com.example.graduationproject_2019_1.Request.GetListRequest;
 
@@ -100,7 +101,7 @@ public class ActionActivity extends Activity {
             JSONArray jsonArray = new JSONArray (result);
             for(int i=0; i<jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                getListArrayList.add(new ParticipationRecycleObject(R.drawable.tmp, jsonObject.getString("category"), jsonObject.getString("comment")));
+                getListArrayList.add(new ParticipationRecycleObject(AirGradeManager.getImageByCategory(jsonObject.getString("category")), jsonObject.getString("category"), jsonObject.getString("comment")));
             }
 
         } catch (InterruptedException e) {
