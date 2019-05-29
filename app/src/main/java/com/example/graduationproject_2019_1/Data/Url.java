@@ -5,5 +5,5 @@ public class Url {
 
     //현수 aws ec2 서버
     public static final String SPRING_SERVER = "http://13.124.206.188:8080/fcm/"; //폰 연결해서 사용
-//    public static final String SPRING_SERVER = "http://10.0.2.2:8080/hansung"; //안드로이드 에뮬레이터에서 사용
+    //public static final String SPRING_SERVER = "http://10.0.2.2:8080/hansung"; //안드로이드 에뮬레이터에서 사용
 }
