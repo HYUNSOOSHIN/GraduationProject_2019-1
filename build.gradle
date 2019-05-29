@@ -6,10 +6,10 @@ buildscript {
         jcenter()
         maven {
             url "https://maven.google.com" //구글의 Maven repository
-        }
+            }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'com.android.tools.build:gradle:3.3.2'
 
         // Firebase
         classpath 'com.google.gms:google-services:4.2.0'

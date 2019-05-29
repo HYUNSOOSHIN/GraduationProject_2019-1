@@ -78,6 +78,8 @@ public class AppWidget extends AppWidgetProvider{
         PendingIntent pendingIntent1 = PendingIntent.getBroadcast(context, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.resetBtn, pendingIntent1);
 
+
+
         // 위치, 날씨정보 update
         GPS_function(context);
         set_Locaion_Weather(context);

@@ -20,6 +20,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:27.1.1'
     // appcompat -v7:27.1.1 에러로 아래 2줄 추가
     implementation 'com.android.support:support-media-compat:27.1.1'
@@ -39,7 +40,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:10.2.1'
     implementation 'com.google.firebase:firebase-messaging:10.2.1'
     implementation 'com.google.firebase:firebase-database:10.2.1'
-
+    // 절전문제 해결
 }
 // Firebase
 apply plugin: 'com.google.gms.google-services' // Google Play services Gradle plugin
