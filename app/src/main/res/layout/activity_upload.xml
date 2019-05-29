@@ -14,23 +14,30 @@
         android:layout_gravity="center"
         android:background="#ffffff">
 
-        <ImageButton
-            android:id="@+id/back_btn"
-            android:layout_width="14dp"
-            android:layout_height="23.5dp"
-            android:layout_marginLeft="21.8dp"
-            android:background="@drawable/back" />
-
         <TextView
             android:id="@+id/main_location"
             android:layout_width="match_parent"
             android:layout_height="23.5dp"
-            android:fontFamily="@font/nanumbarungothicbold"
+            android:layout_marginTop="3dp"
             android:gravity="center"
+            android:fontFamily="@font/nanumbarungothicbold"
             android:textAlignment="center"
             android:text="참여하기"
             android:textColor="#3b3b3b"
             android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/back_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="23.5dp"
+                android:layout_gravity="center"
+                android:background="@drawable/back" />
+        </LinearLayout>
 
     </RelativeLayout>
 

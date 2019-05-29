@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#ffffff"
+    android:orientation="vertical"
     tools:context=".Activity.MainActivity">
 
     <ScrollView
@@ -22,12 +22,18 @@
             android:background="#ffffff"
             android:orientation="vertical">
 
-            <ImageButton
+            <LinearLayout
                 android:id="@+id/back_btn"
-                android:layout_width="14dp"
-                android:layout_height="23.5dp"
-                android:layout_marginLeft="21.8dp"
-                android:background="@drawable/back" />
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="15dp"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="23.5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/back" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,7 +43,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="23dp"
                     android:fontFamily="@font/nanumbarungothicbold"
                     android:text="생활 속 미세먼지를 줄이고 건강을 지킵시다"
@@ -48,10 +54,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="33dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginRight="33dp"
+                    android:layout_marginRight="10dp"
                     android:fontFamily="@font/nanumbarungothic"
                     android:lineSpacingExtra="3dp"
-                    android:text="어떻게 일상 속 미세먼지를 줄일 수 있을까요? 많은 사람들이 실천하고 있습니다. 함께 실천해보세요."
+                    android:text="어떻게 일상 속 미세먼지를 줄일 수 있을까요?\n많은 사람들이 실천하고 있습니다. 함께 실천해보세요."
                     android:textColor="#707070"
                     android:textSize="12sp" />
 
@@ -62,8 +68,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="22dp"
-                android:layout_marginTop="33dp"></android.support.v7.widget.RecyclerView>
+                android:layout_marginTop="33dp"
+                android:layout_marginRight="22dp"></android.support.v7.widget.RecyclerView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -146,7 +152,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="22dp"
                 android:layout_marginTop="36dp"
-                android:layout_marginBottom="40dp"/>
+                android:layout_marginBottom="40dp" />
         </LinearLayout>
     </ScrollView>
 

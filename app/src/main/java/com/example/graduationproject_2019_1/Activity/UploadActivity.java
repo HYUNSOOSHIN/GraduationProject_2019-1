@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.graduationproject_2019_1.R;
@@ -47,13 +49,14 @@ public class UploadActivity extends Activity {
         category5 = findViewById(R.id.category5);
         category6 = findViewById(R.id.category6);
 
-        ImageButton back_btn = findViewById(R.id.back_btn);
-        back_btn.setOnClickListener(new View.OnClickListener() {
+        LinearLayout back_btn = findViewById(R.id.back_btn);
+        back_btn.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onTouch(View v, MotionEvent event) {
                 Intent intent = new Intent(UploadActivity.this, ActionActivity.class);
                 startActivity(intent);
                 finish();
+                return false;
             }
         });
 
