@@ -159,8 +159,6 @@ public class AirGradeManager {
     public static int getGradeImageIdWithGrade(int grade) {
         int result;
 
-        Log.e("test", grade+"");
-
         switch (grade) {
             case 1:
                 result = R.drawable.finedust_1;
@@ -352,8 +350,8 @@ public class AirGradeManager {
                                     "야외활동에 큰 지장이 없지만 외출 후, 손, 얼굴을 깨끗이 씻어주세요."};
         else if(gradeValue>=80 && gradeValue <150)
             result = new String[] { "외출시 황사마스크를 착용하세요",
-                                    "가급적 실내 환기는 공기청정기를 사용해주세요. 보통 실내 적정습도는 약 45도 수준이지만, 미세먼지가 나쁨일 때는 55도 이상으로 유지하는 것을 추천드려요.",
-                                    "창문을 열어 환기를 할 시 오전 10시부터 오후 6시 사이에 미세먼지 농도가 상대적으로 낮아지는 시간에 30분 정도 환기하고, 환기 이후에는 물걸레 청소를 해주세요.",
+                                    "가급적 실내 환기는 공기청정기를 사용해주세요. 미세먼지가 나쁨일 때는 55도 이상으로 유지하는 것을 추천드려요.",
+                                    "오전 10시부터 오후 6시 사이에 미세먼지 농도가 상대적으로 낮아지는 시간에 30분 정도 환기하고, 환기 이후에는 물걸레 청소를 해주세요.",
                                     "장시간 또는 무리한 실외 활동은 자제해주세요. 충분히 수분을 섭취해주세요. 외출 후 손, 얼굴을 깨끗이 씻어주세요."};
         else if(gradeValue>=150)
             result = new String[] { "외출시 반드시 황사마스크를 착용하세요",
@@ -479,27 +477,27 @@ public class AirGradeManager {
         int result;
         switch (category) {
             case "걷거나 자전거 타기":
-                result = R.drawable.bicycle;
+                result = R.drawable.bicycle_choice;
                 break;
 
             case "대중교통 이용하기":
-                result = R.drawable.bus;
+                result = R.drawable.bux_choice;
                 break;
 
             case "차량운행 자제하기":
-                result = R.drawable.car;
+                result = R.drawable.car_choice;
                 break;
 
             case "물 많이 마시기":
-                result = R.drawable.drinkwater;
+                result = R.drawable.water_choice;
                 break;
 
             case "야외활동 자제하기":
-                result = R.drawable.dustouting;
+                result = R.drawable.dustouting_choice;
                 break;
 
             case "공기정화식물 키우기":
-                result = R.drawable.plant;
+                result = R.drawable.plant_choice;
                 break;
 
             default:
