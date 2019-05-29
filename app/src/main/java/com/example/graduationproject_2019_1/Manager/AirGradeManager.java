@@ -159,8 +159,6 @@ public class AirGradeManager {
     public static int getGradeImageIdWithGrade(int grade) {
         int result;
 
-        Log.e("test", grade+"");
-
         switch (grade) {
             case 1:
                 result = R.drawable.finedust_1;
@@ -479,27 +477,27 @@ public class AirGradeManager {
         int result;
         switch (category) {
             case "걷거나 자전거 타기":
-                result = R.drawable.bicycle;
+                result = R.drawable.bicycle_choice;
                 break;
 
             case "대중교통 이용하기":
-                result = R.drawable.bus;
+                result = R.drawable.bux_choice;
                 break;
 
             case "차량운행 자제하기":
-                result = R.drawable.car;
+                result = R.drawable.car_choice;
                 break;
 
             case "물 많이 마시기":
-                result = R.drawable.drinkwater;
+                result = R.drawable.water_choice;
                 break;
 
             case "야외활동 자제하기":
-                result = R.drawable.dustouting;
+                result = R.drawable.dustouting_choice;
                 break;
 
             case "공기정화식물 키우기":
-                result = R.drawable.plant;
+                result = R.drawable.plant_choice;
                 break;
 
             default:
