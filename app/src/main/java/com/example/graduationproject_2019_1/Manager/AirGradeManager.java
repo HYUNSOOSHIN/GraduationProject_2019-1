@@ -69,6 +69,50 @@ public class AirGradeManager {
         return result;
     }
 
+    //통합대기지수에 따른 이미지
+    public static int getAlarmImageIdWithGrade(int grade) {
+        int result;
+
+        switch (grade) {
+            case 1:
+                result = R.drawable.alarm_1;
+                break;
+
+            case 2:
+                result = R.drawable.alarm_2;
+                break;
+
+            case 3:
+                result = R.drawable.alarm_3;
+                break;
+
+            case 4:
+                result = R.drawable.alarm_4;
+                break;
+
+            case 5:
+                result = R.drawable.alarm_5;
+                break;
+
+            case 6:
+                result = R.drawable.alarm_6;
+                break;
+
+            case 7:
+                result = R.drawable.alarm_7;
+                break;
+
+            case 8:
+                result = R.drawable.alarm_8;
+                break;
+
+            default:
+                result = R.drawable.alarm_8;
+        }
+
+        return result;
+    }
+
     //통합대기지수텍스트
     public static String getGradetextWithWholeValue(int grade) {
         String result;
