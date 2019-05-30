@@ -34,6 +34,15 @@
         <activity android:name=".Activity.UploadActivity" />
         <activity android:name=".Activity.ActionActivity" />
 
+        <!-- 배터리 절약모드 회피 -->
+        <activity
+            android:name=".Activity.AvoidSmartManagerActivity"
+            android:excludeFromRecents="true"
+            android:taskAffinity=":avoidSmartManager"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+
+        </activity>
+
         <service android:name=".Manager.FireBaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -64,6 +73,16 @@
             android:exported="false" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".Manager.AvoidSmartManagerReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
             </intent-filter>
         </receiver>
 
