@@ -67,7 +67,7 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.9.5</version>
+			<version>2.9.10.1</version>
 		</dependency>
 		
 		<!-- 하이버네이트 사용하기 위한 라이브러리 -->
